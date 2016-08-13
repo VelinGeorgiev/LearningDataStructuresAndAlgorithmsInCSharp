@@ -79,26 +79,27 @@ namespace Learning.SortingAlgorithms
             return array;
         }
 
-        public void BottomUpSort(T[] list)
+        public T[] BottomUpSort(T[] array)
         {
-            T[] result = new T[list.Length];
+            T[] result = new T[array.Length];
             int chunk = 1;
-            while (chunk < list.Length)
+            while (chunk < array.Length)
             {
                 int i = 0;
-                while (i < list.Length - chunk)
+                while (i < array.Length - chunk)
                 {
-                    BottomUpMerge(list, i, chunk, result);
+                    BottomUpMerge(array, i, chunk, result);
                     i += chunk * 2;
                 }
                 chunk *= 2;
             }
+            return array;
         }
 
-        private void BottomUpMerge(IList<T> list, int leftPosition, int chunkSize, IList<T> workList)
+        private void BottomUpMerge(T[] list, int leftPosition, int chunk, T[] result)
         {
-            int rightPosition = leftPosition + chunkSize;
-            int endPosition = Math.Min(leftPosition + chunkSize * 2 - 1, list.Count - 1);
+            int rightPosition = leftPosition + chunk;
+            int endPosition = Math.Min(leftPosition + chunk * 2 - 1, list.Length - 1);
             int leftIndex = leftPosition;
             int rightIndex = rightPosition;
 
@@ -108,17 +109,17 @@ namespace Learning.SortingAlgorithms
                         (rightIndex > endPosition ||
                         list[leftIndex].CompareTo(list[rightIndex]) <= 0))
                 {
-                    workList[i] = list[leftIndex++];
+                    result[i] = list[leftIndex++];
                 }
                 else
                 {
-                    workList[i] = list[rightIndex++];
+                    result[i] = list[rightIndex++];
                 }
             }
 
             for (int i = leftPosition; i <= endPosition; i++)
             {
-                list[i] = workList[i - leftPosition];
+                list[i] = result[i - leftPosition];
             }
         }
     }

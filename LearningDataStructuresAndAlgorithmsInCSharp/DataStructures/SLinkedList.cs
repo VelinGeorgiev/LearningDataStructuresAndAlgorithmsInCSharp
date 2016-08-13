@@ -1,38 +1,99 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Learning
+namespace Learning.DataStructures
 {
-    public class Node
+    public class Node<T>
     {
-        public Node Next;
-        public Object data;
+        public T Value { get; set; }
+        public Node<T> Next { get; set; }
     }
 
-    class SLinkedList
+    public class LinkedList<T> : IEnumerable
     {
-        private Node head;
+        private Node<T> _head;
 
-        public void printAllNodes()
+        public Node<T> Add(T value)
         {
-            Node cur = head;
-            while (cur.Next != null)
+            var node = new Node<T> {Value = value};
+
+            if (_head == null)
             {
-                Console.WriteLine(cur.data);
-                cur = cur.Next;
+                _head = node;
+            }
+            else
+            {
+                var current = _head;
+                while (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                current.Next = node; //new head
+            }
+
+            return node;
+        }
+
+        public T Remove(Node<T> node)
+        {
+            if (_head == null)
+                return node.Value;
+
+            if (_head == node)
+            {
+                _head = _head.Next;
+                node.Next = null;
+                return node.Value;
+            }
+
+            var current = _head;
+            while (current.Next != null)
+            {
+                if (current.Next == node)
+                {
+                    current.Next = node.Next;
+                    return node.Value;
+                }
+
+                current = current.Next;
+            }
+
+            return node.Value;
+        }
+
+        public void Reverse()
+        {
+            Node<T> prev = null;
+            var current = _head;
+
+            if (current == null)
+                return;
+
+            while (current != null)
+            {
+                var next = current.Next;
+                current.Next = prev;
+                prev = current;
+                current = next;
+            }
+
+            _head = prev;
+        }
+
+        public IEnumerator<T> Enumerator()
+        {
+            var current = _head;
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
             }
         }
 
-        public void Add(Object data)
+        public IEnumerator GetEnumerator()
         {
-            Node toAdd = new Node();
-            toAdd.data = data;
-            Node current = head;
-            // traverse all nodes (see the print all nodes method for an example)
-            current.Next = toAdd;
+            return Enumerator();
         }
     }
 }
