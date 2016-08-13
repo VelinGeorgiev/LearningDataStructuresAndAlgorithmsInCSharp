@@ -48,26 +48,26 @@ namespace Learning.SortingAlgorithmsTest
         [Test]
         public void TestHoareQuickSortOfObjects()
         {
-            QuickSortObject[] array = {
-                new QuickSortObject { Name = "10", Value = 10},
-                new QuickSortObject { Name = "4", Value = 4},
-                new QuickSortObject { Name = "6", Value = 6},
-                new QuickSortObject { Name = "7", Value = 7},
-                new QuickSortObject { Name = "8", Value = 8},
-                new QuickSortObject { Name = "5", Value = 5},
-                new QuickSortObject { Name = "3", Value = 3},
-                new QuickSortObject { Name = "2", Value = 2},
-                new QuickSortObject { Name = "1", Value = 1},
-                new QuickSortObject { Name = "9", Value = 9}
+            SortObject[] array = {
+                new SortObject { Name = "10", Value = 10},
+                new SortObject { Name = "4", Value = 4},
+                new SortObject { Name = "6", Value = 6},
+                new SortObject { Name = "7", Value = 7},
+                new SortObject { Name = "8", Value = 8},
+                new SortObject { Name = "5", Value = 5},
+                new SortObject { Name = "3", Value = 3},
+                new SortObject { Name = "2", Value = 2},
+                new SortObject { Name = "1", Value = 1},
+                new SortObject { Name = "9", Value = 9}
             };
 
-            Func<QuickSortObject, QuickSortObject, int> comparer = (x, y) =>
+            Func<SortObject, SortObject, int> comparer = (x, y) =>
             {
                 if (x.Value == y.Value) return 0;
                 if (x.Value < y.Value) return -1;
                 return 1;
             };
-            var quickSort = new QuickSort<QuickSortObject>(comparer);
+            var quickSort = new QuickSort<SortObject>(comparer);
             quickSort.HoarePartitionScheme(array, 0, array.Length - 1);
 
             Assert.AreEqual(array[0].Value, 1);
@@ -85,26 +85,26 @@ namespace Learning.SortingAlgorithmsTest
         [Test]
         public void TestLomutoQuickSortOfObjects()
         {
-            QuickSortObject[] array = {
-                new QuickSortObject { Name = "10", Value = 10},
-                new QuickSortObject { Name = "4", Value = 4},
-                new QuickSortObject { Name = "6", Value = 6},
-                new QuickSortObject { Name = "7", Value = 7},
-                new QuickSortObject { Name = "8", Value = 8},
-                new QuickSortObject { Name = "5", Value = 5},
-                new QuickSortObject { Name = "3", Value = 3},
-                new QuickSortObject { Name = "2", Value = 2},
-                new QuickSortObject { Name = "1", Value = 1},
-                new QuickSortObject { Name = "9", Value = 9}
+            SortObject[] array = {
+                new SortObject { Name = "10", Value = 10},
+                new SortObject { Name = "4", Value = 4},
+                new SortObject { Name = "6", Value = 6},
+                new SortObject { Name = "7", Value = 7},
+                new SortObject { Name = "8", Value = 8},
+                new SortObject { Name = "5", Value = 5},
+                new SortObject { Name = "3", Value = 3},
+                new SortObject { Name = "2", Value = 2},
+                new SortObject { Name = "1", Value = 1},
+                new SortObject { Name = "9", Value = 9}
             };
 
-            Func<QuickSortObject, QuickSortObject, int> comparer = (x, y) =>
+            Func<SortObject, SortObject, int> comparer = (x, y) =>
             {
                 if (x.Value == y.Value) return 0;
                 if (x.Value < y.Value) return -1;
                 return 1;
             };
-            var quickSort = new QuickSort<QuickSortObject>(comparer);
+            var quickSort = new QuickSort<SortObject>(comparer);
             quickSort.LomutoPartitionScheme(array, 0, array.Length - 1);
 
             Assert.AreEqual(array[0].Value, 1);
@@ -119,6 +119,48 @@ namespace Learning.SortingAlgorithmsTest
             Assert.AreEqual(array[9].Value, 10);
         }
 
+        [Test]
+        public void TestHoareQuickSortOfIntsBigLength()
+        {
+            var random = new Random();
+            var array = new int[200000];
+            int min = 0;
+            int max = 200000;
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = random.Next(min, max);
+            }
+
+            var quickSort = new QuickSort();
+            quickSort.HoarePartitionScheme(array, 0, array.Length - 1);
+
+            for (int j = 0; j < array.Length - 1; j++)
+            {
+                Assert.LessOrEqual(array[j], array[j + 1]);
+            }
+        }
+
+        [Test]
+        public void TestLomutoQuickSortOfIntsBigLength()
+        {
+            var random = new Random();
+            var array = new int[200000];
+            int min = 0;
+            int max = 200000;
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = random.Next(min, max);
+            }
+
+            var quickSort = new QuickSort();
+            quickSort.LomutoPartitionScheme(array, 0, array.Length - 1);
+
+            for (int j = 0; j < array.Length - 1; j++)
+            {
+                Assert.LessOrEqual(array[j], array[j + 1]);
+            }
+        }
+
         //[TestCase(12, 3, 4)]
         //[TestCase(12, 2, 6)]
         //[TestCase(12, 4, 3)]
@@ -126,14 +168,5 @@ namespace Learning.SortingAlgorithmsTest
         //{
         //    Assert.AreEqual(q, n / d);
         //}
-    }
-
-    /// <summary>
-    /// Test object.
-    /// </summary>
-    public class QuickSortObject
-    {
-        public string Name { get; set; }
-        public int Value { get; set; }
     }
 }

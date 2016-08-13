@@ -162,4 +162,10 @@ namespace Learning.SortingAlgorithms
             indexTwo = temp;
         }
     }
+
+    //More optimizations:
+    //A popular choice for picking this value is to determine the median value in
+    //the array.You can do this by taking the upper bound of the array and dividing
+    //it by 2. For example:
+    //theFirst = arr[(int)arr.GetUpperBound(0) / 2]
 }

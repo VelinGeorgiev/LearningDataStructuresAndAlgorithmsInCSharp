@@ -49,10 +49,13 @@
   <ItemGroup>
     <Compile Include="DataStructures\Arrays.cs" />
     <Compile Include="DataStructures\ArrayStructure.cs" />
+    <Compile Include="SortingAlgorithmsTest\MergeSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\QuickSortTests.cs" />
+    <Compile Include="SortingAlgorithmsTest\SortObject.cs" />
     <Compile Include="SortingAlgorithms\InsertionSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortingAlgorithms\MergeSort.cs" />
     <Compile Include="SortingAlgorithms\QuickSort.cs" />
     <Compile Include="SortingAlgorithms\SelectionSort.cs" />
     <Compile Include="DataStructures\SLinkedList.cs" />
