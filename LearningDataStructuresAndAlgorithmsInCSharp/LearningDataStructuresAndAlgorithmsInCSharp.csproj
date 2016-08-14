@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStructuresTests\LinkedListsTests.cs" />
     <Compile Include="DataStructures\Arrays.cs" />
     <Compile Include="DataStructures\ArrayStructure.cs" />
     <Compile Include="SortingAlgorithmsTest\MergeSortTests.cs" />
@@ -58,12 +59,13 @@
     <Compile Include="SortingAlgorithms\MergeSort.cs" />
     <Compile Include="SortingAlgorithms\QuickSort.cs" />
     <Compile Include="SortingAlgorithms\SelectionSort.cs" />
-    <Compile Include="DataStructures\SLinkedList.cs" />
+    <Compile Include="DataStructures\SinglyLinkedList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

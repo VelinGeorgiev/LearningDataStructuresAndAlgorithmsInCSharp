@@ -10,13 +10,15 @@ namespace Learning.DataStructures
         public Node<T> Next { get; set; }
     }
 
-    public class LinkedList<T> : IEnumerable
+    public class SinglyLinkedList<T> : IEnumerable
     {
         private Node<T> _head;
 
+        public Node<T> First => _head;
+
         public Node<T> Add(T value)
         {
-            var node = new Node<T> {Value = value};
+            var node = new Node<T> { Value = value };
 
             if (_head == null)
             {
@@ -79,6 +81,25 @@ namespace Learning.DataStructures
             }
 
             _head = prev;
+        }
+
+        public void ReverseRecurisve()
+        {
+            ReverseRecurive(_head, null);
+        }
+
+        private void ReverseRecurive(Node<T> current, Node<T> prev)
+        {
+            if (current.Next == null)
+            {
+                _head = current;
+                _head.Next = prev;
+                return;
+            }
+
+            var next = current.Next;
+            current.Next = prev;
+            ReverseRecurive(next, current);
         }
 
         public IEnumerator<T> Enumerator()

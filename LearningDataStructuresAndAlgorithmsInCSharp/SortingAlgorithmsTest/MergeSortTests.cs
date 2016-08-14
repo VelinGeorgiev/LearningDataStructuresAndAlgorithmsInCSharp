@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Learning.DataStructures;
 using Learning.SortingAlgorithms;
 using NUnit.Framework;
 
