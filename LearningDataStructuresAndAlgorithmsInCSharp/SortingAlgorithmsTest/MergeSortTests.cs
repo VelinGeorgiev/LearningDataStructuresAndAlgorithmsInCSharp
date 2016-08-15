@@ -34,6 +34,17 @@ namespace Learning.SortingAlgorithmsTest
         }
 
         [Test]
+        public void AbsoluteListSorting()
+        {
+            var array = new[] { 1, -3, -4 };
+            _mergeSort.Sort(array);
+
+            Assert.AreEqual(array[0], -4);
+            Assert.AreEqual(array[1], -3);
+            Assert.AreEqual(array[2], 1);
+        }
+
+        [Test]
         public void TopDownMergeSortOfIntsBigLength()
         {
             var random = new Random();
