@@ -10,6 +10,13 @@ namespace Learning.DataStructures
         public Node<T> Next { get; set; }
     }
 
+    /// <summary>
+    /// This LinkedList is created only for learning purposes. 
+    /// You should you the .NET LinkedList object in production.
+    /// LinkedList is double linked.
+    /// See also Circular Linked List: http://www.tutorialspoint.com/data_structures_algorithms/circular_linked_list_algorithm.htm
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SinglyLinkedList<T> : IEnumerable
     {
         private Node<T> _head;

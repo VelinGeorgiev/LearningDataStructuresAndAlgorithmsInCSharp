@@ -3,13 +3,18 @@ using System.Collections.Generic;
 
 namespace Learning.SortingAlgorithms
 {
-    public class MergeSort<T> where T: IComparable
+    /// <summary>
+    /// Top down implementation of merge sort for array and linked list
+    /// Source: https://en.wikipedia.org/wiki/Merge_sort
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class MergeSort<T> where T : IComparable
     {
-        public T[] TopDownSort(T[] arr)
+        public T[] Sort(T[] arr)
         {
             if (arr.Length <= 1) return arr;
 
-            int mid = arr.Length / 2; //ceil maybe
+            int mid = arr.Length/2; //ceil maybe
             T[] left = new T[mid];
             T[] right = new T[arr.Length - mid];
 
@@ -22,13 +27,13 @@ namespace Learning.SortingAlgorithms
                 right[i] = arr[i + left.Length];
             }
 
-            left = TopDownSort(left);
-            right = TopDownSort(right);
-            T[] result = TopDownMerge(left, right);
-            return CopyArray(result, arr);
+            left = Sort(left);
+            right = Sort(right);
+            T[] result = Merge(left, right);
+            return Copy(result, arr);
         }
 
-        private T[] TopDownMerge(T[] left, T[] right)
+        private T[] Merge(T[] left, T[] right)
         {
             // Result merge array.
             T[] result = new T[left.Length + right.Length];
@@ -42,11 +47,13 @@ namespace Learning.SortingAlgorithms
             {
                 if (left[i].CompareTo(right[j]) <= 0)
                 {
-                    result[k] = left[i]; i++;
+                    result[k] = left[i];
+                    i++;
                 }
                 else
                 {
-                    result[k] = right[j]; j++;
+                    result[k] = right[j];
+                    j++;
                 }
                 k++;
             }
@@ -70,7 +77,77 @@ namespace Learning.SortingAlgorithms
             return result;
         }
 
-        private T[] CopyArray(T[] result, T[] array)
+        public LinkedList<T> Sort(LinkedList<T> list)
+        {
+            if (list.Count <= 1) return list;
+
+            // Recursive case. First, divide the list into equal-sized sublists
+            // consisting of the even and odd-indexed elements.
+            LinkedList<T> listA = new LinkedList<T>();
+            LinkedList<T> listB = new LinkedList<T>();
+            int i = 0;
+            LinkedListNode<T> node = list.First;
+
+            while (node != null)
+            {
+                if (i%2 == 0)
+                {
+                    listB.AddLast(node.Value);
+                }
+                else
+                {
+                    listA.AddLast(node.Value);
+                }
+                node = node.Next;
+                i++;
+            }
+
+            // Recursively sort both sublists.
+            listA = Sort(listA);
+            listB = Sort(listB);
+            // Then merge the now-sorted sublists.
+            var result = Merge(listA, listB);
+            return Copy(result, list);
+        }
+
+        private LinkedList<T> Merge(LinkedList<T> left, LinkedList<T> right)
+        {
+            LinkedList<T> result = new LinkedList<T>();
+            LinkedListNode<T> leftNode = left.First;
+            LinkedListNode<T> rightNode = right.First;
+
+            while (leftNode != null && rightNode != null)
+            {
+                if (leftNode.Value.CompareTo(rightNode.Value) <= 0)
+                {
+                    result.AddLast(leftNode.Value);
+                    leftNode = leftNode.Next;
+                }
+                else
+                {
+                    result.AddLast(rightNode.Value);
+                    rightNode = rightNode.Next;
+                }
+            }
+
+            // Copy remaining elements of left, if any.
+            while (leftNode != null)
+            {
+                result.AddLast(leftNode.Value);
+                leftNode = leftNode.Next;
+            }
+
+            // Copy remaining elements of right, if any.
+            while (rightNode != null)
+            {
+                result.AddLast(rightNode.Value);
+                rightNode = rightNode.Next;
+            }
+
+            return result;
+        }
+
+        private T[] Copy(T[] result, T[] array)
         {
             for (var i = 0; i < result.Length; i++)
             {
@@ -79,48 +156,19 @@ namespace Learning.SortingAlgorithms
             return array;
         }
 
-        public T[] BottomUpSort(T[] array)
+        private LinkedList<T> Copy(LinkedList<T> result, LinkedList<T> list)
         {
-            T[] result = new T[array.Length];
-            int chunk = 1;
-            while (chunk < array.Length)
-            {
-                int i = 0;
-                while (i < array.Length - chunk)
-                {
-                    BottomUpMerge(array, i, chunk, result);
-                    i += chunk * 2;
-                }
-                chunk *= 2;
-            }
-            return array;
-        }
+            LinkedListNode<T> resultNode = result.First;
+            LinkedListNode<T> listNode = list.First;
 
-        private void BottomUpMerge(T[] list, int leftPosition, int chunk, T[] result)
-        {
-            int rightPosition = leftPosition + chunk;
-            int endPosition = Math.Min(leftPosition + chunk * 2 - 1, list.Length - 1);
-            int leftIndex = leftPosition;
-            int rightIndex = rightPosition;
-
-            for (int i = 0; i <= endPosition - leftPosition; i++)
+            while (resultNode != null)
             {
-                if (leftIndex < rightPosition &&
-                        (rightIndex > endPosition ||
-                        list[leftIndex].CompareTo(list[rightIndex]) <= 0))
-                {
-                    result[i] = list[leftIndex++];
-                }
-                else
-                {
-                    result[i] = list[rightIndex++];
-                }
+                listNode.Value = resultNode.Value;
+                resultNode = resultNode.Next;
+                listNode = listNode.Next;
             }
 
-            for (int i = leftPosition; i <= endPosition; i++)
-            {
-                list[i] = result[i - leftPosition];
-            }
+            return list;
         }
     }
 }

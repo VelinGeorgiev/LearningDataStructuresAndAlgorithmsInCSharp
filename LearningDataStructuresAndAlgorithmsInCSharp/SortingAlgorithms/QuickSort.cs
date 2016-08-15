@@ -163,9 +163,126 @@ namespace Learning.SortingAlgorithms
         }
     }
 
+    //[ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+    //private static int GetMedian(int low, int hi)
+    //{
+    //    // Note both may be negative, if we are dealing with arrays w/ negative lower bounds.
+    //    Contract.Requires(low <= hi);
+    //    Contract.Assert(hi - low >= 0, "Length overflow!");
+    //    return low + ((hi - low) >> 1);
+    //}
+
     //More optimizations:
     //A popular choice for picking this value is to determine the median value in
     //the array.You can do this by taking the upper bound of the array and dividing
     //it by 2. For example:
     //theFirst = arr[(int)arr.GetUpperBound(0) / 2]
+
+    // Compute median-of-three.  But also partition them, since we've done the comparison.
+    //int mid = lo + (hi - lo) / 2;
+
+
+    //private void Heapsort(int lo, int hi)
+    //{
+    //    int n = hi - lo + 1;
+    //    for (int i = n / 2; i >= 1; i = i - 1)
+    //    {
+    //        DownHeap(i, n, lo);
+    //    }
+    //    for (int i = n; i > 1; i = i - 1)
+    //    {
+    //        Swap(lo, lo + i - 1);
+
+    //        DownHeap(1, i - 1, lo);
+    //    }
+    //}
+
+    //private void DownHeap(int i, int n, int lo)
+    //{
+    //    Object d = keys[lo + i - 1];
+    //    Object dt = (items != null) ? items[lo + i - 1] : null;
+    //    int child;
+    //    while (i <= n / 2)
+    //    {
+    //        child = 2 * i;
+    //        if (child < n && comparer.Compare(keys[lo + child - 1], keys[lo + child]) < 0)
+    //        {
+    //            child++;
+    //        }
+    //        if (!(comparer.Compare(d, keys[lo + child - 1]) < 0))
+    //            break;
+    //        keys[lo + i - 1] = keys[lo + child - 1];
+    //        if (items != null)
+    //            items[lo + i - 1] = items[lo + child - 1];
+    //        i = child;
+    //    }
+    //    keys[lo + i - 1] = d;
+    //    if (items != null)
+    //        items[lo + i - 1] = dt;
+    //}
+
+    //private void InsertionSort(int lo, int hi)
+    //{
+    //    int i, j;
+    //    Object t, ti;
+    //    for (i = lo; i < hi; i++)
+    //    {
+    //        j = i;
+    //        t = keys[i + 1];
+    //        ti = (items != null) ? items[i + 1] : null;
+    //        while (j >= lo && comparer.Compare(t, keys[j]) < 0)
+    //        {
+    //            keys[j + 1] = keys[j];
+    //            if (items != null)
+    //                items[j + 1] = items[j];
+    //            j--;
+    //        }
+    //        keys[j + 1] = t;
+    //        if (items != null)
+    //            items[j + 1] = ti;
+    //    }
+    //}
+
+    //public static void Reverse(Array array, int index, int length)
+    //{
+    //    if (array == null)
+    //        throw new ArgumentNullException("array");
+    //    if (index < array.GetLowerBound(0) || length < 0)
+    //        throw new ArgumentOutOfRangeException((index < 0 ? "index" : "length"), Environment.GetResourceString("ArgumentOutOfRange_NeedNonNegNum"));
+    //    if (array.Length - (index - array.GetLowerBound(0)) < length)
+    //        throw new ArgumentException(Environment.GetResourceString("Argument_InvalidOffLen"));
+    //    if (array.Rank != 1)
+    //        throw new RankException(Environment.GetResourceString("Rank_MultiDimNotSupported"));
+    //    Contract.EndContractBlock();
+
+    //    bool r = TrySZReverse(array, index, length);
+    //    if (r)
+    //        return;
+
+    //    int i = index;
+    //    int j = index + length - 1;
+    //    Object[] objArray = array as Object[];
+    //    if (objArray != null)
+    //    {
+    //        while (i < j)
+    //        {
+    //            Object temp = objArray[i];
+    //            objArray[i] = objArray[j];
+    //            objArray[j] = temp;
+    //            i++;
+    //            j--;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        while (i < j)
+    //        {
+    //            Object temp = array.GetValue(i);
+    //            array.SetValue(array.GetValue(j), i);
+    //            array.SetValue(temp, j);
+    //            i++;
+    //            j--;
+    //        }
+    //    }
+    //}
 }

@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using Learning.DataStructures;
 using Learning.SortingAlgorithms;
 using NUnit.Framework;
 
 namespace Learning.SortingAlgorithmsTest
 {
     [TestFixture]
-    public class MergeSortTests
+    public class BottomUpMergeSortTests
     {
-        private readonly MergeSort<int> _mergeSort;
+        private readonly BottomUpMerge<int> _mergeSort;
 
-        public MergeSortTests()
+        public BottomUpMergeSortTests()
         {
-            _mergeSort = new MergeSort<int>();
+            _mergeSort = new BottomUpMerge<int>();
         }
 
         [Test]
-        public void TopDownMergeSortOfInts()
+        public void BottomUpMergeSortOfInts()
         {
             var array = new[] {10, 4, 6, 7, 8, 5, 3, 2, 1, 9};
             _mergeSort.Sort(array);
@@ -34,14 +35,17 @@ namespace Learning.SortingAlgorithmsTest
         }
 
         [Test]
-        public void TopDownMergeSortOfIntsBigLength()
+        public void BottomUpMergeSortOfIntsBigLength()
         {
             var random = new Random();
             var array = new int[200000];
+            int min = 0;
+            int max = 200000;
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = random.Next(0, 200000);
+                array[i] = random.Next(min, max);
             }
+
             _mergeSort.Sort(array);
 
             for (int j = 0; j < array.Length - 1; j++)
@@ -51,10 +55,11 @@ namespace Learning.SortingAlgorithmsTest
         }
 
         [Test]
-        public void TopDownMergeSortFindDublicates()
+        public void FindDublicatesBottomUpSort()
         {
-            int[] arrayA = { 8, 6, 7, 4, 4, 5, 2, 3, 1, 9, 10 };
-            int[] arrayB = { 8, 6, 7, 4 };
+            int[] arrayA = {8, 6, 7, 4, 4, 5, 2, 3, 1, 9, 10};
+            int[] arrayB = {8, 6, 7, 4};
+
             var sortedArrayA = _mergeSort.Sort(arrayA);
             var sortedArrayB = _mergeSort.Sort(arrayB);
 
@@ -89,19 +94,8 @@ namespace Learning.SortingAlgorithmsTest
             Assert.AreEqual(list[3], 8);
         }
 
-        /// <summary>
-        /// Depending on a number of factors, it may actually be faster to copy the list to an array and then use a Quicksort.
-        /// The reason this might be faster is that an array has much better cache performance than a linked list.
-        /// If the nodes in the list are dispersed in memory, you may be generating cache misses all over the place. 
-        /// Then again, if the array is large you will get cache misses anyway. 
-        /// Mergesort parallelises better, so it may be a better choice if that is what you want.
-        /// It is also much faster if you perform it directly on the linked list. 
-        /// Since both algorithms run in O(n* log n), making an informed decision 
-        /// would involve profiling them both on the machine you would like to run them on.
-        /// Source: http://stackoverflow.com/questions/1525117/whats-the-fastest-algorithm-for-sorting-a-linked-list
-        /// </summary>
         [Test]
-        public void TopDownMergeSortLinkedList()
+        public void MergeSortLinkedList()
         {
             var linkedList = new LinkedList<int>();
             linkedList.AddLast(4);
@@ -124,7 +118,7 @@ namespace Learning.SortingAlgorithmsTest
         }
 
         [Test]
-        public void TopDownSortLinkedListBigList()
+        public void SortLinkedListBigList()
         {
             var linkedList = new LinkedList<int>();
             var random = new Random();
