@@ -2,57 +2,47 @@
 
 namespace Learning.SortingAlgorithms
 {
-    class InsertionSort
+    class InsertionSort<T> where T : IComparable
     {
-        
-        public static void Init()
+        /// <summary>
+        /// The .NET implementation  http://referencesource.microsoft.com/#mscorlib/system/array.cs,c1c8d19d6b629d8c,references
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="lo"></param>
+        /// <param name="hi"></param>
+        public void Sort(T[] array, int lo, int hi)
         {
-            int[] array = new int[] { 1, 4, 3, 5, 6, 2 };
-            int length = array.Length;
-
-            for (int i = 1; i < length; i++)
+            int i, j;
+            T t;
+            for (i = lo; i < hi; i++)
             {
-                int j = i;
-
-                while (j > 0 && array[j - 1] > array[j])
+                j = i;
+                t = array[i + 1];
+                while (j >= lo && t.CompareTo(array[j]) < 0)
                 {
-                    int k = j - 1;
-                    int temp = array[k];
-                    array[k] = array[j];
-                    array[j] = temp;
-
+                    array[j + 1] = array[j];
                     j--;
                 }
-                //Print the output as string
-                string text = string.Empty;
-                for (int x = 0; x < array.Length; x++)
-                {
-                    text += array[x] + " ";
-                }
-                Console.WriteLine(text);
+                array[j + 1] = t;
             }
         }
 
-        //private void InsertionSort2(int lo, int hi)
-        //{
-        //    int i, j;
-        //    Object t, ti;
-        //    for (i = lo; i < hi; i++)
-        //    {
-        //        j = i;
-        //        t = keys[i + 1];
-        //        ti = (items != null) ? items[i + 1] : null;
-        //        while (j >= lo && comparer.Compare(t, keys[j]) < 0)
-        //        {
-        //            keys[j + 1] = keys[j];
-        //            if (items != null)
-        //                items[j + 1] = items[j];
-        //            j--;
-        //        }
-        //        keys[j + 1] = t;
-        //        if (items != null)
-        //            items[j + 1] = ti;
-        //    }
-        //}
+        /// <summary>
+        /// Implementation https://github.com/gwtw/csharp-sorting/blob/master/src/InsertionSort.cs
+        /// </summary>
+        /// <param name="list"></param>
+        public void Sort(T[] list)
+        {
+            for (int i = 1; i < list.Length; i++)
+            {
+                T item = list[i];
+                int indexHole = i;
+                while (indexHole > 0 && list[indexHole - 1].CompareTo(item) > 0)
+                {
+                    list[indexHole] = list[--indexHole];
+                }
+                list[indexHole] = item;
+            }
+        } 
     }
 }
