@@ -1,24 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using Learning.SortingAlgorithms;
 using NUnit.Framework;
 
 namespace Learning.SortingAlgorithmsTest
 {
     [TestFixture]
-    public class HeapSortTests
+    public class HeapSort2Tests
     {
-        private readonly HeapSort<int> _heapSort;
+        private readonly HeapSort2<int> _heapSort;
 
-        public HeapSortTests()
+        public HeapSort2Tests()
         {
-            _heapSort = new HeapSort<int>();
+            _heapSort = new HeapSort2<int>();
         }
 
         [Test]
-        public void HeapSortOfInts()
+        public void HeapSort2OfInts()
         {
             var array = new[] {10, 4, 6, 7, 8, 5, 3, 2, 1, 9};
-            _heapSort.Sort(array);
+            _heapSort.Sort(array, 0, array.Length-1);
 
             Assert.AreEqual(array[0], 1);
             Assert.AreEqual(array[1], 2);
@@ -43,7 +44,7 @@ namespace Learning.SortingAlgorithmsTest
             {
                 array[i] = random.Next(min, max);
             }
-            _heapSort.Sort(array);
+            _heapSort.Sort(array, 0, array.Length - 1);
 
             for (int j = 0; j < array.Length - 1; j++)
             {

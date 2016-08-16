@@ -2,6 +2,11 @@
 
 namespace Learning.SortingAlgorithms
 {
+    /// <summary>
+    /// Based on Tyrar implementation https://github.com/gwtw/csharp-sorting/blob/master/src/Heapsort.cs.
+    /// Uses recursion in the Heapfy method, that makes it more elegant.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class HeapSort<T> where T : IComparable
     {
         public void Sort(T[] array)
