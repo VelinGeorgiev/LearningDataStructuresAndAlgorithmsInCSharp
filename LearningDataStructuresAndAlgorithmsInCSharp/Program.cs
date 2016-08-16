@@ -7,6 +7,10 @@ namespace Learning
         static void Main(string[] args)
         {
             // See the unit tests for more information.
+
+            
+
+
             Console.ReadKey();
         }
     }

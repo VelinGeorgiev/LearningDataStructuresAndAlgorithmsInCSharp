@@ -52,11 +52,13 @@
     <Compile Include="DataStructures\ArrayStructure.cs" />
     <Compile Include="SortingAlgorithmsTest\BottomUpMergeSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\CountingSortTests.cs" />
+    <Compile Include="SortingAlgorithmsTest\HeapSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\MergeSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\QuickSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\SortObject.cs" />
     <Compile Include="SortingAlgorithms\BottomUpMerge.cs" />
     <Compile Include="SortingAlgorithms\CountingSort.cs" />
+    <Compile Include="SortingAlgorithms\HeapSort.cs" />
     <Compile Include="SortingAlgorithms\InsertionSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
