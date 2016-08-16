@@ -82,5 +82,34 @@ namespace Learning.SortingAlgorithms
             indexOne = indexTwo;
             indexTwo = temp;
         }
+
+        //private int PickPivotAndPartition(int lo, int hi)
+        //{
+        //    // Compute median-of-three.  But also partition them, since we've done the comparison.
+        //    int mid = lo + (hi - lo) / 2;
+
+        //    SwapIfGreaterWithItems(lo, mid);
+        //    SwapIfGreaterWithItems(lo, hi);
+        //    SwapIfGreaterWithItems(mid, hi);
+
+        //    Object pivot = keys.GetValue(mid);
+        //    Swap(mid, hi - 1);
+        //    int left = lo, right = hi - 1;  // We already partitioned lo and hi and put the pivot in hi - 1.  And we pre-increment & decrement below.
+
+        //    while (left < right)
+        //    {
+        //        while (comparer.Compare(keys.GetValue(++left), pivot) < 0) ;
+        //        while (comparer.Compare(pivot, keys.GetValue(--right)) < 0) ;
+
+        //        if (left >= right)
+        //            break;
+
+        //        Swap(left, right);
+        //    }
+
+        //    // Put pivot in the right location.
+        //    Swap(left, (hi - 1));
+        //    return left;
+        //}
     }
 }

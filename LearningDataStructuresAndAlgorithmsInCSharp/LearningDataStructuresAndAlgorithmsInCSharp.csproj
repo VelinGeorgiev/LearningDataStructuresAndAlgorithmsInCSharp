@@ -52,6 +52,7 @@
     <Compile Include="DataStructures\ArrayStructure.cs" />
     <Compile Include="SortingAlgorithmsTest\BottomUpMergeSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\CountingSortTests.cs" />
+    <Compile Include="SortingAlgorithmsTest\IntroSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\InsertionSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\HeapSort2Tests.cs" />
     <Compile Include="SortingAlgorithmsTest\HeapSortTests.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="SortingAlgorithms\InsertionSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortingAlgorithms\IntroSort.cs" />
     <Compile Include="SortingAlgorithms\MergeSort.cs" />
     <Compile Include="SortingAlgorithms\LomutoQuickSort.cs" />
     <Compile Include="SortingAlgorithms\HoraeQuickSort.cs" />
