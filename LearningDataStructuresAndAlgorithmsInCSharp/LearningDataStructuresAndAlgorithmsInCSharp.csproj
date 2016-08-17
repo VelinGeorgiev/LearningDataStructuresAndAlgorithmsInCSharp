@@ -48,8 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStructuresTests\LinkedListsTests.cs" />
+    <Compile Include="DataStructuresTests\StringsTests.cs" />
     <Compile Include="DataStructures\Arrays.cs" />
     <Compile Include="DataStructures\ArrayStructure.cs" />
+    <Compile Include="SearchTests\BinarySearchTests.cs" />
+    <Compile Include="Search\BinarySearch.cs" />
     <Compile Include="SortingAlgorithmsTest\BottomUpMergeSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\CountingSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\IntroSortTests.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="SortingAlgorithmsTest\HoraeQuickSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\QuickSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\QuickSort2Tests.cs" />
+    <Compile Include="SortingAlgorithmsTest\SortingQuestionsTests.cs" />
     <Compile Include="SortingAlgorithmsTest\SortObject.cs" />
     <Compile Include="SortingAlgorithms\BottomUpMerge.cs" />
     <Compile Include="SortingAlgorithms\CountingSort.cs" />

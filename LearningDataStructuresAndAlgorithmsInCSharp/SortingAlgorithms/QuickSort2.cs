@@ -10,7 +10,6 @@ namespace Learning.SortingAlgorithms
     {
         public void Sort(T[] array, int left, int right)
         {
-            // Must use slow Array accessors (GetValue & SetValue)
             do
             {
                 int i = left;
@@ -80,33 +79,6 @@ namespace Learning.SortingAlgorithms
             }
         }
 
-        //public void Sort(T[] array, int lo, int hi)
-        //{
-        //    if (lo < hi)
-        //    {
-        //        int p = Partition(array, lo, hi);
-        //        Sort(array, lo, p);
-        //        Sort(array, p + 1, hi);
-        //    }
-        //}
-
-        //private int Partition(T[] array, int lo, int hi)
-        //{
-        //    T pivot = array[lo];
-        //    int i = lo - 1;
-        //    int j = hi + 1;
-        //    while (true)
-        //    {
-        //        do { i += 1; } while (array[i].CompareTo(pivot) < 0);
-        //        do { j -= 1; } while (array[j].CompareTo(pivot) > 0);
-        //        if (i >= j)
-        //        {
-        //            return j;
-        //        }
-        //        Swap(array, i, j);
-        //    }
-        //}
-
         private void Swap(T[] array, int i, int j)
         {
             T t = array[i];
@@ -121,34 +93,5 @@ namespace Learning.SortingAlgorithms
             Contract.Assert(hi - low >= 0, "Length overflow!");
             return low + ((hi - low) >> 1);
         }
-
-        //private int PickPivotAndPartition(int lo, int hi)
-        //{
-        //    // Compute median-of-three.  But also partition them, since we've done the comparison.
-        //    int mid = lo + (hi - lo) / 2;
-
-        //    SwapIfGreaterWithItems(lo, mid);
-        //    SwapIfGreaterWithItems(lo, hi);
-        //    SwapIfGreaterWithItems(mid, hi);
-
-        //    Object pivot = keys.GetValue(mid);
-        //    Swap(mid, hi - 1);
-        //    int left = lo, right = hi - 1;  // We already partitioned lo and hi and put the pivot in hi - 1.  And we pre-increment & decrement below.
-
-        //    while (left < right)
-        //    {
-        //        while (comparer.Compare(keys.GetValue(++left), pivot) < 0) ;
-        //        while (comparer.Compare(pivot, keys.GetValue(--right)) < 0) ;
-
-        //        if (left >= right)
-        //            break;
-
-        //        Swap(left, right);
-        //    }
-
-        //    // Put pivot in the right location.
-        //    Swap(left, (hi - 1));
-        //    return left;
-        //}
     }
 }
