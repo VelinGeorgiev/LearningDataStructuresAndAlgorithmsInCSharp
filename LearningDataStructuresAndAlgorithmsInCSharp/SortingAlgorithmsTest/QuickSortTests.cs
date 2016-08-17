@@ -5,20 +5,20 @@ using NUnit.Framework;
 namespace Learning.SortingAlgorithmsTest
 {
     [TestFixture]
-    public class QuickSort2Tests
+    public class QuickSortTests
     {
-        private readonly QuickSort2<int> _quickSort2;
+        private readonly QuickSort<int> _quickSort;
 
-        public QuickSort2Tests()
+        public QuickSortTests()
         {
-            _quickSort2 = new QuickSort2<int>();
+            _quickSort = new QuickSort<int>();
         }
 
         [Test]
-        public void QuickSort2OfInts()
+        public void QuickSortOfInts()
         {
             var array = new[] { 10, 4, 6, 7, 8, 5, 3, 2, 1, 9 };
-            _quickSort2.Sort(array, 0, array.Length - 1);
+            _quickSort.Sort(array, 0, array.Length - 1);
 
             Assert.AreEqual(array[0], 1);
             Assert.AreEqual(array[1], 2);
@@ -33,7 +33,7 @@ namespace Learning.SortingAlgorithmsTest
         }
 
         [Test]
-        public void QuickSort2OfIntsBigLength()
+        public void QuickSortOfIntsBigLength()
         {
             var random = new Random();
             var array = new int[200000];
@@ -43,7 +43,7 @@ namespace Learning.SortingAlgorithmsTest
             {
                 array[i] = random.Next(min, max);
             }
-            _quickSort2.Sort(array, 0, array.Length - 1);
+            _quickSort.Sort(array, 0, array.Length - 1);
 
             for (int j = 0; j < array.Length - 1; j++)
             {
