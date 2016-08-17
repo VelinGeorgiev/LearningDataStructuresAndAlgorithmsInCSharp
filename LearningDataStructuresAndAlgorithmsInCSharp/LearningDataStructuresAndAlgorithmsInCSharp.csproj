@@ -49,8 +49,13 @@
   <ItemGroup>
     <Compile Include="DataStructuresTests\LinkedListsTests.cs" />
     <Compile Include="DataStructuresTests\StringsTests.cs" />
+    <Compile Include="DataStructuresTests\TreeTests.cs" />
     <Compile Include="DataStructures\Arrays.cs" />
     <Compile Include="DataStructures\ArrayStructure.cs" />
+    <Compile Include="DataStructures\Graph.cs" />
+    <Compile Include="DataStructures\Queue.cs" />
+    <Compile Include="DataStructures\Stack.cs" />
+    <Compile Include="DataStructures\Tree.cs" />
     <Compile Include="SearchTests\BinarySearchTests.cs" />
     <Compile Include="Search\BinarySearch.cs" />
     <Compile Include="SortingAlgorithmsTest\BottomUpMergeSortTests.cs" />
