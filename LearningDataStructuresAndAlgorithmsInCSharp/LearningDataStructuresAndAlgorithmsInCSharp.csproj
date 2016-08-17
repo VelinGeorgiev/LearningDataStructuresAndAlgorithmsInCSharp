@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataStructuresTests\LinkedListsTests.cs" />
     <Compile Include="DataStructuresTests\StringsTests.cs" />
+    <Compile Include="DataStructuresTests\GraphTests.cs" />
     <Compile Include="DataStructuresTests\TreeTests.cs" />
     <Compile Include="DataStructures\Arrays.cs" />
     <Compile Include="DataStructures\ArrayStructure.cs" />
