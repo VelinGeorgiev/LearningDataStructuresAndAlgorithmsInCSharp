@@ -59,7 +59,7 @@
     <Compile Include="SortingAlgorithmsTest\MergeSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\LomutoQuickSortTests.cs" />
     <Compile Include="SortingAlgorithmsTest\HoraeQuickSortTests.cs" />
-    <Compile Include="SortingAlgorithmsTest\QuickSortTests.cs" />
+    <Compile Include="SortingAlgorithmsTest\QuickSort2Tests.cs" />
     <Compile Include="SortingAlgorithmsTest\SortObject.cs" />
     <Compile Include="SortingAlgorithms\BottomUpMerge.cs" />
     <Compile Include="SortingAlgorithms\CountingSort.cs" />
@@ -72,7 +72,7 @@
     <Compile Include="SortingAlgorithms\MergeSort.cs" />
     <Compile Include="SortingAlgorithms\LomutoQuickSort.cs" />
     <Compile Include="SortingAlgorithms\HoraeQuickSort.cs" />
-    <Compile Include="SortingAlgorithms\QuickSort.cs" />
+    <Compile Include="SortingAlgorithms\QuickSort2.cs" />
     <Compile Include="SortingAlgorithms\SelectionSort.cs" />
     <Compile Include="DataStructures\SinglyLinkedList.cs" />
   </ItemGroup>
