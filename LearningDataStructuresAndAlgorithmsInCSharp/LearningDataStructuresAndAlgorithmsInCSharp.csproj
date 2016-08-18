@@ -50,9 +50,11 @@
     <Compile Include="DataStructuresTests\LinkedListsTests.cs" />
     <Compile Include="DataStructuresTests\StringsTests.cs" />
     <Compile Include="DataStructuresTests\GraphTests.cs" />
+    <Compile Include="DataStructuresTests\BinaryTreeTests.cs" />
     <Compile Include="DataStructuresTests\TreeTests.cs" />
     <Compile Include="DataStructures\Arrays.cs" />
     <Compile Include="DataStructures\ArrayStructure.cs" />
+    <Compile Include="DataStructures\BinaryTree.cs" />
     <Compile Include="DataStructures\Graph.cs" />
     <Compile Include="DataStructures\Queue.cs" />
     <Compile Include="DataStructures\Stack.cs" />
