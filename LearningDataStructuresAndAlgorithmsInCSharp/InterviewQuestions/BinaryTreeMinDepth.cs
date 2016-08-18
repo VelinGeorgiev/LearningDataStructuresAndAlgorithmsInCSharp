@@ -1,24 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Learning.DataStructures;
 
 namespace Learning.InterviewQuestions
 {
-    public class Node
+    /// <summary>
+    /// https://www.youtube.com/watch?v=hmWhJyz5kqc
+    /// </summary>
+    public class BinaryTreeMinDepth : BinaryTree
     {
-        public int Data;
-        public Node Left, Right;
-        public Node(int item)
-        {
-            Data = item;
-            Left = Right = null;
-        }
-    }
-
-    public class BinaryTree
-    {
-        //Root of the Binary Tree
-        public Node Root;
-
         // A queue item (Stores pointer to node and an integer)
         struct QItem
         {
@@ -65,8 +55,9 @@ namespace Learning.InterviewQuestions
         }
 
         /// <summary>
+        /// Worst time case o(n) for both, check Space complexity
         /// The above method may end up with complete traversal of Binary Tree even when the topmost leaf is close to root. 
-        /// A Better Solution is to do Level Order Traversal.
+        /// A Better Solution for unbalanced trees might be to do Level Order Traversal.
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>

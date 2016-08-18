@@ -3,21 +3,10 @@ using System.Collections.Generic;
 
 namespace Learning.DataStructures
 {
-    public class Node
-    {
-        public int Data;
-        public Node Left, Right;
-
-        public Node(int item)
-        {
-            Data = item;
-            Left = Right = null;
-        }
-    }
-
     /// <summary>
     /// BinaryTree with BSF and DFS.
     /// Modified from source: http://www.geeksforgeeks.org/618/
+    /// http://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
     /// </summary>
     public class BinaryTree
     {

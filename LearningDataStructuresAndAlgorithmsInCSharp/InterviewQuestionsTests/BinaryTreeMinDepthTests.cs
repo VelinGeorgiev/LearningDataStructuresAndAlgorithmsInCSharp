@@ -1,16 +1,17 @@
 ﻿using System;
+using Learning.DataStructures;
 using Learning.InterviewQuestions;
 using NUnit.Framework;
 
 namespace Learning.InterviewQuestionsTests
 {
     [TestFixture]
-    public class TreesTests
+    public class BinaryTreeMinDepthTests
     {
         [Test]
         public void FindMinimumDepthOfABinaryTreeRecursive()
         {
-            BinaryTree tree = new BinaryTree();
+            BinaryTreeMinDepth tree = new BinaryTreeMinDepth();
             tree.Root = new Node(1);
             tree.Root.Left = new Node(2);
             tree.Root.Right = new Node(3);
@@ -26,7 +27,7 @@ namespace Learning.InterviewQuestionsTests
         [Test]
         public void FindMinimumDepthOfABinaryTreeRecursive2()
         {
-            BinaryTree tree = new BinaryTree();
+            BinaryTreeMinDepth tree = new BinaryTreeMinDepth();
             tree.Root = new Node(1);
             tree.Root.Left = new Node(2);
             tree.Root.Right = new Node(3);
@@ -45,7 +46,7 @@ namespace Learning.InterviewQuestionsTests
         [Test]
         public void FindMinimumDepthOfABinaryTreeWithQueue()
         {
-            BinaryTree tree = new BinaryTree();
+            BinaryTreeMinDepth tree = new BinaryTreeMinDepth();
             tree.Root = new Node(1);
             tree.Root.Left = new Node(2);
             tree.Root.Right = new Node(3);
@@ -61,7 +62,7 @@ namespace Learning.InterviewQuestionsTests
         [Test]
         public void FindMinimumDepthOfABinaryTreeWithQueue2()
         {
-            BinaryTree tree = new BinaryTree();
+            BinaryTreeMinDepth tree = new BinaryTreeMinDepth();
             tree.Root = new Node(1);
             tree.Root.Left = new Node(2);
             tree.Root.Right = new Node(3);
