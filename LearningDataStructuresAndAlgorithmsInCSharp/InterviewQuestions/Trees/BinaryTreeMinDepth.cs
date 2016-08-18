@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Learning.DataStructures;
 
-namespace Learning.InterviewQuestions
+namespace Learning.InterviewQuestions.Trees
 {
     /// <summary>
     /// https://www.youtube.com/watch?v=hmWhJyz5kqc

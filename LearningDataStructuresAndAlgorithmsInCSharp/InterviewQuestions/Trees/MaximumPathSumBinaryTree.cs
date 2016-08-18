@@ -1,8 +1,12 @@
 ﻿using System;
 using Learning.DataStructures;
 
-namespace Learning.InterviewQuestions
+namespace Learning.InterviewQuestions.Trees
 {
+    /// <summary>
+    /// Source: http://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
+    /// See more: https://gist.github.com/daifu/5297440
+    /// </summary>
     public class MaximumPathSumBinaryTree : BinaryTree
     {
         private int _result;
@@ -43,21 +47,6 @@ namespace Learning.InterviewQuestions
             FindMaxUtil(node);
             return _result;
         }
-
-        /* Driver program to test above functions */
-        //public static void main(String args[])
-        //{
-        //    BinaryTree tree = new BinaryTree();
-        //    tree.Root = new Node(10);
-        //    tree.Root.Left = new Node(2);
-        //    tree.Root.Right = new Node(10);
-        //    tree.Root.Left.Left = new Node(20);
-        //    tree.Root.Left.Right = new Node(1);
-        //    tree.Root.Right.Right = new Node(-25);
-        //    tree.Root.Right.Right.Left = new Node(3);
-        //    tree.Root.Right.Right.Right = new Node(4);
-        //    System.out.println("Maximum path sum is : " + tree.findMaxSum());
-        //}
     }
 
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using Learning.DataStructures;
-using Learning.InterviewQuestions;
+using Learning.InterviewQuestions.Trees;
 using NUnit.Framework;
 
-namespace Learning.InterviewQuestionsTests
+namespace Learning.InterviewQuestionsTests.Trees
 {
     [TestFixture]
     public class BinaryTreeMinDepthTests
