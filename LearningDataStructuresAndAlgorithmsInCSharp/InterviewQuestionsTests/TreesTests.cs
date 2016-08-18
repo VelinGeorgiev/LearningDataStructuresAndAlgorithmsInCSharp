@@ -52,7 +52,7 @@ namespace Learning.InterviewQuestionsTests
             tree.Root.Left.Left = new Node(4);
             tree.Root.Left.Right = new Node(5);
 
-            var depth = tree.MinimumDepthRecursive();
+            var depth = tree.LevelOrderTraversalMinimumDepth();
             Console.Write(depth);
             Assert.AreEqual(depth, 2);
             //System.out.println("The minimum depth of " + "binary tree is : " + tree.minimumDepth());
@@ -70,7 +70,7 @@ namespace Learning.InterviewQuestionsTests
             tree.Root.Right.Left = new Node(4);
             tree.Root.Right.Right = new Node(5);
 
-            var depth = tree.MinimumDepthRecursive();
+            var depth = tree.LevelOrderTraversalMinimumDepth();
             Console.Write(depth);
             Assert.AreEqual(depth, 3);
             //System.out.println("The minimum depth of " + "binary tree is : " + tree.minimumDepth());

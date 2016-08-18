@@ -87,7 +87,7 @@ namespace Learning.InterviewQuestions
             q.Enqueue(qi);
 
             // Do level order traversal
-            while (q.Count == 0)
+            while (q.Count > 0)
             {
                 // Remove the front queue item
                 qi = q.Dequeue();
