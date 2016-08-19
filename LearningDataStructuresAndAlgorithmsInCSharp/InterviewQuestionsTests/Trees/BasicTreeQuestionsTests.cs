@@ -102,5 +102,34 @@ namespace Learning.InterviewQuestionsTests.Trees
             Assert.AreEqual(root.right.data, 3);
             Assert.AreEqual(root.right.right.data, 3);
         }
+
+        [Test]
+        public void GetDiff()
+        {
+            _tree.root = new Node(5);
+            _tree.root.left = new Node(2);
+            _tree.root.right = new Node(3);
+            Assert.AreEqual(_tree.GetLevelDiff(_tree.root), 0);
+        }
+
+        [Test]
+        public void PrintLevelOrderDictionary()
+        {
+            _tree.root = new Node(1);
+            _tree.root.left = new Node(2);
+            _tree.root.left.left = new Node(4);
+            _tree.root.left.right = new Node(6);
+            _tree.root.right = new Node(3);
+            _tree.root.right.right = new Node(3);
+
+            _tree.PrintLevelOrder(_tree.root);
+
+            Assert.AreEqual(_tree.PrintLevelOrderDictionary["level1"][0], 1);
+            Assert.AreEqual(_tree.PrintLevelOrderDictionary["level2"][0], 2);
+            Assert.AreEqual(_tree.PrintLevelOrderDictionary["level2"][1], 3);
+            Assert.AreEqual(_tree.PrintLevelOrderDictionary["level3"][0], 4);
+            Assert.AreEqual(_tree.PrintLevelOrderDictionary["level3"][1], 6);
+            Assert.AreEqual(_tree.PrintLevelOrderDictionary["level3"][2], 3);
+        }
     }
 }

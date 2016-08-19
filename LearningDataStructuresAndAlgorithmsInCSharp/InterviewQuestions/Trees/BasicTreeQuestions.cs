@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Learning.DataStructures;
 
 namespace Learning.InterviewQuestions.Trees
@@ -114,6 +116,67 @@ namespace Learning.InterviewQuestions.Trees
             node.right = Deserialize(nodesArray);
 
             return node;
+        }
+
+        //http://www.geeksforgeeks.org/difference-between-sums-of-odd-and-even-levels/
+        public int GetLevelDiff(Node node)
+        {
+            // Base case
+            if (node == null)
+                return 0;
+
+            // Difference for root is root's data - difference for 
+            // left subtree - difference for right subtree
+            return node.data - GetLevelDiff(node.left) -
+                                                  GetLevelDiff(node.right);
+        }
+
+
+        // Iterative method to do level order traversal line by line
+        //http://quiz.geeksforgeeks.org/print-level-order-traversal-line-line/
+        public Dictionary<string, IList<int>> PrintLevelOrderDictionary = new Dictionary<string, IList<int>>();
+        public void PrintLevelOrder(Node node)
+        {
+            if (node == null) return;
+
+            // Create an empty queue for level order tarversal
+            Queue<Node> q = new Queue<Node>();
+
+            // Enqueue Root and initialize height
+            q.Enqueue(node);
+
+            // This is not needed if you would not use dict to store results, but only console
+            int i = 1;
+            string defLevel = "level";
+            string level = defLevel + i;
+
+            while (true)
+            {
+                // nodeCount (queue size) indicates number of nodes
+                // at current lelvel.
+                int nodeCount = q.Count;
+                if (nodeCount == 0) break;
+                IList<int> list = new List<int>();
+
+                // Dequeue all nodes of current level and Enqueue all
+                // nodes of next level
+                while (nodeCount > 0)
+                {
+                    Node nextNode = q.Dequeue();
+                    Console.Write(nextNode.data + " ");
+                    list.Add(nextNode.data);
+
+                    if (nextNode.left != null)
+                        q.Enqueue(nextNode.left);
+                    if (nextNode.right != null)
+                        q.Enqueue(nextNode.right);
+                    nodeCount--;
+                }
+                Console.WriteLine();
+                PrintLevelOrderDictionary.Add(level, list);
+                i++;
+                level = defLevel + i;
+            }
         }
 
     }

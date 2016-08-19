@@ -70,6 +70,7 @@
     <Compile Include="InterviewQuestions\Trees\BasicTreeQuestions.cs" />
     <Compile Include="InterviewQuestions\Trees\BinaryTreeMinDepth.cs" />
     <Compile Include="InterviewQuestions\Trees\BinaryTreeToBst.cs" />
+    <Compile Include="InterviewQuestions\Trees\BinaryTreePrintVertical.cs" />
     <Compile Include="InterviewQuestions\Trees\FullBinaryTree.cs" />
     <Compile Include="InterviewQuestions\Trees\MaximumPathSumBinaryTree.cs" />
     <Compile Include="RecursionTests\PermutationsTests.cs" />
