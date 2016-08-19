@@ -68,6 +68,7 @@ namespace Learning.DataStructures
 
         // Given a binary tree. Print its nodes in level order using array for implementing queue
         // http://www.geeksforgeeks.org/level-order-tree-traversal/
+        // Time Complexity: O(n) where n is number of nodes in the binary tree
         public void LevelOrder(Node node, IList<int> list) // Breadth First Traversal or Level Order or Breadth First Search
         {
             Queue<Node> queue = new Queue<Node>();
@@ -101,13 +102,8 @@ namespace Learning.DataStructures
                 node = queue.Dequeue();
                 stack.Push(node);
 
-                // Enqueue right child 
-                if (node.right != null)
-                    queue.Enqueue(node.right); // NOTE: RIGHT CHILD IS ENQUEUED BEFORE LEFT
-
-                // Enqueue left child 
-                if (node.left != null)
-                    queue.Enqueue(node.left);
+                if (node.right != null) queue.Enqueue(node.right); // NOTE: RIGHT CHILD IS ENQUEUED BEFORE LEFT
+                if (node.left != null) queue.Enqueue(node.left);
             }
 
             // Now pop all items from Stack one by one and print them
@@ -119,9 +115,39 @@ namespace Learning.DataStructures
             }
         }
 
-        public void DepthFirstTraversalWithStack()
+        // Time Complexity: O(n)
+        // http://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion/
+        public void InorderTraversalWithStack (Node node, IList<int> list) // Inorder DepthFirstTraversalWithStack
         {
+            if (root == null) return;
+            Stack<Node> stack = new Stack<Node>();
 
+            // First node to be visited will be the left one.
+            while (node != null)
+            {
+                stack.Push(node);
+                node = node.left;
+            }
+
+            // Traverse the tree.
+            while (stack.Count > 0)
+            {
+                node = stack.Pop();
+                Console.Write(node.data);
+                list.Add(node.data);
+
+                if (node.right != null)
+                {
+                    node = node.right;
+
+                    // the next node to be visited is the leftmost
+                    while (node != null)
+                    {
+                        stack.Push(node);
+                        node = node.left;
+                    }
+                }
+            }
         }
     }
 }

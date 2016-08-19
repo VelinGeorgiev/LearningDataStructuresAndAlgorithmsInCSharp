@@ -158,5 +158,22 @@ namespace Learning.InterviewQuestionsTests.Trees
 
             Assert.IsFalse(_tree.IsRootToLeafPathSumEqualToGivenNumber(_tree.root, 22));
         }
+
+        [Test]
+        public void SortedArrayToBalancedBst()
+        {
+            var array = new int[] {1,2,3,4,5,6,7};
+            _tree.root=_tree.SortedArrayToBalancedBst(array, 0, array.Length-1);
+
+            Assert.AreEqual(_tree.root.data, 4);
+            Assert.AreEqual(_tree.root.left.data, 2);
+            Assert.AreEqual(_tree.root.left.left.data, 1);
+            Assert.AreEqual(_tree.root.left.right.data, 3);
+            Assert.AreEqual(_tree.root.right.data, 6);
+            Assert.AreEqual(_tree.root.right.left.data, 5);
+            Assert.AreEqual(_tree.root.right.right.data, 7);
+        }
+
+        
     }
 }

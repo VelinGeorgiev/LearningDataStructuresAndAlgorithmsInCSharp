@@ -268,6 +268,26 @@ namespace Learning.InterviewQuestions.Trees
             return true;
         }
 
-        
+        // Time Complexity: O(n)
+        // http://www.geeksforgeeks.org/sorted-array-to-balanced-bst/
+        public Node SortedArrayToBalancedBst(int[] arr, int start, int end)
+        {
+            if(start > end) return null;
+            // Get the middle element and make it root
+            int mid = start + end / 2;
+            Node node = new Node(arr[mid]);
+
+            node.left = SortedArrayToBalancedBst(arr, start, mid - 1);
+            node.right = SortedArrayToBalancedBst(arr, mid + 1, end);
+
+            return node;
+        }
+
+        // Time Complexity: The function does a simple traversal of the tree, so the complexity is O(n).
+        // http://www.geeksforgeeks.org/print-right-view-binary-tree-2/
+        public void PrintRightViewOfBinaryTree()
+        {
+            
+        }
     }
 }

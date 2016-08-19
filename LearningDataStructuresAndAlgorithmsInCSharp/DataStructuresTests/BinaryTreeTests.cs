@@ -103,5 +103,28 @@ namespace Learning.DataStructuresTests
             Assert.AreEqual(list[5], 6);
             Assert.AreEqual(list[6], 7);
         }
+
+        [Test]
+        public void InorderWithStack()
+        {
+            BinaryTree tree = new BinaryTree();
+            tree.root = new Node(1);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(3);
+            tree.root.left.left = new Node(4);
+            tree.root.left.right = new Node(5);
+
+            var list = new List<int>();
+
+            tree.InorderTraversalWithStack(_tree.root, list);
+
+            Assert.AreEqual(list[0], 4);
+            Assert.AreEqual(list[1], 2);
+            Assert.AreEqual(list[2], 5);
+            Assert.AreEqual(list[3], 1);
+            Assert.AreEqual(list[4], 3);
+        }
+
+        
     }
 }
