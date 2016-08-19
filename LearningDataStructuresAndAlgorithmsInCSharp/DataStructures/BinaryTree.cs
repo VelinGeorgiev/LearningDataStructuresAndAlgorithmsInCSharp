@@ -66,9 +66,57 @@ namespace Learning.DataStructures
             result.Add(node);
         }
 
-        public void BreadthFirstTraversal(Node node)
+        // Given a binary tree. Print its nodes in level order using array for implementing queue
+        // http://www.geeksforgeeks.org/level-order-tree-traversal/
+        public void LevelOrder(Node node, IList<int> list) // Breadth First Traversal or Level Order or Breadth First Search
         {
-            
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(node);
+            while (queue.Count > 0)
+            {
+                Node tempNode = queue.Dequeue();
+                Console.Write(tempNode.data);
+                list.Add(tempNode.data);
+                if (tempNode.left != null) queue.Enqueue(tempNode.left);
+                if (tempNode.right != null) queue.Enqueue(tempNode.right);
+            }
+        }
+
+        // Function to print REVERSE level order traversal a tree
+        // Time Complexity: O(n) where n is number of nodes in the binary tree.
+        // http://www.geeksforgeeks.org/reverse-level-order-traversal/
+        public void ReverseLevelOrder(Node node, IList<int> list)
+        {
+            Stack<Node> stack = new Stack<Node>();
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(node);
+
+            // Do something like normal level order traversal order. Following are the
+            // differences with normal level order traversal
+            // 1) Instead of printing a node, we Enqueue the node to Stack
+            // 2) Right subtree is visited before left subtree
+            while (queue.Count > 0)
+            {
+                // Dequeue node and make it node 
+                node = queue.Dequeue();
+                stack.Push(node);
+
+                // Enqueue right child 
+                if (node.right != null)
+                    queue.Enqueue(node.right); // NOTE: RIGHT CHILD IS ENQUEUED BEFORE LEFT
+
+                // Enqueue left child 
+                if (node.left != null)
+                    queue.Enqueue(node.left);
+            }
+
+            // Now pop all items from Stack one by one and print them
+            while (stack.Count > 0)
+            {
+                node = stack.Pop();
+                list.Add(node.data);
+                Console.Write(node.data);
+            }
         }
 
         public void DepthFirstTraversalWithStack()
