@@ -61,10 +61,12 @@
     <Compile Include="DataStructures\Stack.cs" />
     <Compile Include="DataStructures\Tree.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\ArrayToPreorderTraversalTests.cs" />
+    <Compile Include="InterviewQuestionsTests\Trees\BasicTreeQuestionsTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\FullBinaryTreeTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\MaximumPathSumBinaryTreeTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeMinDepthTests.cs" />
     <Compile Include="InterviewQuestions\Trees\ArrayToPreorderTraversal.cs" />
+    <Compile Include="InterviewQuestions\Trees\BasicTreeQuestions.cs" />
     <Compile Include="InterviewQuestions\Trees\BinaryTreeMinDepth.cs" />
     <Compile Include="InterviewQuestions\Trees\FullBinaryTree.cs" />
     <Compile Include="InterviewQuestions\Trees\MaximumPathSumBinaryTree.cs" />

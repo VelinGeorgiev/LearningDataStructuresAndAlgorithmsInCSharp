@@ -18,7 +18,7 @@ namespace Learning.InterviewQuestions.Trees
 
         public int MinimumDepthRecursive()
         {
-            return MinimumDepthRecursive(Root);
+            return MinimumDepthRecursive(root);
         }
 
         /// <summary>
@@ -35,23 +35,23 @@ namespace Learning.InterviewQuestions.Trees
                 return 0;
 
             // Base case : Leaf Node. This accounts for height = 1.
-            if (root.Left == null && root.Right == null)
+            if (root.left == null && root.right == null)
                 return 1;
 
             // If left subtree is NULL, recur for right subtree
-            if (root.Left == null)
-                return MinimumDepthRecursive(root.Right) + 1;
+            if (root.left == null)
+                return MinimumDepthRecursive(root.right) + 1;
 
             // If right subtree is NULL, recur for right subtree
-            if (root.Right == null)
-                return MinimumDepthRecursive(root.Left) + 1;
+            if (root.right == null)
+                return MinimumDepthRecursive(root.left) + 1;
 
-            return Math.Min(MinimumDepthRecursive(root.Left), MinimumDepthRecursive(root.Right)) + 1;
+            return Math.Min(MinimumDepthRecursive(root.left), MinimumDepthRecursive(root.right)) + 1;
         }
 
         public int LevelOrderTraversalMinimumDepth()
         {
-            return LevelOrderTraversalMinimumDepth(Root);
+            return LevelOrderTraversalMinimumDepth(root);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Learning.InterviewQuestions.Trees
             // Create an empty queue for level order tarversal
             Queue<QItem> q = new Queue<QItem>();
 
-            // Enqueue Root and initialize depth as 1
+            // Enqueue root and initialize depth as 1
             QItem qi = new QItem
             {
                 Node = root,
@@ -89,21 +89,21 @@ namespace Learning.InterviewQuestions.Trees
 
                 // If this  is the first leaf node seen so far
                 // Then return its depth as answer
-                if (node.Left == null && node.Right == null)
+                if (node.left == null && node.right == null)
                     return depth;
 
                 // If left subtree is not NULL, add it to queue
-                if (node.Left != null)
+                if (node.left != null)
                 {
-                    qi.Node = node.Left;
+                    qi.Node = node.left;
                     qi.Depth = depth + 1;
                     q.Enqueue(qi);
                 }
 
                 // If right subtree is not NULL, add it to queue
-                if (node.Right != null)
+                if (node.right != null)
                 {
-                    qi.Node = node.Right;
+                    qi.Node = node.right;
                     qi.Depth = depth + 1;
                     q.Enqueue(qi);
                 }
@@ -116,10 +116,10 @@ namespace Learning.InterviewQuestions.Trees
         //{
         //    BinaryTree tree = new BinaryTree();
         //    tree._root = new Node(1);
-        //    tree._root.Left = new Node(2);
-        //    tree._root.Right = new Node(3);
-        //    tree._root.Left.Left = new Node(4);
-        //    tree._root.Left.Right = new Node(5);
+        //    tree._root.left = new Node(2);
+        //    tree._root.right = new Node(3);
+        //    tree._root.left.left = new Node(4);
+        //    tree._root.left.right = new Node(5);
 
         //    Console.WriteLine("The minimum depth of " + "binary tree is : " + tree.MinimumDepth());
         //    //System.out.println("The minimum depth of " + "binary tree is : " + tree.minimumDepth());

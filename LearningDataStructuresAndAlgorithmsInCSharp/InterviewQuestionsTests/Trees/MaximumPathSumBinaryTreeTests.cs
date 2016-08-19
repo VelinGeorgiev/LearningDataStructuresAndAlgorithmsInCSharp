@@ -11,16 +11,16 @@ namespace Learning.InterviewQuestionsTests.Trees
         public void MaximumPathSumRecursive()
         {
             MaximumPathSumBinaryTree tree = new MaximumPathSumBinaryTree();
-            tree.Root = new Node(10);
-            tree.Root.Left = new Node(2);
-            tree.Root.Right = new Node(10);
-            tree.Root.Left.Left = new Node(20);
-            tree.Root.Left.Right = new Node(1);
-            tree.Root.Right.Right = new Node(-25);
-            tree.Root.Right.Right.Left = new Node(3);
-            tree.Root.Right.Right.Right = new Node(4);
+            tree.root = new Node(10);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(10);
+            tree.root.left.left = new Node(20);
+            tree.root.left.right = new Node(1);
+            tree.root.right.right = new Node(-25);
+            tree.root.right.right.left = new Node(3);
+            tree.root.right.right.right = new Node(4);
 
-            var result = tree.FindMaxSum(tree.Root);
+            var result = tree.FindMaxSum(tree.root);
             Assert.AreEqual(result, 42);
         }
 
@@ -28,13 +28,13 @@ namespace Learning.InterviewQuestionsTests.Trees
         public void MaximumPathSumRecursive2()
         {
             MaximumPathSumBinaryTree tree = new MaximumPathSumBinaryTree();
-            tree.Root = new Node(10);
-            tree.Root.Left = new Node(4);
-            tree.Root.Left.Left = new Node(20);
-            tree.Root.Left.Right = new Node(21);
-            tree.Root.Right = new Node(3);
+            tree.root = new Node(10);
+            tree.root.left = new Node(4);
+            tree.root.left.left = new Node(20);
+            tree.root.left.right = new Node(21);
+            tree.root.right = new Node(3);
 
-            var result = tree.FindMaxSum(tree.Root);
+            var result = tree.FindMaxSum(tree.root);
             Assert.AreEqual(result, 45);
         }
 
@@ -42,14 +42,14 @@ namespace Learning.InterviewQuestionsTests.Trees
         public void MaximumPathSumRecursive3()
         {
             MaximumPathSumBinaryTree tree = new MaximumPathSumBinaryTree();
-            tree.Root = new Node(10);
-            tree.Root.Left = new Node(4);
-            tree.Root.Left.Left = new Node(20);
-            tree.Root.Left.Right = new Node(21);
-            tree.Root.Right = new Node(3);
-            tree.Root.Right.Left = new Node(8);
+            tree.root = new Node(10);
+            tree.root.left = new Node(4);
+            tree.root.left.left = new Node(20);
+            tree.root.left.right = new Node(21);
+            tree.root.right = new Node(3);
+            tree.root.right.left = new Node(8);
 
-            var result = tree.FindMaxSum(tree.Root);
+            var result = tree.FindMaxSum(tree.root);
             Assert.AreEqual(result, 46);
         }
 
@@ -57,21 +57,21 @@ namespace Learning.InterviewQuestionsTests.Trees
         public void MaximumPathSumRecursive4()
         {
             MaximumPathSumBinaryTree tree = new MaximumPathSumBinaryTree();
-            tree.Root = new Node(-15);
-            tree.Root.Left = new Node(5);
-            tree.Root.Right = new Node(6);
-            tree.Root.Left.Left = new Node(-8);
-            tree.Root.Left.Right = new Node(1);
-            tree.Root.Left.Left.Left = new Node(2);
-            tree.Root.Left.Left.Right = new Node(6);
-            tree.Root.Right.Left = new Node(3);
-            tree.Root.Right.Right = new Node(9);
-            tree.Root.Right.Right.Right = new Node(0);
-            tree.Root.Right.Right.Right.Left = new Node(4);
-            tree.Root.Right.Right.Right.Right = new Node(-1);
-            tree.Root.Right.Right.Right.Right.Left = new Node(10);
+            tree.root = new Node(-15);
+            tree.root.left = new Node(5);
+            tree.root.right = new Node(6);
+            tree.root.left.left = new Node(-8);
+            tree.root.left.right = new Node(1);
+            tree.root.left.left.left = new Node(2);
+            tree.root.left.left.right = new Node(6);
+            tree.root.right.left = new Node(3);
+            tree.root.right.right = new Node(9);
+            tree.root.right.right.right = new Node(0);
+            tree.root.right.right.right.left = new Node(4);
+            tree.root.right.right.right.right = new Node(-1);
+            tree.root.right.right.right.right.left = new Node(10);
 
-            var result = tree.FindMaxSum(tree.Root);
+            var result = tree.FindMaxSum(tree.root);
             Assert.AreEqual(result, 27);
         }
         

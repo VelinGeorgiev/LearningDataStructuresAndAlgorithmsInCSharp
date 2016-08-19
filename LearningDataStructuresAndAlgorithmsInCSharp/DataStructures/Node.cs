@@ -2,13 +2,13 @@
 {
     public class Node
     {
-        public int Data;
-        public Node Left, Right;
+        public int data;
+        public Node left, right;
 
         public Node(int item)
         {
-            Data = item;
-            Left = Right = null;
+            data = item;
+            left = right = null;
         }
     }
 }

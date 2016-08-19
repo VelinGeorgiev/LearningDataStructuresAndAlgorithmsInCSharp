@@ -12,24 +12,24 @@ namespace Learning.InterviewQuestions.Trees
         private int _result;
 
         // This function returns overall Maximum path sum in 'res'
-        // And returns Max path sum going through Root.
+        // And returns Max path sum going through root.
         int FindMaxUtil(Node node)
         {
             if (node == null) return 0;
 
             // l and r store Maximum path sum going through left and
-            // Right child of Root respectively
-            int l = FindMaxUtil(node.Left);
-            int r = FindMaxUtil(node.Right);
+            // right child of root respectively
+            int l = FindMaxUtil(node.left);
+            int r = FindMaxUtil(node.right);
 
-            // Max path for parent call of Root. This path must
-            // include at-most one child of Root
-            int maxSingle = Math.Max(Math.Max(l, r) + node.Data, node.Data);
+            // Max path for parent call of root. This path must
+            // include at-most one child of root
+            int maxSingle = Math.Max(Math.Max(l, r) + node.data, node.data);
 
             // Max Top represents the sum when the Node under
-            // consideration is the Root of the Maxsum path and no
-            // ancestors of Root are there in Max sum path
-            int maxTop = Math.Max(maxSingle, l + r + node.Data);
+            // consideration is the root of the Maxsum path and no
+            // ancestors of root are there in Max sum path
+            int maxTop = Math.Max(maxSingle, l + r + node.data);
 
             // Store the Maximum Result.
             _result = Math.Max(_result, maxTop);
@@ -37,11 +37,11 @@ namespace Learning.InterviewQuestions.Trees
             return maxSingle;
         }
 
-        // Returns Maximum path sum in tree with given Root
+        // Returns Maximum path sum in tree with given root
         public int FindMaxSum(Node node)
         {
             // Initialize result
-            _result = node.Data;
+            _result = node.data;
 
             // Compute and return result
             FindMaxUtil(node);

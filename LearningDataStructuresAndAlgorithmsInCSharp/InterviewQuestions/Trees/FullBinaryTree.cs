@@ -13,10 +13,10 @@ namespace Learning.InterviewQuestions.Trees
             if (node == null) return true;
 
             // if leaf node
-            if (node.Left == null && node.Right == null) return true;
+            if (node.left == null && node.right == null) return true;
 
             // if both left and right subtrees are not null they are full
-            if ((node.Left != null) && (node.Right != null)) return IsFullBinaryTree(node.Left) && IsFullBinaryTree(node.Right);
+            if ((node.left != null) && (node.right != null)) return IsFullBinaryTree(node.left) && IsFullBinaryTree(node.right);
 
             // if none work
             return false;

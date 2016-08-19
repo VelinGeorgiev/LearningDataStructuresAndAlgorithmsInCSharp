@@ -10,12 +10,12 @@ namespace Learning.DataStructures
     /// </summary>
     public class BinaryTree
     {
-        //Root of the Binary Tree
-        public Node Root;
+        //root of the Binary Tree
+        public Node root;
 
         public BinaryTree()
         {
-            Root = null;
+            root = null;
         }
 
         public void InorderDepthFirstTraversal(Node node, IList<Node> result)
@@ -23,15 +23,15 @@ namespace Learning.DataStructures
             if (node == null) return;
 
             // First recur on left child.
-            InorderDepthFirstTraversal(node.Left, result);
+            InorderDepthFirstTraversal(node.left, result);
 
             // Then print the data of node.
             // System.out.print(node.key);
-            Console.Write(node.Data);
+            Console.Write(node.data);
             result.Add(node);
 
             // Now recur on right child.
-            InorderDepthFirstTraversal(node.Right, result);
+            InorderDepthFirstTraversal(node.right, result);
         }
 
         public void PreorderDepthFirstTraversal(Node node, IList<Node> result)
@@ -40,14 +40,14 @@ namespace Learning.DataStructures
 
             // First print data of node.
             // System.out.print(node.key);
-            Console.Write(node.Data);
+            Console.Write(node.data);
             result.Add(node);
 
             // Then recur on left sutree.
-            PreorderDepthFirstTraversal(node.Left, result);
+            PreorderDepthFirstTraversal(node.left, result);
 
             // Now recur on right subtree
-            PreorderDepthFirstTraversal(node.Right, result);
+            PreorderDepthFirstTraversal(node.right, result);
         }
 
         public void PostorderDepthFirstTraversal(Node node, IList<Node> result)
@@ -55,14 +55,14 @@ namespace Learning.DataStructures
             if (node == null) return;
 
             // First recur on left subtree.
-            PostorderDepthFirstTraversal(node.Left, result);
+            PostorderDepthFirstTraversal(node.left, result);
 
             // Then recur on right subtree.
-            PostorderDepthFirstTraversal(node.Right, result);
+            PostorderDepthFirstTraversal(node.right, result);
 
             // Now deal with the node.
-            // System.out.print(node.Data);
-            Console.Write(node.Data);
+            // System.out.print(node.data);
+            Console.Write(node.data);
             result.Add(node);
         }
 

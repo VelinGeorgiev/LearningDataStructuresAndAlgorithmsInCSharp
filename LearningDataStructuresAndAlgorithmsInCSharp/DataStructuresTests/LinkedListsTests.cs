@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Learning.DataStructures;
+using Learning.DataStructures.Custom;
 using NUnit.Framework;
 
 namespace Learning.DataStructuresTests

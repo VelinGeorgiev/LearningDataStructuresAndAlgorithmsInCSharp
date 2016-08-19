@@ -12,25 +12,25 @@ namespace Learning.InterviewQuestionsTests.Trees
         public void IsFullBinaryTreeTest()
         {
             FullBinaryTree tree = new FullBinaryTree();
-            tree.Root = new Node(1);
-            tree.Root.Left = new Node(2);
-            tree.Root.Right = new Node(3);
-            tree.Root.Left.Left = new Node(4);
-            tree.Root.Left.Right = new Node(5);
+            tree.root = new Node(1);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(3);
+            tree.root.left.left = new Node(4);
+            tree.root.left.right = new Node(5);
             
-            Assert.IsTrue(tree.IsFullBinaryTree(tree.Root));
+            Assert.IsTrue(tree.IsFullBinaryTree(tree.root));
         }
 
         [Test]
         public void IsFullBinaryTreeTest2()
         {
             FullBinaryTree tree = new FullBinaryTree();
-            tree.Root = new Node(1);
-            tree.Root.Left = new Node(2);
-            tree.Root.Right = new Node(3);
-            tree.Root.Left.Left = new Node(4);
+            tree.root = new Node(1);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(3);
+            tree.root.left.left = new Node(4);
 
-            Assert.IsFalse(tree.IsFullBinaryTree(tree.Root));
+            Assert.IsFalse(tree.IsFullBinaryTree(tree.root));
         }
 
 

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Learning.DataStructures
+namespace Learning.DataStructures.Custom
 {
     public class Node<T>
     {
