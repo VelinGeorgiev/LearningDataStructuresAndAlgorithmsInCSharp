@@ -31,7 +31,7 @@ namespace Learning.InterviewQuestions.Trees
         }
 
         private int _siIndex = 0;
-        private void StoreInorder(Node node, int[] array)
+        public void StoreInorder(Node node, int[] array)
         {
             if(node == null) return;
             StoreInorder(node.left, array);

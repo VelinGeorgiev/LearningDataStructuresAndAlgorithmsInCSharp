@@ -49,5 +49,28 @@ namespace Learning.InterviewQuestionsTests.Trees
             Assert.AreEqual(list[3], 20);
             Assert.AreEqual(list[4], 30);
         }
+
+        [Test]
+        public void ConvertAndTestWithStoreInorder()
+        {
+            BinaryTreeToBst tree = new BinaryTreeToBst();
+            var r = tree.root;
+            r = new Node(10);
+            r.left = new Node(30);
+            r.right = new Node(15);
+            r.left.left = new Node(20);
+            r.left.right = new Node(5);
+
+            tree.Convert(r);
+            var arr = new int[5];
+
+            var tree2 = new BinaryTreeToBst();
+            tree2.StoreInorder(r, arr);
+
+            for (int i = 0; i < arr.Length-1; i++)
+            {
+                Assert.LessOrEqual(arr[i], arr[i+1]);
+            }
+        }
     }
 }
