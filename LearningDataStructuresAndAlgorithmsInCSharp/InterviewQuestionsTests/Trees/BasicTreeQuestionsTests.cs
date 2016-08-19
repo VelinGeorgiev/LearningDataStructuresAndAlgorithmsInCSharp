@@ -131,5 +131,33 @@ namespace Learning.InterviewQuestionsTests.Trees
             Assert.AreEqual(_tree.PrintLevelOrderDictionary["level3"][1], 6);
             Assert.AreEqual(_tree.PrintLevelOrderDictionary["level3"][2], 3);
         }
+
+        [Test]
+        public void IsRootToLeafPathSumEqualToGivenNumber()
+        {
+            _tree.root = new Node(10);
+            _tree.root.left = new Node(8);
+            _tree.root.right = new Node(2);
+            _tree.root.left.left = new Node(3);
+            _tree.root.left.right = new Node(5);
+            _tree.root.right.left = new Node(2);
+
+            Assert.IsTrue(_tree.IsRootToLeafPathSumEqualToGivenNumber(_tree.root, 21));
+        }
+
+        [Test]
+        public void IsRootToLeafPathSumEqualToGivenNumber2()
+        {
+            _tree.root = new Node(10);
+            _tree.root.left = new Node(8);
+            _tree.root.right = new Node(2);
+            _tree.root.left.left = new Node(3);
+            _tree.root.left.right = new Node(5);
+            _tree.root.right.left = new Node(2);
+
+            Assert.IsFalse(_tree.IsRootToLeafPathSumEqualToGivenNumber(_tree.root, 22));
+        }
+
+
     }
 }

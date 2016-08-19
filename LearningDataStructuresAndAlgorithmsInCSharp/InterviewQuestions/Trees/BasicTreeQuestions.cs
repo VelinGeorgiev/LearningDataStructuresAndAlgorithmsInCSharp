@@ -127,13 +127,12 @@ namespace Learning.InterviewQuestions.Trees
 
             // Difference for root is root's data - difference for 
             // left subtree - difference for right subtree
-            return node.data - GetLevelDiff(node.left) -
-                                                  GetLevelDiff(node.right);
+            return node.data - GetLevelDiff(node.left) - GetLevelDiff(node.right);
         }
-
 
         // Iterative method to do level order traversal line by line
         //http://quiz.geeksforgeeks.org/print-level-order-traversal-line-line/
+        // Time complexity of this method is O(n) where n is number of nodes in given binary tree.
         public Dictionary<string, IList<int>> PrintLevelOrderDictionary = new Dictionary<string, IList<int>>();
         public void PrintLevelOrder(Node node)
         {
@@ -179,5 +178,34 @@ namespace Learning.InterviewQuestions.Trees
             }
         }
 
+        // Root to leaf path sum equal to a given number
+        // http://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/
+        // Time Complexity: O(n)
+        /*
+    Given a tree and a sum, return true if there is a path from the root
+    down to a leaf, such that adding up all the values along the path
+    equals the given sum.
+
+    Strategy: subtract the node value from the sum when recurring down,
+    and check to see if the sum is 0 when you run out of tree.
+    */
+        public bool IsRootToLeafPathSumEqualToGivenNumber(Node node, int sum)
+        {
+            if (node == null) return sum == 0;
+        
+            bool result = false;
+
+            /* otherwise check both subtrees */
+            sum -= node.data;
+            if (sum == 0 && node.left == null && node.right == null) return true;
+
+            if (node.left != null)
+                result = IsRootToLeafPathSumEqualToGivenNumber(node.left, sum);
+
+            if (node.right != null)
+                result = result || IsRootToLeafPathSumEqualToGivenNumber(node.right, sum);
+
+            return result;
+        }
     }
 }
