@@ -23,9 +23,13 @@ namespace Learning.DataStructures.LinkedList
     /// </summary>
     public class SinglyLinkedList
     {
-        private Node _head;
+        public Node head;
+        public IList<int> output;
 
-        public Node First => _head;
+        public SinglyLinkedList()
+        {
+            output = new List<int>();
+        }
 
         public void Push(int value)
         {
@@ -33,23 +37,23 @@ namespace Learning.DataStructures.LinkedList
             Node newNode = new Node(value);
 
             // Make next of new Node as head
-            newNode.next = _head;
+            newNode.next = head;
 
             // Move the head to point to new Node
-            _head = newNode;
+            head = newNode;
         }
 
         public void PushLast(int value)
         {
             // Allocate the Node & Put in the data
             Node node = new Node(value);
-            if (_head == null)
+            if (head == null)
             {
-                _head = node;
+                head = node;
             }
             else
             {
-                var current = _head;
+                var current = head;
                 while (current.next != null)
                 {
                     current = current.next;
@@ -61,7 +65,7 @@ namespace Learning.DataStructures.LinkedList
         // This function prints contents of linked list starting from  the given node */
         public IList<int> PrintList()
         {
-            Node tnode = _head;
+            Node tnode = head;
             IList<int> list = new List<int>();
 
             while (tnode != null)
@@ -76,15 +80,15 @@ namespace Learning.DataStructures.LinkedList
 
         public void Remove(Node node)
         {
-            if (_head == null) return;
+            if (head == null) return;
 
-            if (_head == node)
+            if (head == node)
             {
-                _head = _head.next;
+                head = head.next;
                 node.next = null;
             }
 
-            var current = _head;
+            var current = head;
             while (current?.next != null)
             {
                 if (current.next == node)
@@ -99,7 +103,7 @@ namespace Learning.DataStructures.LinkedList
         public void Reverse()
         {
             Node prev = null;
-            var current = _head;
+            var current = head;
 
             if (current == null)
                 return;
@@ -112,20 +116,20 @@ namespace Learning.DataStructures.LinkedList
                 current = next;
             }
 
-            _head = prev;
+            head = prev;
         }
 
         public void ReverseRecurisve()
         {
-            ReverseRecurive(_head, null);
+            ReverseRecurive(head, null);
         }
 
         private void ReverseRecurive(Node current, Node prev)
         {
             if (current.next == null)
             {
-                _head = current;
-                _head.next = prev;
+                head = current;
+                head.next = prev;
                 return;
             }
 

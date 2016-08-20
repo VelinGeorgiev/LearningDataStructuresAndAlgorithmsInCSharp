@@ -1,4 +1,5 @@
-﻿using Learning.InterviewQuestions.LinkedLists;
+﻿using Learning.DataStructures.LinkedList;
+using Learning.InterviewQuestions.LinkedLists;
 using NUnit.Framework;
 
 namespace Learning.InterviewQuestionsTests.LinkedLists
@@ -14,9 +15,17 @@ namespace Learning.InterviewQuestionsTests.LinkedLists
         }
 
         [Test]
-        public void Convert0To5()
+        public void PrintMiddle()
         {
-           Assert.AreEqual(_ba.Convert0To5(10120), 15125);
+            _bll.head = new Node(1);
+            _bll.head.next = new Node(2);
+            _bll.head.next.next = new Node(3);
+            _bll.head.next.next.next = new Node(4);
+            _bll.head.next.next.next.next = new Node(5);
+            _bll.PrintMiddle();
+
+            Assert.AreEqual(_bll.output[0], 3);
         }
     }
 }
+
