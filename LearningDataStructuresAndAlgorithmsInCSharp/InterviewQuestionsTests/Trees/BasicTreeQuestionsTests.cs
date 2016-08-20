@@ -174,6 +174,77 @@ namespace Learning.InterviewQuestionsTests.Trees
             Assert.AreEqual(_tree.root.right.right.data, 7);
         }
 
-        
+        [Test]
+        public void DiameterOn2()
+        {
+            _tree.root = new Node(1);
+            _tree.root.left = new Node(2);
+            _tree.root.right = new Node(3);
+            _tree.root.left.left = new Node(4);
+            _tree.root.left.right = new Node(5);
+
+            var res = _tree.DiameterOn2(_tree.root);
+
+            Assert.AreEqual(res, 4);
+        }
+
+        [Test]
+        public void Diameter()
+        {
+            _tree.root = new Node(1);
+            _tree.root.left = new Node(2);
+            _tree.root.right = new Node(3);
+            _tree.root.left.left = new Node(4);
+            _tree.root.left.right = new Node(5);
+
+            var h = new Height();
+            var res = _tree.Diameter(_tree.root, h);
+
+            Assert.AreEqual(res, 4);
+        }
+
+        [Test]
+        public void ToSumTree()
+        {
+            _tree.root = new Node(10);
+            _tree.root.left = new Node(-2);
+            _tree.root.right = new Node(6);
+            _tree.root.left.left = new Node(8);
+            _tree.root.left.right = new Node(-4);
+            _tree.root.right.left = new Node(7);
+            _tree.root.right.right = new Node(5);
+            
+            _tree.ToSumTree(_tree.root);
+
+            Assert.AreEqual(_tree.root.data, 20);
+            Assert.AreEqual(_tree.root.left.data, 4);
+            Assert.AreEqual(_tree.root.right.data, 12);
+            Assert.AreEqual(_tree.root.left.left.data, 0);
+            Assert.AreEqual(_tree.root.left.right.data, 0);
+        }
+
+        [Test]
+        public void LevelOrderTraversalInSpiralForm()
+        {
+            _tree.root = new Node(1);
+            _tree.root.left = new Node(2);
+            _tree.root.right = new Node(3);
+            _tree.root.left.left = new Node(7);
+            _tree.root.left.right = new Node(6);
+            _tree.root.right.left = new Node(5);
+            _tree.root.right.right = new Node(4);
+            var list = new List<int>();
+
+            _tree.LevelOrderTraversalInSpiralForm(_tree.root, list);
+
+            Assert.AreEqual(list[0], 1);
+            Assert.AreEqual(list[1], 2);
+            Assert.AreEqual(list[2], 3);
+            Assert.AreEqual(list[3], 4);
+            Assert.AreEqual(list[4], 5);
+            Assert.AreEqual(list[5], 6);
+            Assert.AreEqual(list[6], 7);
+        }
+
     }
 }

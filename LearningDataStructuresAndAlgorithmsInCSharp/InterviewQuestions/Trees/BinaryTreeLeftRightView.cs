@@ -6,7 +6,7 @@ namespace Learning.InterviewQuestions.Trees
 {
     public class BinaryTreeLeftRightView : BinaryTree
     {
-        private int _maxLevel;
+        private int _visitedLevel;
 
         // Recursive function to print left view.
         // http://www.geeksforgeeks.org/print-left-view-binary-tree/
@@ -16,12 +16,12 @@ namespace Learning.InterviewQuestions.Trees
             if (node == null) return;
 
             // If this is the first node of its level.
-            if (_maxLevel < level)
+            if (_visitedLevel < level)
             {
                 Console.Write(node.data + " ");
                 list.Add(node.data);
 
-                _maxLevel = level;
+                _visitedLevel = level;
             }
             LeftView(node.left, level + 1, list);
             LeftView(node.right, level + 1, list);
@@ -35,12 +35,12 @@ namespace Learning.InterviewQuestions.Trees
             if (node == null) return;
 
             // If this is the last Node of its level
-            if (_maxLevel < level)
+            if (_visitedLevel < level)
             {
                 Console.Write(node.data + " ");
                 list.Add(node.data);
 
-                _maxLevel = level;
+                _visitedLevel = level;
             }
             RightView(node.right, level + 1, list);
             RightView(node.left, level + 1, list);

@@ -19,7 +19,7 @@ namespace Learning.InterviewQuestions.Trees
         {
             int ls, rs;
 
-            // If node is NULL or it's a leaf node then return true; 
+            // If node is NULL or it's a leaf node then return true.
             if (node == null || (node.left == null && node.right == null))
                 return true;
 
@@ -274,7 +274,7 @@ namespace Learning.InterviewQuestions.Trees
         {
             if(start > end) return null;
             // Get the middle element and make it root
-            int mid = start + end / 2;
+            int mid = (start + end) / 2;
             Node node = new Node(arr[mid]);
 
             node.left = SortedArrayToBalancedBst(arr, start, mid - 1);
@@ -283,11 +283,117 @@ namespace Learning.InterviewQuestions.Trees
             return node;
         }
 
-        // Time Complexity: The function does a simple traversal of the tree, so the complexity is O(n).
-        // http://www.geeksforgeeks.org/print-right-view-binary-tree-2/
-        public void PrintRightViewOfBinaryTree()
+        // Time Complexity: O(n^2)
+        // http://stackoverflow.com/a/11897490/1307985
+        // Diameter of a Binary Tree (sometimes called the width)
+        public int DiameterOn2(Node node)
         {
-            
+            if (node == null) return 0;
+            int rootDiameter = MaxDepth(node.left) + MaxDepth(node.right) + 1;
+            int leftDiameter = DiameterOn2(node.left);
+            int rightDiameter = DiameterOn2(node.right);
+
+            return Math.Max(rootDiameter, Math.Max(leftDiameter, rightDiameter));
         }
+
+        // Time Complexity: O(n)
+        // http://www.geeksforgeeks.org/diameter-of-a-binary-tree/
+        // Diameter of a Binary Tree (sometimes called the width)
+        public int Diameter(Node node, Height height)
+        {
+            /* lh --> Height of left subtree
+               rh --> Height of right subtree */
+            Height lh = new Height(), rh = new Height();
+
+            if (node == null)
+            {
+                height.h = 0;
+                return 0; /* diameter is also 0 */
+            }
+
+            /* ldiameter  --> diameter of left subtree
+               rdiameter  --> Diameter of right subtree */
+            /* Get the heights of left and right subtrees in lh and rh
+             And store the returned values in ldiameter and ldiameter */
+            /* calculate root diameter */
+            lh.h++; rh.h++;
+            int ldiameter = Diameter(node.left, lh);
+            int rdiameter = Diameter(node.right, rh);
+
+            /* Height of current node is max of heights of left and
+             right subtrees plus 1*/
+            height.h = Math.Max(lh.h, rh.h) + 1;
+
+            return Math.Max(lh.h + rh.h + 1, Math.Max(ldiameter, rdiameter));
+        }
+
+        // Convert a given tree to a tree where every node contains sum of
+        // values of nodes in left and right subtrees in the original tree
+        // http://www.geeksforgeeks.org/convert-a-given-tree-to-sum-tree/
+        // Time Complexity: The solution involves a simple traversal of the given tree. So the time complexity is O(n)
+        // where n is the number of nodes in the given Binary Tree.
+        public int ToSumTree(Node node)
+        {
+            if (node == null) return 0;
+
+            // Store the old value
+            int oldVal = node.data;
+
+            // Recursively call for left and right subtrees and store the sum
+            // as new value of this node
+            node.data = ToSumTree(node.left) + ToSumTree(node.right);
+
+            // Return the sum of values of nodes in left and right subtrees
+            // and oldVal of this node
+            return node.data + oldVal;
+        }
+
+        // O(n) approach of level order
+        // http://www.geeksforgeeks.org/level-order-traversal-in-spiral-form/
+        public void LevelOrderTraversalInSpiralForm(Node node, IList<int> result)
+        {
+            if (node == null) return;
+
+            // Create two stacks to store alternate levels
+            Stack<Node> s1 = new Stack<Node>();// For levels to be printed from right to left
+            Stack<Node> s2 = new Stack<Node>();// For levels to be printed from left to right
+
+            // Push first level to first stack 's1'
+            s1.Push(node);
+
+            // Keep ptinting while any of the stacks has some nodes
+            while (s1.Count>0 || s2.Count > 0)
+            {
+                // Print nodes of current level from s1 and push nodes of
+                // next level to s2
+                while (s1.Count > 0)
+                {
+                    Node temp = s1.Pop();
+                    Console.Write(temp.data + " ");
+                    result.Add(temp.data);
+                    // NOTE that is right is pushed before left
+                    if (temp.right != null) s2.Push(temp.right);
+                    if (temp.left != null) s2.Push(temp.left);
+                }
+
+                // Print nodes of current level from s2 and push nodes of
+                // next level to s1
+                while (s2.Count > 0)
+                {
+                    Node temp = s2.Pop();
+                    Console.Write(temp.data + " ");
+                    result.Add(temp.data);
+                    // NOTE that is left is pushed before right
+                    if (temp.left != null) s1.Push(temp.left);
+                    if (temp.right != null) s1.Push(temp.right);
+                }
+            }
+        }
+
     }
+    public class Height
+    {
+        public int h;
+    }
+
 }
