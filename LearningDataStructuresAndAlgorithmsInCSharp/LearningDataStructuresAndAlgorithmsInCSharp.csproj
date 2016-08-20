@@ -62,7 +62,9 @@
     <Compile Include="DataStructures\Tree.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\ArrayToPreorderTraversalTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BasicTreeQuestionsTests.cs" />
+    <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeLowestCommonAncestorTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeBoundaryTests.cs" />
+    <Compile Include="InterviewQuestions\Trees\BinaryTreeLowestCommonAncestor.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeToBstTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeLeftRightViewTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\FullBinaryTreeTests.cs" />
