@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Text;
-using Learning.DataStructures;
 using Learning.InterviewQuestions.Arrays;
-using Learning.InterviewQuestions.Trees;
 using NUnit.Framework;
 
 namespace Learning.InterviewQuestionsTests.ArraysTests
@@ -35,7 +32,47 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             Assert.AreEqual(_ba.FloorSqrt(11), 3);
         }
 
+        [Test]
+        public void GeneratePrintBinary()
+        {
+            var list = new List<string>();
+            _ba.GeneratePrintBinary(10, list);
+            Assert.AreEqual(list[9], "1010");
+        }
 
+        [Test]
+        public void NumberOccurringOddNumberTimes()
+        {
+            int[] ar = { 2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2 };
+            Assert.AreEqual(_ba.NumberOccurringOddNumberTimes(ar), 5);
+        }
 
+        [Test]
+        public void FindMinDiff()
+        {
+            int[] arr = { 1, 5, 3, 19, 18, 25 };
+            Assert.AreEqual(_ba.FindMinDiff(arr), 1);
+        }
+
+        [Test]
+        public void KthSmallest()
+        {
+            int[] arr = { 12, 3, 5, 7, 19 };
+            Assert.AreEqual(_ba.KthSmallest(arr, 2), 5);
+        }
+
+        [Test]
+        public void KthLargest()
+        {
+            int[] arr = { 12, 3, 5, 7, 19 };
+            Assert.AreEqual(_ba.KthLargest(arr, 2), 12);
+        }
+
+        [Test]
+        public void RemoveDirtyCharacters()
+        {
+            int[] arr = { 12, 3, 5, 7, 19 };
+            Assert.AreEqual(_ba.RemoveDirtyCharacters("geeksforgeeks", "geeks"), "for");
+        } 
     }
 }

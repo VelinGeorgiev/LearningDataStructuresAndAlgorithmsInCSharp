@@ -34,8 +34,7 @@ namespace Learning.InterviewQuestions.LinkedLists
 
             if (head == null)
             {
-                head = temp;
-                tail = temp;
+                head = tail = temp;
             }
             else
             {

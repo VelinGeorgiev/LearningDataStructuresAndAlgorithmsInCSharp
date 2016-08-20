@@ -1,5 +1,4 @@
-﻿using Learning.DataStructures.LinkedList;
-using Learning.InterviewQuestions.LinkedLists;
+﻿using Learning.InterviewQuestions.LinkedLists;
 using NUnit.Framework;
 
 namespace Learning.InterviewQuestionsTests.LinkedLists
