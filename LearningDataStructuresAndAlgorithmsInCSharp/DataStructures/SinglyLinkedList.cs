@@ -1,12 +1,18 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Learning.DataStructures.Custom
+namespace Learning.DataStructures.LinkedList
 {
-    public class Node<T>
+    public class Node
     {
-        public T Value { get; set; }
-        public Node<T> Next { get; set; }
+        public int data { get; set; }
+        public Node next { get; set; }
+
+        public Node(int d)
+        {
+            data = d;
+            next = null;
+        }
     }
 
     /// <summary>
@@ -15,17 +21,28 @@ namespace Learning.DataStructures.Custom
     /// LinkedList is double linked.
     /// See also Circular Linked List: http://www.tutorialspoint.com/data_structures_algorithms/circular_linked_list_algorithm.htm
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class SinglyLinkedList<T> : IEnumerable
+    public class SinglyLinkedList
     {
-        private Node<T> _head;
+        private Node _head;
 
-        public Node<T> First => _head;
+        public Node First => _head;
 
-        public Node<T> Add(T value)
+        public void Push(int value)
         {
-            var node = new Node<T> { Value = value };
+            // Allocate the Node & Put in the data
+            Node newNode = new Node(value);
 
+            // Make next of new Node as head
+            newNode.next = _head;
+
+            // Move the head to point to new Node
+            _head = newNode;
+        }
+
+        public void PushLast(int value)
+        {
+            // Allocate the Node & Put in the data
+            Node node = new Node(value);
             if (_head == null)
             {
                 _head = node;
@@ -33,46 +50,55 @@ namespace Learning.DataStructures.Custom
             else
             {
                 var current = _head;
-                while (current.Next != null)
+                while (current.next != null)
                 {
-                    current = current.Next;
+                    current = current.next;
                 }
-                current.Next = node; //new head
+                current.next = node; //new head
             }
-
-            return node;
         }
 
-        public T Remove(Node<T> node)
+        // This function prints contents of linked list starting from  the given node */
+        public IList<int> PrintList()
         {
-            if (_head == null)
-                return node.Value;
+            Node tnode = _head;
+            IList<int> list = new List<int>();
+
+            while (tnode != null)
+            {
+                Console.Write(tnode.data + "->");
+                list.Add(tnode.data);
+                tnode = tnode.next;
+            }
+            Console.Write("null");
+            return list;
+        }
+
+        public void Remove(Node node)
+        {
+            if (_head == null) return;
 
             if (_head == node)
             {
-                _head = _head.Next;
-                node.Next = null;
-                return node.Value;
+                _head = _head.next;
+                node.next = null;
             }
 
             var current = _head;
-            while (current.Next != null)
+            while (current?.next != null)
             {
-                if (current.Next == node)
+                if (current.next == node)
                 {
-                    current.Next = node.Next;
-                    return node.Value;
+                    current.next = node.next;
                 }
 
-                current = current.Next;
+                current = current.next;
             }
-
-            return node.Value;
         }
 
         public void Reverse()
         {
-            Node<T> prev = null;
+            Node prev = null;
             var current = _head;
 
             if (current == null)
@@ -80,8 +106,8 @@ namespace Learning.DataStructures.Custom
 
             while (current != null)
             {
-                var next = current.Next;
-                current.Next = prev;
+                var next = current.next;
+                current.next = prev;
                 prev = current;
                 current = next;
             }
@@ -94,33 +120,18 @@ namespace Learning.DataStructures.Custom
             ReverseRecurive(_head, null);
         }
 
-        private void ReverseRecurive(Node<T> current, Node<T> prev)
+        private void ReverseRecurive(Node current, Node prev)
         {
-            if (current.Next == null)
+            if (current.next == null)
             {
                 _head = current;
-                _head.Next = prev;
+                _head.next = prev;
                 return;
             }
 
-            var next = current.Next;
-            current.Next = prev;
+            var next = current.next;
+            current.next = prev;
             ReverseRecurive(next, current);
-        }
-
-        public IEnumerator<T> Enumerator()
-        {
-            var current = _head;
-            while (current != null)
-            {
-                yield return current.Value;
-                current = current.Next;
-            }
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            return Enumerator();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Learning.DataStructures.Custom;
 using NUnit.Framework;
 
 namespace Learning.DataStructuresTests
@@ -7,55 +6,6 @@ namespace Learning.DataStructuresTests
     [TestFixture]
     public class LinkedListsTests
     {
-        [Test]
-        public void TestEnumerateOverSinglyLinkedList()
-        {
-            var linkedList = new SinglyLinkedList<int> { 1, 3, 2, 5, 4, 7, 8, 6, 10, 9 };
-            var list = new List<int>();
-            var linkedListIterator = linkedList.GetEnumerator();
-            while (linkedListIterator.MoveNext())
-            {
-                list.Add((int)linkedListIterator.Current);
-            }
-            Assert.AreEqual(list[0], 1);
-            Assert.AreEqual(list[1], 3);
-            Assert.AreEqual(list[2], 2);
-            Assert.AreEqual(list[3], 5);
-            Assert.AreEqual(list[4], 4);
-            Assert.AreEqual(list[5], 7);
-            Assert.AreEqual(list[6], 8);
-            Assert.AreEqual(list[7], 6);
-            Assert.AreEqual(list[8], 10);
-            Assert.AreEqual(list[9], 9);
-        }
-
-        [Test]
-        public void TestIterateOverNextSinglyLinkedList()
-        {
-            var linkedList = new SinglyLinkedList<int> { 1, 3, 2, 5, 4, 7, 8, 6, 10, 9 };
-            var list = new List<int>();
-
-            var node = linkedList.First;
-            list.Add(node.Value);
-
-            while (node != null && node.Next != null)
-            {
-                node = node.Next;
-                list.Add(node.Value);
-            }
-
-            Assert.AreEqual(list[0], 1);
-            Assert.AreEqual(list[1], 3);
-            Assert.AreEqual(list[2], 2);
-            Assert.AreEqual(list[3], 5);
-            Assert.AreEqual(list[4], 4);
-            Assert.AreEqual(list[5], 7);
-            Assert.AreEqual(list[6], 8);
-            Assert.AreEqual(list[7], 6);
-            Assert.AreEqual(list[8], 10);
-            Assert.AreEqual(list[9], 9);
-        }
-
         [Test]
         public void TestEnumerateOverLinkedList()
         {
