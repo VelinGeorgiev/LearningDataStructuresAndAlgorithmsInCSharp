@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using System.Text;
 
 namespace Learning.InterviewQuestions.Arrays
@@ -267,6 +269,180 @@ namespace Learning.InterviewQuestions.Arrays
                 charArray[maskString[i]] = charArray[maskString[i]] + 1;
             }
             return charArray;
+        }
+
+        // Maximum sum such that no two elements are adjacent
+        // Time Complexity: O(n)
+        // http://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
+        // Function to return max sum such that no two elements are adjacent
+        // TODO: review again.
+        public int FindMaxSum(int[] arr)
+        {
+            int incl = arr[0];
+            int excl = 0;
+            int exclNew;
+            for (int i = 1; i < arr.Length; i++)
+            {
+                exclNew = (incl > excl) ? incl : excl; //current max excluding i
+                incl = excl + arr[i]; // current max including i
+                excl = exclNew;
+            }
+
+            // return max of incl and excl
+            return ((incl > excl) ? incl : excl);
+        }
+
+        // http://www.geeksforgeeks.org/count-positive-integers-0-digit/
+        // Utility function to calculate the count of natural numbers
+        // upto a given number of digits that contain atleast one zero
+        // Time Complexity : O(1), Auxiliary Space : O(1)
+        // Count positive integers with 0 as a digit and maximum ‘d’ digits
+        public double FindCountUpto(int d)
+        {
+            // Sum of two GP series
+            double gp1Sum = 9 * ((Math.Pow(10, d) - 1) / 9);
+            double gp2Sum = 9 * ((Math.Pow(9, d) - 1) / 8);
+
+            return gp1Sum - gp2Sum;
+        }
+
+        // Reverse subarray a[0..k-1]
+        // Time complexity: O(k)
+        // http://quiz.geeksforgeeks.org/reverse-an-array-upto-a-given-position/
+        public void ReverseArray(int[] arr, int n, int start, int k)
+        {
+            if (k > n) return;
+
+            // One by one reverse first and last elements of a[0..k-1]
+            var halfK = k/2;
+            for (int i = start; i <= halfK; i++)
+            {
+                var toSwapWith = k - i - 1; //excluding
+                var temp = arr[i];
+                arr[i] = arr[toSwapWith];
+                arr[toSwapWith] = temp;
+            }
+        }
+
+        // Count number of bits to be flipped to convert A to B
+        // http://www.geeksforgeeks.org/count-number-of-bits-to-be-flipped-to-convert-a-to-b/
+        public int FlipBits(int a, int b)
+        {
+            var n = a ^ b;
+            int count = 0;
+            while (n != 0)
+            {
+                count += n & 1;
+                n >>= 1;
+            }
+            return count;
+        }
+
+        public int GetMissingNo(int[] a, int n)
+        {
+            int i;
+            int x1 = a[0]; /* For xor of all the elements in array */
+            int x2 = 1; /* For xor of all the elements from 1 to n+1 */
+            for (i = 1; i < n; i++) x1 = x1 ^ a[i];
+            for (i = 2; i <= n + 1; i++) x2 = x2 ^ i;
+            return x1 ^ x2;
+        }
+
+        // Function to print permutations of string
+        // This function takes three parameters:
+        // 1. String
+        // 2. Starting index of the string
+        // 3. Ending index of the string.
+        // http://code.geeksforgeeks.org/H6Bs1h
+        // http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+        // http://www.geeksforgeeks.org/print-all-permutations-of-a-string-with-duplicates-allowed-in-input-string/
+        // Algorithm Paradigm: Backtracking
+        // Time Complexity: O(n* n!) Note that there are n! permutations and it requires O(n) time to print a a permutation.
+        public void Permute(char[] c, int start, int len, IList<char[]> list)
+        {
+            int i;
+            if (start == len)
+            {
+                list.Add(c);
+            }
+            else
+            {
+                for (i = start; i <= len; i++)
+                {
+                    Swap(c, start, i);
+                    Permute(c, start + 1, len, list);
+                    Swap(c, start, i); //backtrack
+                }
+            }
+        }
+        public void Swap(char[] str, int i, int j)
+        {
+            char tmp = str[i];
+            str[i] = str[j];
+            str[j] = tmp;
+        }
+
+        // Function to left rotate arr[] of siz n by d
+        // http://www.geeksforgeeks.org/array-rotation/
+        // Time complexity: O(n), Auxiliary Space: O(1)
+        public void LeftRotate(int[] arr, int d, int n)
+        {
+            int i, j, k, temp;
+            for (i = 0; i < GreatestCommonDivisor(d, n); i++)
+            {
+                /* move i-th values of blocks */
+                temp = arr[i];
+                j = i;
+                while (true)
+                {
+                    k = j + d;
+                    if (k >= n) k = k - n;
+                    if (k == i) break;
+                    arr[j] = arr[k];
+                    j = k;
+                }
+                arr[j] = temp;
+            }
+        }
+        private int GreatestCommonDivisor(int a, int b)
+        {
+            if (b == 0) return a;
+            return GreatestCommonDivisor(b, a % b);
+        }
+
+        // Function to left rotate arr[] of siz n by d
+        // http://www.geeksforgeeks.org/array-rotation/
+        // Time complexity O(n), Auxiliary Space: O(d)
+        public void LeftRotate2(int[] arr, int d)
+        {
+            int[] temp = new int[d];
+            for (int i = 0; i < d; i++) temp[i] = arr[i];
+            for (int i = 0; i < arr.Length-d; i++) arr[i] = arr[i + d];
+            for (int i = 0; i < temp.Length; i++) arr[arr.Length - (d - i)] = temp[i];
+        }
+
+
+        // Function to left rotate arr[] of size n by d with Reverse array
+        public void LeftRotate3(int[] arr, int d)
+        {
+            int n = arr.Length;
+            RvereseArray(arr, 0, d - 1);
+            RvereseArray(arr, d, n - 1);
+            RvereseArray(arr, 0, n - 1);
+        }
+        // Function to reverse arr[] from index start to end
+        // Reverse array
+        public void RvereseArray(int[] arr, int start, int end)
+        {
+            int temp;
+            while (start < end)
+            {
+                temp = arr[start];
+                arr[start] = arr[end];
+                arr[end] = temp;
+                start++;
+                end--;
+            }
         }
     }
 }
