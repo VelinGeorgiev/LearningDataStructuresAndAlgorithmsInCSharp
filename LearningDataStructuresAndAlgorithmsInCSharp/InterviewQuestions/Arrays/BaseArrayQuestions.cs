@@ -444,5 +444,157 @@ namespace Learning.InterviewQuestions.Arrays
                 end--;
             }
         }
+
+        // Maximum sum of i*arr[i] among all rotations of a given array
+        // http://www.geeksforgeeks.org/maximum-sum-iarri-among-rotations-given-array/
+        public int RotationsMaximumSum(int[] arr, int n)
+        {
+            // Compute sum of all array elements
+            int cumSum = 0;
+            for (int i = 0; i < n; i++)
+                cumSum += arr[i];
+
+            // Compute sum of i*arr[i] for initial
+            // configuration.
+            int currVal = 0;
+            for (int i = 0; i < n; i++)
+                currVal += i * arr[i];
+
+            // Initialize result
+            int res = currVal;
+
+            // Compute values for other iterations
+            for (int i = 1; i < n; i++)
+            {
+                // Compute next value using previous value in
+                // O(1) time
+                int nextVal = currVal - (cumSum - arr[i - 1]) + arr[i - 1] * (n - 1);
+
+                // Update current value
+                currVal = nextVal;
+
+                // Update result if required
+                res = Math.Max(res, nextVal);
+            }
+
+            return res;
+        }
+
+        // http://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
+        // Returns length of the maximum length subarray with 0 sum
+        // Time Complexity of this solution can be considered as O(n) under the 
+        // assumption that we have good hashing function that allows insertion 
+        // and retrieval operations in O(1) time.
+        public int ArrayMaxLenTo0(int[] arr)
+        {
+            // Creates an empty hashMap hM
+            Dictionary<int, int> hash = new Dictionary<int, int>();
+            int sum = 0;      // Initialize sum of elements
+            int maxLen = 0;  // Initialize result
+
+            // Traverse through the given array
+            for (int i = 0; i < arr.Length; i++)
+            {
+                // Add current element to sum
+                sum += arr[i];
+                if (arr[i] == 0 && maxLen == 0)
+                    maxLen = 1;
+                if (sum == 0)
+                    maxLen = i + 1;
+
+                // If this sum is seen before, then update max_len
+                // if required
+                if (hash.ContainsKey(sum)) // O(1) 
+                    maxLen = Math.Max(maxLen, i - hash[sum]);
+                else  // Else put this sum in hash table
+                    hash.Add(sum, i);
+                    
+            }
+
+            return maxLen;
+        }
+
+        // This function returns the sum of elements on maximum path
+        // from beginning to end
+        // http://www.geeksforgeeks.org/maximum-sum-path-across-two-arrays/
+        // Time complexity: In every iteration of while loops, we process an element from either of the two arrays.
+        // There are total m + n elements. Therefore, time complexity is O(m+n).
+        public int MaxPathSum(int[] ar1, int[] ar2, int m, int n)
+        {
+            // initialize indexes for ar1[] and ar2[]
+            int i = 0, j = 0;
+
+            // Initialize result and current sum through ar1[] and ar2[].
+            int result = 0, sum1 = 0, sum2 = 0;
+
+            // Below 3 loops are similar to merge in merge sort
+            while (i < m && j < n)
+            {
+                // Add elements of ar1[] to sum1
+                if (ar1[i] < ar2[j])
+                    sum1 += ar1[i++];
+
+                // Add elements of ar2[] to sum2
+                else if (ar1[i] > ar2[j])
+                    sum2 += ar2[j++];
+
+                // we reached a common point
+                else
+                {
+                    // Take the maximum of two sums and add to result
+                    result += Math.Max(sum1, sum2);
+
+                    // Update sum1 and sum2 for elements after this
+                    // intersection point
+                    sum1 = 0;
+                    sum2 = 0;
+
+                    // Keep updating result while there are more common
+                    // elements
+                    while (i < m && j < n && ar1[i] == ar2[j])
+                    {
+                        result = result + ar1[i++];
+                        j++;
+                    }
+                }
+            }
+
+            // Add remaining elements of ar1[]
+            while (i < m)
+                sum1 += ar1[i++];
+
+            // Add remaining elements of ar2[]
+            while (j < n)
+                sum2 += ar2[j++];
+
+            // Add maximum of two sums of remaining elements
+            result += Math.Max(sum1, sum2);
+
+            return result;
+        }
+
+        // http://www.practice.geeksforgeeks.org/problem-page.php?pid=700194
+        // On
+        public int TransitionPoint(int[] arr, int n)
+        {
+            int low = 0, high = n - 1;
+            int mid = 0;
+            while (low <= high)
+            {
+                mid = low + (high - low) / 2;
+                if (arr[mid] == 0)
+                {
+                    low = mid + 1;
+                }
+                if (arr[mid] == 1)
+                {
+                    high = mid - 1;
+                }
+            }
+
+            if (arr[mid] == 1)
+                return mid;
+            return mid + 1;
+        }
     }
 }

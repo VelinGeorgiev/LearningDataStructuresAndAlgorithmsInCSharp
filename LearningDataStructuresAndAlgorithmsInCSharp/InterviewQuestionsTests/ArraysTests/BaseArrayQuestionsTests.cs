@@ -159,5 +159,54 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             Assert.AreEqual(arr[7], 3);
         }
 
+        [Test]
+        public void MaxSum()
+        {
+            int[] arr = { 8, 3, 1, 2 };
+            Assert.AreEqual(_ba.RotationsMaximumSum(arr, arr.Length), 29);
+        }
+
+        [Test]
+        public void ArrayMaxLenTo0()
+        {
+            int[] arr = { 15, -2, 2, -8, 1, 7, 10, 23 };
+            Assert.AreEqual(_ba.ArrayMaxLenTo0(arr), 5);
+        }
+
+        [Test]
+        public void MaxPathSum()
+        {
+            int[] ar1 = { 2, 3, 7, 10, 12, 15, 30, 34 };
+            int[] ar2 = { 1, 5, 7, 8, 10, 15, 16, 19 };
+            int m = ar1.Length;
+            int n = ar2.Length;
+            Assert.AreEqual(_ba.MaxPathSum(ar1,ar2,m,n), 122);
+        }
+
+        [Test]
+        public void TransitionPoint()
+        {
+            int[] ar1 = { 0, 0, 0, 1, 1 };
+            int m = ar1.Length;
+            Assert.AreEqual(_ba.TransitionPoint(ar1,m), 3);
+        }
+
+        [Test]
+        public void TransitionPoint2()
+        {
+            int[] ar1 = { 0, 0, 0, 0, 1 };
+            int m = ar1.Length;
+            Assert.AreEqual(_ba.TransitionPoint(ar1, m), 4);
+        }
+
+        [Test]
+        public void TransitionPoint3()
+        {
+            int[] ar1 = { 0, 0, 1, 1, 1 };
+            int m = ar1.Length;
+            Assert.AreEqual(_ba.TransitionPoint(ar1, m), 2);
+        }
+
+
     }
 }

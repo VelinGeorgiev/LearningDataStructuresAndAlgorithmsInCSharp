@@ -31,7 +31,7 @@ namespace Learning.DataStructures.LinkedList
             output = new List<int>();
         }
 
-        public void Push(int value)
+        public void PushFirst(int value)
         {
             // Allocate the Node & Put in the data
             Node newNode = new Node(value);
@@ -98,6 +98,16 @@ namespace Learning.DataStructures.LinkedList
 
                 current = current.next;
             }
+        }
+
+        // Given only a pointer/reference to a node to be deleted in a singly linked list, how do you delete it?
+        // http://www.geeksforgeeks.org/given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
+        public void DeleteNode(Node nodePtr)
+        {
+            Node temp = nodePtr.next;
+            nodePtr.data = temp.data;
+            nodePtr.next = temp.next;
+            temp = null;
         }
 
         public void Reverse()
