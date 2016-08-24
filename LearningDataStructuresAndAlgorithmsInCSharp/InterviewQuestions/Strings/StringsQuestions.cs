@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using Microsoft.SqlServer.Server;
 
 namespace Learning.InterviewQuestions.Strings
 {
@@ -122,6 +123,56 @@ namespace Learning.InterviewQuestions.Strings
         {
             if (num == 0) return 5;
             return Convert0To5Rec(num);
+        }
+
+        // Find next greater number with same set of digits
+        // http://www.geeksforgeeks.org/find-next-greater-number-set-digits/
+        // TODO:
+
+        // Given a binary string, count number of substrings that start and end with 1.
+        // http://www.geeksforgeeks.org/given-binary-string-count-number-substrings-start-end-1/
+        public int CountSubStr(char[] str, int n)
+        {
+            int m = 0; // Count of 1's in input string
+
+            // Travers input string and count of 1's in it
+            for (int i = 0; i < n; i++)
+            {
+                if (str[i] == '1') m++;
+            }
+
+            // Return count of possible pairs among m 1's
+            return m * (m - 1) / 2;
+        }
+
+        // http://www.geeksforgeeks.org/given-a-string-find-its-first-non-repeating-character/
+        // program to print the first non-repeating character
+        public char FirstNonRepeatedCharacter(string str)
+        {
+            IDictionary<char, int> dict = new Dictionary<char, int>();
+            int i, length = str.Length;
+            char c;
+            // Scan string and build hash table
+            for (i = 0; i < length; i++)
+            {
+                c = str[i];
+                if (dict.ContainsKey(c))
+                {
+                    dict[c] += 1; // increment count corresponding to c
+                }
+                else
+                {
+                    dict.Add(c, 1);
+                }
+            }
+            // Search characterhashtable in in order of string str
+            for (i = 0; i < length; i++)
+            {
+                c = str[i];
+                if (dict[c] == 1)
+                    return c;
+            }
+            return ' ';
         }
     }
 }

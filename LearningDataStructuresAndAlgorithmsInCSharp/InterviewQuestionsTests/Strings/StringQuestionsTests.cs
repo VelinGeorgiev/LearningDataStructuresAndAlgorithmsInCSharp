@@ -44,5 +44,17 @@ namespace Learning.InterviewQuestionsTests.Strings
         {
             Assert.AreEqual(_sq.Convert0To5(10120), 15125);
         }
+
+        [Test]
+        public void CountSubStr()
+        {
+           Assert.AreEqual(_sq.CountSubStr(("00100101").ToCharArray(), 8), 3);
+        }
+
+        [Test]
+        public void FirstNonRepeatedCharacter()
+        {
+            Assert.AreEqual(_sq.FirstNonRepeatedCharacter("geeksforgeeks"), 'f');
+        }
     }
 }

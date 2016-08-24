@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Learning.InterviewQuestions.Arrays
 {
@@ -748,7 +749,7 @@ namespace Learning.InterviewQuestions.Arrays
 
             foreach (var item in hash)
             {
-                if (item.Value == 1)
+                if (item.Value % 2 != 0)
                 {
                     Console.Write(item.Key);
                     result.Add(item.Key);
@@ -761,38 +762,193 @@ namespace Learning.InterviewQuestions.Arrays
         // Input: {12, 23, 34, 12, 12, 23, 12, 45}
         // Output: 34 and 45
         // Time(nlogn), Space O(1)
+        // TODO: fix
         public void FindTwoOddNumbersWithSort(int[] arr, IList<int> result)
         {
             int n = arr.Length;
             Array.Sort(arr);
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n-1; i++)
             {
-                if (i == 0)
+                int count = 0;
+                int j = i + 1;
+                if (i != n - 1)
                 {
-                    if (arr[i] != arr[i + 1])
+                    while (arr[i] == arr[j])
                     {
-                        Console.Write(arr[i]);
-                        result.Add(arr[i]);
+                        count++;
+                        i++;
                     }
                 }
-                else if (arr[i - 1] != arr[i])
+                else
                 {
-                    if (i == arr.Length - 1)
+                   while (arr[i] == arr[j])
                     {
-                        Console.Write(arr[i]);
-                        result.Add(arr[i]);
-                    }
-                    else if (arr[i] != arr[i + 1])
-                    {
-                        Console.Write(arr[i]);
-                        result.Add(arr[i]);
-                    }
+                        count++;
+                        i++;
+                    } 
+                }
+                
+                if (count % 2 != 0)
+                {
+                    Console.Write(arr[i]);
+                    result.Add(arr[i]);
                 }
             }
         }
 
+        // Next Greater Element
+        // http://www.geeksforgeeks.org/next-greater-element/
+        // On2
+        public void PrintNge(int[] arr, IDictionary<int, int> result)
+        {
+            int next, i, j;
+            int n = arr.Length;
+            for (i = 0; i < n; i++)
+            {
+                next = -1;
+                for (j = i + 1; j < n; j++)
+                {
+                    if (arr[i] < arr[j])
+                    {
+                        next = arr[j];
+                        break;
+                    }
+                }
+                Console.Write(arr[i] + " -> " + next);
+                result.Add(arr[i], next);
+            }
+        }
+
+        // Sort the input array, the array is assumed to
+        // have values in {0, 1, 2}
+        // http://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+        // Dutch flag problem
+        public void Sort012(int[] a, int arrSize)
+        {
+            int lo = 0;
+            int hi = arrSize - 1;
+            int mid = 0, temp = 0;
+            while (mid <= hi)
+            {
+                switch (a[mid])
+                {
+                    case 0:
+                        {
+                            temp = a[lo];
+                            a[lo] = a[mid];
+                            a[mid] = temp;
+                            lo++;
+                            mid++;
+                            break;
+                        }
+                    case 1:
+                        mid++;
+                        break;
+                    case 2:
+                        {
+                            temp = a[mid];
+                            a[mid] = a[hi];
+                            a[hi] = temp;
+                            hi--;
+                            break;
+                        }
+                }
+            }
+        }
+
+        // On, On
+        // http://www.geeksforgeeks.org/majority-element/s
+        public int MajorityElementHash(int[] arr)
+        {
+            int len = arr.Length;
+            IDictionary<int, int> hash = new Dictionary<int, int>();
+
+            for (int i = 0; i < len; i++)
+            {
+                var key = arr[i];
+                int value = 1;
+
+                if (hash.ContainsKey(key))
+                {
+                    value = hash[key] + 1;
+                    hash.Remove(key);
+                }
+                hash.Add(key, value);
+            }
+
+            var result = 0;
+            foreach (var item in hash)
+            {
+                if (item.Value >= arr.Length/2)
+                {
+                    result = item.Key;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        // Function which pushes all zeros to end of an array.
+        public void PushZerosToEnd(int[] arr, int n)
+        {
+            int count = 0;  // Count of non-zero elements
+
+            // Traverse the array. If element encountered is
+            // non-zero, then replace the element at index 'count'
+            // with this element
+            for (int i = 0; i < n; i++)
+                if (arr[i] != 0)
+                    arr[count++] = arr[i]; // here count is
+                                           // incremented
+
+            // Now all non-zero elements have been shifted to
+            // front and 'count' is set as index of first 0.
+            // Make all elements 0 from count to end.
+            while (count < n)
+                arr[count++] = 0;
+        }
+
+        // http://www.geeksforgeeks.org/find-pythagorean-triplet-in-an-unsorted-array/
+        // on2 of sort
+        public bool IsTriplet(int[] arr, int n)
+        {
+            // Square array elements
+            for (int i = 0; i < n; i++)
+                arr[i] = arr[i] * arr[i];
+
+            // Sort array elements
+            Array.Sort(arr);
+
+            // Now fix one element one by one and find the other two elements
+            for (int i = n - 1; i >= 2; i--) // NOTE:
+            {
+                // To find the other two elements, start two index
+                // variables from two corners of the array and move
+                // them toward each other
+                int l = 0; // index of the first element in arr[0..i-1]
+                int r = i - 1; // index of the last element in arr[0..i-1]
+                while (l < r)
+                {
+                    // A triplet found
+                    if (arr[l] + arr[r] == arr[i])
+                        return true;
+
+                    // Else either move 'l' or 'r'
+                    if (arr[l] + arr[r] < arr[i])
+                        l++;
+                    else
+                        r--;
+                }
+            }
+
+            // If we reach here, then no triplet found
+            return false;
+        }
+
     }
+
+
 
 
 }

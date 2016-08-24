@@ -264,6 +264,18 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
         }
 
         [Test]
+        public void FindTwoOddNumbers3()
+        {
+            int[] arr = new[] { 12, 23, 34, 12, 12, 23, 12, 45, 34, 34 };
+            IList<int> result = new List<int>();
+
+            _ba.FindTwoOddNumbers(arr, result);
+
+            Assert.AreEqual(result[0], 34);
+            Assert.AreEqual(result[1], 45);
+        }
+
+        [Test]
         public void FindTwoOddNumbers2()
         {
             int[] arr = new[] { 1, 1, 2, 3, 3, -4, 5, 5 };
@@ -297,6 +309,76 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
 
             Assert.AreEqual(result[0], -4);
             Assert.AreEqual(result[1], 2);
+        }
+
+        [Test]
+        public void FindTwoOddNumbersWithSort3()
+        {
+            int[] arr = new[] { 12, 23, 34, 12, 12, 23, 12, 45, 34, 34 };
+            IList<int> result = new List<int>();
+
+            _ba.FindTwoOddNumbers(arr, result);
+
+            Assert.AreEqual(result[0], 34);
+            Assert.AreEqual(result[1], 45);
+        }
+
+        [Test]
+        public void PrintNge()
+        {
+            int[] arr = { 11, 13, 21, 3 };
+            IDictionary<int, int> result = new Dictionary<int, int>();
+
+            _ba.PrintNge(arr, result);
+
+            Assert.AreEqual(result[11], 13);
+            Assert.AreEqual(result[13], 21);
+            Assert.AreEqual(result[21], -1);
+            Assert.AreEqual(result[3], -1);
+        }
+
+        [Test]
+        public void Sort012()
+        {
+            int[] arr = { 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
+            int arrSize = arr.Length;
+            _ba.Sort012(arr, arrSize);
+
+            Assert.AreEqual(arr[0], 0);
+            Assert.AreEqual(arr[11], 2);
+        }
+
+
+        [Test]
+        public void MajorityElementHash()
+        {
+            int[] a = { 1, 3, 3, 1, 2, 3 };
+            Assert.AreEqual(_ba.MajorityElementHash(a), 3);
+        }
+
+        [Test]
+        public void MajorityElementHash2()
+        {
+            int[] a = { 1, 3, 3, 1, 2, 2 };
+            Assert.AreEqual(_ba.MajorityElementHash(a), 0);
+        }
+
+        [Test]
+        public void PushZerosToEnd()
+        {
+            int[] arr = { 1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0, 9 };
+            int n = arr.Length;
+            _ba.PushZerosToEnd(arr, n);
+            Assert.AreEqual(arr[10], 0);
+            Assert.AreEqual(arr[11], 0);
+        }
+
+        [Test]
+        public void IsTriplet()
+        {
+            int[] arr = { 3, 1, 4, 6, 5 };
+            int n = arr.Length;
+            Assert.IsTrue(_ba.IsTriplet(arr, n));
         }
     }
 }
