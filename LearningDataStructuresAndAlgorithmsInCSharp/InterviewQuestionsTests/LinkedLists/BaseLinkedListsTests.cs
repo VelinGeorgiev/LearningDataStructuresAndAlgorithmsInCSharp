@@ -198,6 +198,110 @@ namespace Learning.InterviewQuestionsTests.LinkedLists
             Assert.AreEqual(result.next.data, 3);
             Assert.AreEqual(result.next.next.data, 2);
         }
+
+        [Test]
+        public void AddTwoLists()
+        {
+            var a = new SinglyLinkedList();
+            a.head = new Node(7);
+           a.head.next = new Node(5);
+           a.head.next.next = new Node(9);
+           a.head.next.next.next = new Node(4);
+           a.head.next.next.next.next = new Node(6);
+
+            var b = new SinglyLinkedList();
+            b.head = new Node(8);
+            b.head.next = new Node(4);
+
+            // add the two lists and see the result
+            Node result = _bll.AddTwoLists(a.head, b.head);
+
+            Assert.AreEqual(result.data, 5);
+            Assert.AreEqual(result.next.data, 0);
+            Assert.AreEqual(result.next.next.data, 0);
+        }
+
+        [Test]
+        public void SortListOf012()
+        {
+            _bll.head = new Node(1);
+            _bll.head.next = new Node(2);
+            _bll.head.next.next = new Node(0);
+            _bll.head.next.next.next = new Node(2);
+            _bll.head.next.next.next.next = new Node(1);
+             
+            // add the two lists and see the result
+            _bll.SortListOf012();
+
+            Assert.AreEqual(_bll.head.data, 0);
+            Assert.AreEqual(_bll.head.next.data, 1);
+            Assert.AreEqual(_bll.head.next.next.data, 1);
+            Assert.AreEqual(_bll.head.next.next.next.data, 2);
+            Assert.AreEqual(_bll.head.next.next.next.next.data, 2);
+        }
+
+        [Test]
+        public void PairWiseSwap()
+        {
+            _bll.head = new Node(1);
+            _bll.head.next = new Node(2);
+            _bll.head.next.next = new Node(3);
+            _bll.head.next.next.next = new Node(4);
+            _bll.head.next.next.next.next = new Node(5);
+
+            // add the two lists and see the result
+            _bll.PairWiseSwap(_bll.head);
+
+            Assert.AreEqual(_bll.head.data, 2);
+            Assert.AreEqual(_bll.head.next.data, 1);
+            Assert.AreEqual(_bll.head.next.next.data, 4);
+            Assert.AreEqual(_bll.head.next.next.next.data, 3);
+            Assert.AreEqual(_bll.head.next.next.next.next.data, 5);
+        }
+
+        [Test]
+        public void PairWiseSwapRecursion()
+        {
+            _bll.head = new Node(1);
+            _bll.head.next = new Node(2);
+            _bll.head.next.next = new Node(3);
+            _bll.head.next.next.next = new Node(4);
+            _bll.head.next.next.next.next = new Node(5);
+
+            // add the two lists and see the result
+            _bll.PairWiseSwapRecursion(_bll.head);
+
+            Assert.AreEqual(_bll.head.data, 2);
+            Assert.AreEqual(_bll.head.next.data, 1);
+            Assert.AreEqual(_bll.head.next.next.data, 4);
+            Assert.AreEqual(_bll.head.next.next.next.data, 3);
+            Assert.AreEqual(_bll.head.next.next.next.next.data, 5);
+        }
+
+        [Test]
+        public void SkipMdeleteN()
+        {
+            _bll.head = new Node(1);
+            _bll.head.next = new Node(2);
+            _bll.head.next.next = new Node(3);
+            _bll.head.next.next.next = new Node(4);
+            _bll.head.next.next.next.next = new Node(5);
+            _bll.head.next.next.next.next.next = new Node(6);
+            _bll.head.next.next.next.next.next.next = new Node(7);
+            _bll.head.next.next.next.next.next.next.next = new Node(8);
+            _bll.head.next.next.next.next.next.next.next.next = new Node(9);
+            _bll.head.next.next.next.next.next.next.next.next.next = new Node(10);
+
+            // add the two lists and see the result
+            _bll.SkipMDeleteN(_bll.head, 2, 3);
+
+            Assert.AreEqual(_bll.head.data, 1);
+            Assert.AreEqual(_bll.head.next.data, 2);
+            Assert.AreEqual(_bll.head.next.next.data, 6);
+            Assert.AreEqual(_bll.head.next.next.next.data, 7);
+        }
+
+
     }
 }
 

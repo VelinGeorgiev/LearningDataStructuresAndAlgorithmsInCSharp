@@ -15,18 +15,6 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
         }
 
         [Test]
-        public void Convert0To5()
-        {
-           Assert.AreEqual(_ba.Convert0To5(10120), 15125);
-        }
-
-        [Test]
-        public void RunLengthEncoding()
-        {
-            Assert.AreEqual(_ba.RunLengthEncoding("wwwwaaadexxxxxx"),  "w4a3d1e1x6");
-        }
-
-        [Test]
         public void FloorSqrt()
         {
             Assert.AreEqual(_ba.FloorSqrt(11), 3);
@@ -69,13 +57,6 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
         }
 
         [Test]
-        public void RemoveDirtyCharacters()
-        {
-            int[] arr = { 12, 3, 5, 7, 19 };
-            Assert.AreEqual(_ba.RemoveDirtyCharacters("geeksforgeeks", "geeks"), "for");
-        }
-
-        [Test]
         public void FindMaxSum()
         {
             int[] arr = new int[] { 5, 5, 10, 100, 10, 5 };
@@ -111,18 +92,6 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             int[] arr = new int[] { 1, 2, 3, 5, 6 };
             var result = _ba.GetMissingNo(arr, arr.Length);
             Assert.AreEqual(result, 4);
-        }
-
-        [Test]
-        public void Permute()
-        {
-            char[] arr = {'a', 'b', 'c'};
-            IList<char[]> list = new List<char[]>();
-             _ba.Permute(arr, 0, arr.Length-1, list);
-
-            Assert.AreEqual(list[5][0], 'c'); // todo: fix this
-            Assert.AreEqual(list[5][1], 'a');
-            Assert.AreEqual(list[5][2], 'b');
         }
 
         [Test]
@@ -207,6 +176,127 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             Assert.AreEqual(_ba.TransitionPoint(ar1, m), 2);
         }
 
+        [Test]
+        public void NextGreaterElement()
+        {
+            int[] arr = { 11, 13, 21, 3 };
+            int n = arr.Length;
+            var dict = new Dictionary<int,int>();
+            _ba.NextGreaterElement(arr, n, dict);
 
+            Assert.AreEqual(dict[11], 13);
+            Assert.AreEqual(dict[13], 21);
+            Assert.AreEqual(dict[3], -1);
+            Assert.AreEqual(dict[21], -1);
+        }
+
+        [Test]
+        public void SubArraySum()
+        {
+            int[] arr = { 15, 2, 4, 8, 9, 5, 10, 23 };
+            int n = arr.Length;
+            int sum = 23;
+            Assert.IsTrue(_ba.SubArraySum(arr, n, sum));
+        }
+
+        [Test]
+        public void HasArrayTwoCandidates()
+        {
+            int[] a = { 1, 4, 45, 6, 10, -8 };
+            int n = 16;
+            int arrSize = 6;
+            Assert.IsTrue(_ba.HasArrayTwoCandidates(a, arrSize, n));
+        }
+
+        [Test]
+        public void ZigZagArray()
+        {
+            int[] arr = { 4, 3, 7, 8, 6, 2, 1 };
+            int n = arr.Length;
+            _ba.ZigZagArray(arr, n);
+
+            Assert.AreEqual(arr[0], 3);
+            Assert.AreEqual(arr[1], 7);
+            Assert.AreEqual(arr[2], 4);
+            Assert.AreEqual(arr[3], 8);
+            Assert.AreEqual(arr[4], 2);
+            Assert.AreEqual(arr[5], 6);
+            Assert.AreEqual(arr[6], 1);
+        }
+
+        [Test]
+        public void PrintLeaders()
+        {
+            int[] arr = { 16, 17, 4, 3, 5, 2 };
+            int n = arr.Length;
+            var res= new List<int>();
+            _ba.PrintLeaders(arr, n, res);
+
+            Assert.AreEqual(res[0], 2);
+            Assert.AreEqual(res[1], 5);
+            Assert.AreEqual(res[2], 17);
+        }
+
+        [Test]
+        public void NextGreatest()
+        {
+            int[] arr = { 16, 17, 4, 3, 5, 2 };
+            _ba.NextGreatest(arr); 
+
+            Assert.AreEqual(arr[0], 17);
+            Assert.AreEqual(arr[1], 5);
+            Assert.AreEqual(arr[2], 5);
+            Assert.AreEqual(arr[3], 5);
+            Assert.AreEqual(arr[4], 2);
+            Assert.AreEqual(arr[5], -1);
+        }
+
+        [Test]
+        public void FindTwoOddNumbers()
+        {
+            int[] arr = new[] {12, 23, 34, 12, 12, 23, 12, 45};
+            IList<int> result = new List<int>();
+
+            _ba.FindTwoOddNumbers(arr, result);
+
+            Assert.AreEqual(result[0], 34);
+            Assert.AreEqual(result[1], 45);
+        }
+
+        [Test]
+        public void FindTwoOddNumbers2()
+        {
+            int[] arr = new[] { 1, 1, 2, 3, 3, -4, 5, 5 };
+            IList<int> result = new List<int>();
+
+            _ba.FindTwoOddNumbers(arr, result);
+
+            Assert.AreEqual(result[0], 2);
+            Assert.AreEqual(result[1], -4);
+        }
+
+        [Test]
+        public void FindTwoOddNumbersWithSort()
+        {
+            int[] arr = new[] { 12, 23, 34, 12, 12, 23, 12, 45 };
+            IList<int> result = new List<int>();
+
+            _ba.FindTwoOddNumbersWithSort(arr, result);
+
+            Assert.AreEqual(result[0], 34);
+            Assert.AreEqual(result[1], 45);
+        }
+
+        [Test]
+        public void FindTwoOddNumbersWithSort2()
+        {
+            int[] arr = new[] { 1,1,2,3,3,-4,5,5 };
+            IList<int> result = new List<int>();
+
+            _ba.FindTwoOddNumbersWithSort(arr, result);
+
+            Assert.AreEqual(result[0], -4);
+            Assert.AreEqual(result[1], 2);
+        }
     }
 }

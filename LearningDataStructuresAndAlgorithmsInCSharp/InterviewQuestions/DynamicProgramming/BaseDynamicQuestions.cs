@@ -87,7 +87,7 @@ namespace Learning.InterviewQuestions.DynamicProgramming
                 /* Print the first row from the remaining rows */
                 for (i = l; i < n; ++i)
                 {
-                    result.Add(mat[k,i]);
+                    result.Add(mat[k, i]);
                     Console.Write(mat[k, i]);
                 }
                 k++;
@@ -116,8 +116,8 @@ namespace Learning.InterviewQuestions.DynamicProgramming
                 {
                     for (i = m - 1; i >= k; --i)
                     {
-                        result.Add(mat[i,l]);
-                        Console.Write(mat[i,l]);
+                        result.Add(mat[i, l]);
+                        Console.Write(mat[i, l]);
                     }
                     l++;
                 }
@@ -129,57 +129,86 @@ namespace Learning.InterviewQuestions.DynamicProgramming
         // http://www.geeksforgeeks.org/the-celebrity-problem/
         public int CelebrityProblem(int n, int[,] mat)
         {
-                // Handle trivial case of size = 2
-                Stack<int> s = new Stack<int>();
-                int cel; // Celebrity
+            // Handle trivial case of size = 2
+            Stack<int> s = new Stack<int>();
+            int cel; // Celebrity
 
-                // Push everybody to stack
-                for (int i = 0; i < n; i++)
-                    s.Push(i);
+            // Push everybody to stack
+            for (int i = 0; i < n; i++)
+                s.Push(i);
 
-                // Extract Peek 2
-                int a = s.Peek();
-                s.Pop();
-                int b = s.Peek();
-                s.Pop();
+            // Extract Peek 2
+            int a = s.Peek();
+            s.Pop();
+            int b = s.Peek();
+            s.Pop();
 
-                // Find a potential celevrity
-                while (s.Count > 1)
+            // Find a potential celevrity
+            while (s.Count > 1)
+            {
+                if (mat[a, b] == 1)
                 {
-                    if (mat[a, b] == 1)
-                    {
-                        a = s.Peek();
-                        s.Pop();
-                    }
-                    else
-                    {
-                        b = s.Peek();
-                        s.Pop();
-                    }
+                    a = s.Peek();
+                    s.Pop();
                 }
-
-                // Potential candidate?
-                cel = s.Peek();
-                s.Pop();
-
-                // Last candidate was not examined, it leads
-                // one excess comparison (optimize)
-                if (mat[cel, b]==1)
-                    cel = b;
-
-                if (mat[cel, a]==1)
-                    cel = a;
-
-                // Check if C is actually a celebrity or not
-                for (int i = 0; i < n; i++)
+                else
                 {
-                    // If any person doesn't know 'a' or 'a'
-                    // doesn't know any person, return -1
-                    if ((i != cel) && (mat[cel, i] ==1 || mat[i, cel]!=1))
-                        return -1;
+                    b = s.Peek();
+                    s.Pop();
                 }
-
-                return cel;
             }
+
+            // Potential candidate?
+            cel = s.Peek();
+            s.Pop();
+
+            // Last candidate was not examined, it leads
+            // one excess comparison (optimize)
+            if (mat[cel, b] == 1)
+                cel = b;
+
+            if (mat[cel, a] == 1)
+                cel = a;
+
+            // Check if C is actually a celebrity or not
+            for (int i = 0; i < n; i++)
+            {
+                // If any person doesn't know 'a' or 'a'
+                // doesn't know any person, return -1
+                if ((i != cel) && (mat[cel, i] == 1 || mat[i, cel] != 1))
+                    return -1;
+            }
+
+            return cel;
         }
+
+        // http://www.geeksforgeeks.org/find-the-row-with-maximum-number-1s/
+        // The main function that returns index of row with maximum number of 1s. 
+        //public int RowWithMax1S(int[,] mat)
+        //{
+            // Initialize first row as row with max 1s
+            //int maxRowIndex = 0;
+            //int r = mat.GetLength(0);
+            //int c = mat.GetLength(1);
+
+            //// The function first() returns index of first 1 in row 0.
+            //// Use this index to initialize the index of leftmost 1 seen so far
+            //int j = first(mat[0], 0, c - 1);
+            //if (j == -1) // if 1 is not present in first row
+            //    j = c - 1;
+
+            //for (int i = 1; i < r; i++)
+            //{
+            //    // Move left until a 0 is found
+            //    while (j >= 0 && mat[i,j] == 1)
+            //    {
+            //        j = j - 1;  // Update the index of leftmost 1 seen so far
+            //        maxRowIndex = i;  // Update max_row_index
+            //    }
+            //}
+            //return maxRowIndex;
+        //}
+
+
+    }
 }

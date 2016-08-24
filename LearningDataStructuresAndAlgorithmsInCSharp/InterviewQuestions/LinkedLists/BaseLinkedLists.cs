@@ -13,7 +13,7 @@ namespace Learning.InterviewQuestions.LinkedLists
             Node slowPtr = head;
             Node fastPtr = head;
             if (head == null) return;
-            
+
             while (fastPtr != null && fastPtr.next != null)
             {
                 fastPtr = fastPtr.next.next;
@@ -43,7 +43,7 @@ namespace Learning.InterviewQuestions.LinkedLists
                     // remove current node and advance pointers
                     prev.next = curr.next;
                     curr = curr.next;
-                }    
+                }
                 else
                 {
                     // otherwise just advance pointers
@@ -93,12 +93,12 @@ namespace Learning.InterviewQuestions.LinkedLists
 
             // Once one or the other list runs out -- we're done
             while (a != null && b != null)
-              {
+            {
                 if (a.data == b.data)
                 {
-                   intersect.PushFirst(a.data);
-                   a = a.next;
-                   b = b.next;
+                    intersect.PushFirst(a.data);
+                    a = a.next;
+                    b = b.next;
                 }
                 else if (a.data < b.data)
                 {
@@ -109,8 +109,8 @@ namespace Learning.InterviewQuestions.LinkedLists
                 {
                     b = b.next;
                 }
-              }
-              return intersect;
+            }
+            return intersect;
         }
 
         // Merge two sorted linked lists
@@ -122,10 +122,10 @@ namespace Learning.InterviewQuestions.LinkedLists
         //{
         //    /* a dummy first node to hang the result on */
         //    Node dummy = new Node(0);
- 
+
         //    /* tail points to the last result node  */
         //    Node tail = dummy;
- 
+
         //    /* so tail.next is the place to add new nodes to the result. */
         //    dummy.next = null;
         //    while (true)
@@ -147,7 +147,7 @@ namespace Learning.InterviewQuestions.LinkedLists
         //            MoveNode(&(tail.next), &a);
         //        else
         //            MoveNode(&(tail.next), &b);
- 
+
         //        tail = tail.next;
         //    }
 
@@ -265,7 +265,7 @@ namespace Learning.InterviewQuestions.LinkedLists
                 // If there are no more nodes, then connect
                 // first node of even list to the last node
                 // of odd list
-                if (odd ==null || even==null || even.next==null)
+                if (odd == null || even == null || even.next == null)
                 {
                     odd.next = evenFirst;
                     break;
@@ -288,8 +288,196 @@ namespace Learning.InterviewQuestions.LinkedLists
                 even.next = odd.next;
                 even = odd.next;
             }
-
             return node;
+        }
+
+        // Add two numbers represented by linked lists
+        // http://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists/
+        //Input:
+        //  First List: 5.6.3  // represents number 365
+        //  Second List: 8.4.2 //  represents number 248
+        //Output
+        //  Resultant list: 3.1.6  // represents number 613
+        // Time Complexity: O(m + n) where m and n are number of nodes in first and second lists respectively.
+        public Node AddTwoLists(Node first, Node second)
+        {
+            Node res = null; // res is head node of the resultant list
+            Node prev = null;
+            Node temp = null;
+            int carry = 0, sum;
+
+            while (first != null || second != null) //while both lists exist
+            {
+                // Calculate value of next digit in resultant list.
+                // The next digit is sum of following things
+                // (i)  Carry
+                // (ii) Next digit of first list (if there is a next digit)
+                // (ii) Next digit of second list (if there is a next digit)
+                sum = carry + (first != null ? first.data : 0)
+                        + (second != null ? second.data : 0);
+
+                // update carry for next calulation
+                carry = (sum >= 10) ? 1 : 0;
+
+                // update sum if it is greater than 10
+                sum = sum % 10;
+
+                // Create a new node with sum as data
+                temp = new Node(sum);
+
+                // if this is the first node then set it as head of
+                // the resultant list
+                if (res == null)
+                {
+                    res = temp;
+                }
+                else // If this is not the first node then connect it to the rest.
+                {
+                    prev.next = temp;
+                }
+
+                // Set prev for next insertion
+                prev = temp;
+
+                // Move first and second pointers to next nodes
+                if (first != null)
+                {
+                    first = first.next;
+                }
+                if (second != null)
+                {
+                    second = second.next;
+                }
+            }
+
+            if (carry > 0)
+            {
+                temp.next = new Node(carry);
+            }
+
+            // return head of the resultant list
+            return res;
+        }
+
+        // Add two numbers represented by linked lists
+        // http://www.geeksforgeeks.org/sum-of-two-linked-lists/
+        //Input:
+        //  First List: 5.6.3  // represents number 563
+        //  Second List: 8.4.2 //  represents number 842
+        //Output
+        //  Resultant list: 1.4.0.5  // represents number 1405
+        // TODO: later, too much code here
+
+        // Given a linked list of 0s, 1s and 2s, sort it.
+        // http://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
+
+
+        // http://www.geeksforgeeks.org/sort-a-linked-list-of-0s-1s-or-2s/
+        // Sort a linked list of 0s, 1s and 2s
+        // Time Complexity: O(n) where n is number of nodes in linked list, Auxiliary Space: O(1)
+        public void SortListOf012()
+        {
+            // initialise count of 0 1 and 2 as 0
+            int[] count = { 0, 0, 0 };
+
+            Node ptr = head;
+
+            /* count total number of '0', '1' and '2'
+             * count[0] will store total number of '0's
+             * count[1] will store total number of '1's
+             * count[2] will store total number of '2's  */
+            while (ptr != null)
+            {
+                count[ptr.data]++;
+                ptr = ptr.next;
+            }
+
+            int i = 0;
+            ptr = head;
+
+            /* Let say count[0] = n1, count[1] = n2 and count[2] = n3
+             * now start traversing list from head node,
+             * 1) fill the list with 0, till n1 > 0
+             * 2) fill the list with 1, till n2 > 0
+             * 3) fill the list with 2, till n3 > 0  */
+            while (ptr != null)
+            {
+                if (count[i] == 0)
+                    i++;
+                else
+                {
+                    ptr.data = i;
+                    --count[i];
+                    ptr = ptr.next;
+                }
+            }
+        }
+
+
+        /* Function to pairwise swap elements of a linked list */
+        public void PairWiseSwap(Node node)
+        {
+            Node temp = node;
+
+            /* Traverse further only if there are at-least two nodes left */
+            while (temp != null && temp.next != null)
+            {
+                // Swap data of node with its next node's data
+                // Swap the node's data with data of next node
+                int t = temp.data;
+                temp.data = temp.next.data;
+                temp.next.data = t;
+                /* Move temp by 2 for the next pair */
+                temp = temp.next.next;
+            }
+        }
+
+        // Recursive function to pairwise swap elements of a linked list
+        public void PairWiseSwapRecursion(Node node)
+        {
+            /* There must be at-least two nodes in the list */
+            if (node != null && node.next != null)
+            {
+                // Swap the node's data with data of next node
+                int temp = node.data;
+                node.data = node.next.data;
+                node.next.data = temp;
+
+                // Call pairWiseSwap() for rest of the list
+                PairWiseSwapRecursion(node.next.next);
+            }
+        }
+
+        // Function to skip m nodes and then delete N nodes of the linked list.
+        // http://www.geeksforgeeks.org/delete-n-nodes-after-m-nodes-of-a-linked-list/
+        // Time Complexity: O(n) where n is number of nodes in linked list.
+        public void SkipMDeleteN(Node head, int m, int n)
+        {
+            Node curr = head, t;
+            int count;
+
+            // The main loop that traverses through the whole list
+            while (curr != null)
+            {
+                // Skip m nodes
+                for (count = 1; count < m && curr != null; count++)
+                    curr = curr.next;
+
+                // If we reached end of list, then return
+                if (curr == null) return;
+
+                // Start from next node and delete N nodes
+                t = curr.next;
+                for (count = 1; count <= n && t != null; count++)
+                {
+                    Node temp = t;
+                    t = t.next;
+                }
+                curr.next = t; // Link the previous list with remaining nodes
+
+                // Set current pointer for next iteration
+                curr = t;
+            }
         }
 
     }

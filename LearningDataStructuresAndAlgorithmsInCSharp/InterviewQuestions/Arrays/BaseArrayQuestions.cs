@@ -1,61 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.AccessControl;
-using System.Text;
 
 namespace Learning.InterviewQuestions.Arrays
 {
     public class BaseArrayQuestions
     {
-        // A recursive function to replace all 0s with 5s in an input number
-        // It doesn't work if input number itself is 0.
-        private int Convert0To5Rec(int num)
-        {
-            if (num == 0) return 0;
-
-            // Extraxt the last digit and change it if needed
-            int digit = num % 10;
-            if (digit == 0) digit = 5;
-
-            // Convert remaining digits and append the last digit
-            return Convert0To5Rec(num / 10) * 10 + digit;
-        }
-
-        // It handles 0 and calls convert0To5Rec() for other numbers
-        public int Convert0To5(int num)
-        {
-            if (num == 0) return 5;
-            return Convert0To5Rec(num);
-        }
-
-        // Given an input string, write a function that returns the Run Length Encoded string for the input string.
-        // For example, if the input string is “wwwwaaadexxxxxx”, then the function should return “w4a3d1e1x6″
-        // Time Complexity: O(n)
-        // http://www.geeksforgeeks.org/run-length-encoding/
-        public string RunLengthEncoding(string s)
-        {
-            string result = string.Empty;
-            int i = 0;
-
-            while(i < s.Length)
-            {
-                char letter = s[i];
-                int count = 0;
-
-                do
-                {
-                    count++;
-                    i++;
-                } while (i < s.Length && s[i] == letter);
-
-                result += letter;
-                result += count;
-            }
-
-            return result;
-        }
-
         // Returns floor of square root of x
         // Time Complexity: O(Log x)
         // http://www.geeksforgeeks.org/square-root-of-an-integer/
@@ -65,7 +14,7 @@ namespace Learning.InterviewQuestions.Arrays
 
             // Do Binary Search for floor(sqrt(x))
             // 'start' = 0 and 'end' = x/2. Floor of square root of x cannot be more than x/2 when x > 1.
-            int start = 0, end = x/2, ans = 0;
+            int start = 0, end = x / 2, ans = 0;
             while (start <= end)
             {
                 int mid = (start + end) / 2;
@@ -86,17 +35,11 @@ namespace Learning.InterviewQuestions.Arrays
             return ans;
         }
 
-        public void MinimizeStringValue()
-        {
-            
-        }
-
         // Time Complexity: O(n)
         // Auxiliary Space: O(1)
         // TODO: review later . too many rules.
         // Returns count of all possible groups that can be formed from elements
         // of a[].
-
         public int Findgroups(int[] arr, int n)
         {
             // Create an array C[3] to store counts of elements with remainder
@@ -195,7 +138,7 @@ namespace Learning.InterviewQuestions.Arrays
 
             // Calculate the angles moved by hour and minute hands
             // with reference to 12:00.
-            int hourAngle = (int) (0.5 * (h * 60 + m));
+            int hourAngle = (int)(0.5 * (h * 60 + m));
             int minuteAngle = 6 * m;
 
             // Find the difference between two angles.
@@ -233,42 +176,6 @@ namespace Learning.InterviewQuestions.Arrays
             var comp = new Comparison<int>((i1, i2) => i2.CompareTo(i1));
             Array.Sort(arr, comp); // O (n logn)
             return arr[k - 1];
-        }
-
-        // Remove characters from the first string which are present in the second string
-        // Time Complexity: O(m+n) 
-        // http://www.geeksforgeeks.org/remove-characters-from-the-first-string-which-are-present-in-the-second-string/
-        // Like counting search, but for ASCI
-        public string RemoveDirtyCharacters(string firstString, string stringToMask)
-        {
-            var array = InitCharArray(stringToMask);
-            var firstStringLength = firstString.Length;
-
-            var stringBuilder = new StringBuilder();
-            for (int i = 0; i < firstStringLength; i++)
-            {
-                var charac = firstString[i];
-                if (array[charac] == 0)
-                    stringBuilder.Append(firstString[i]);
-            }
-            var stringToReturn = stringBuilder.ToString();
-
-            if (stringToReturn.Trim().Length > 0)
-                return stringToReturn;
-
-            return "Nothing to return";
-        }
-
-        private int[] InitCharArray(string maskString)
-        {
-            const int maxSize = 256;
-            int charArrayLength = maskString.Length;
-            var charArray = new int[maxSize];
-            for (int i = 0; i < charArrayLength; i++)
-            {
-                charArray[maskString[i]] = charArray[maskString[i]] + 1;
-            }
-            return charArray;
         }
 
         // Maximum sum such that no two elements are adjacent
@@ -314,7 +221,7 @@ namespace Learning.InterviewQuestions.Arrays
             if (k > n) return;
 
             // One by one reverse first and last elements of a[0..k-1]
-            var halfK = k/2;
+            var halfK = k / 2;
             for (int i = start; i <= halfK; i++)
             {
                 var toSwapWith = k - i - 1; //excluding
@@ -346,40 +253,6 @@ namespace Learning.InterviewQuestions.Arrays
             for (i = 1; i < n; i++) x1 = x1 ^ a[i];
             for (i = 2; i <= n + 1; i++) x2 = x2 ^ i;
             return x1 ^ x2;
-        }
-
-        // Function to print permutations of string
-        // This function takes three parameters:
-        // 1. String
-        // 2. Starting index of the string
-        // 3. Ending index of the string.
-        // http://code.geeksforgeeks.org/H6Bs1h
-        // http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
-        // http://www.geeksforgeeks.org/print-all-permutations-of-a-string-with-duplicates-allowed-in-input-string/
-        // Algorithm Paradigm: Backtracking
-        // Time Complexity: O(n* n!) Note that there are n! permutations and it requires O(n) time to print a a permutation.
-        public void Permute(char[] c, int start, int len, IList<char[]> list)
-        {
-            int i;
-            if (start == len)
-            {
-                list.Add(c);
-            }
-            else
-            {
-                for (i = start; i <= len; i++)
-                {
-                    Swap(c, start, i);
-                    Permute(c, start + 1, len, list);
-                    Swap(c, start, i); //backtrack
-                }
-            }
-        }
-        public void Swap(char[] str, int i, int j)
-        {
-            char tmp = str[i];
-            str[i] = str[j];
-            str[j] = tmp;
         }
 
         // Function to left rotate arr[] of siz n by d
@@ -417,7 +290,7 @@ namespace Learning.InterviewQuestions.Arrays
         {
             int[] temp = new int[d];
             for (int i = 0; i < d; i++) temp[i] = arr[i];
-            for (int i = 0; i < arr.Length-d; i++) arr[i] = arr[i + d];
+            for (int i = 0; i < arr.Length - d; i++) arr[i] = arr[i + d];
             for (int i = 0; i < temp.Length; i++) arr[arr.Length - (d - i)] = temp[i];
         }
 
@@ -508,7 +381,7 @@ namespace Learning.InterviewQuestions.Arrays
                     maxLen = Math.Max(maxLen, i - hash[sum]);
                 else  // Else put this sum in hash table
                     hash.Add(sum, i);
-                    
+
             }
 
             return maxLen;
@@ -596,5 +469,330 @@ namespace Learning.InterviewQuestions.Arrays
                 return mid;
             return mid + 1;
         }
+
+        // Prints element and NGE pair for all elements of arr[] of size n
+        // http://www.geeksforgeeks.org/next-greater-element/
+        // Time Complexity: O(n). 
+        public void NextGreaterElement(int[] arr, int n, Dictionary<int, int> result)
+        {
+            int i = 0;
+            Stack<int> s = new Stack<int>();
+            //s.top = -1;
+            int element, next;
+
+            /* push the first element to stack */
+            s.Push(arr[0]);
+
+            // iterate for rest of the elements
+            for (i = 1; i < n; i++)
+            {
+                next = arr[i];
+
+                if (s.Count > 0)
+                {
+                    // if stack is not empty, then pop an element from stack
+                    element = s.Pop();
+
+                    /* If the popped element is smaller than next, then
+                        a) print the pair
+                        b) keep popping while elements are smaller and
+                        stack is not empty */
+                    while (element < next)
+                    {
+                        Console.Write(element + " --> " + next);
+                        result.Add(element, next);
+                        if (s.Count == 0)
+                            break;
+                        element = s.Pop();
+                    }
+
+                    /* If element is greater than next, then push
+                       the element back */
+                    if (element > next)
+                        s.Push(element);
+                }
+
+                /* push next to stack so that we can find
+                   next greater for it */
+                s.Push(next);
+            }
+
+            /* After iterating over the loop, the remaining
+               elements in stack do not have the next greater
+               element, so print -1 for them */
+            while (s.Count > 0)
+            {
+                element = s.Pop();
+                next = -1;
+                Console.Write(element + " --> " + next);
+                result.Add(element, next);
+            }
+        }
+
+        // http://www.geeksforgeeks.org/find-minimum-element-in-a-sorted-and-rotated-array/
+        // Find the minimum element in a sorted and rotated array
+        // Following solution assumes that all elements are distinct.
+        // O(Logn)
+        // Fails if dublicates see the url.
+        public int FindMinElInSortedRotArray(int[] arr, int low, int high)
+        {
+            // This condition is needed to handle the case when array
+            // is not rotated at all
+            if (high < low) return arr[0];
+
+            // If there is only one element left
+            if (high == low) return arr[low];
+
+            // Find mid
+            int mid = low + (high - low) / 2; /*(low + high)/2;*/
+
+            // Check if element (mid+1) is minimum element. Consider
+            // the cases like {3, 4, 5, 1, 2}
+            if (mid < high && arr[mid + 1] < arr[mid])
+                return arr[mid + 1];
+
+            // Check if mid itself is minimum element
+            if (mid > low && arr[mid] < arr[mid - 1])
+                return arr[mid];
+
+            // Decide whether we need to go to left half or right half
+            if (arr[high] > arr[mid])
+                return FindMinElInSortedRotArray(arr, low, mid - 1);
+            return FindMinElInSortedRotArray(arr, mid + 1, high);
+        }
+
+
+        /* Returns true if the there is a subarray of arr[] with sum equal to
+       'sum' otherwise returns false.  Also, prints the result */
+        // http://www.geeksforgeeks.org/find-subarray-with-given-sum/
+        // Time Complexity: O(n) 
+        public bool SubArraySum(int[] arr, int n, int sum)
+        {
+            int currSum = arr[0], start = 0, i;
+
+            // Pick a starting point
+            for (i = 1; i <= n; i++)
+            {
+                // If currSum exceeds the sum, then remove the starting elements
+                while (currSum > sum && start < i - 1)
+                {
+                    currSum = currSum - arr[start];
+                    start++;
+                }
+
+                // If currSum becomes equal to sum, then return true
+                if (currSum == sum)
+                {
+                    int p = i - 1;
+                    Console.Write("Sum found between indexes " + i + " and " + p);
+                    return true;
+                }
+
+                // Add this element to currSum
+                if (i < n)
+                    currSum = currSum + arr[i];
+            }
+            return false;
+        }
+
+        // Count Inversions in an array using Merge Sort
+        // http://www.geeksforgeeks.org/counting-inversions/
+        // Time Complexity: O(n^2)
+        public int GetInvCount(int[] arr, int n)
+        {
+            int invCount = 0;
+            for (int i = 0; i < n - 1; i++)
+                for (int j = i + 1; j < n; j++)
+                    if (arr[i] > arr[j])
+                        invCount++;
+
+            return invCount;
+        }
+
+        // http://www.geeksforgeeks.org/write-a-c-program-that-given-a-set-a-of-n-numbers-and-another-number-x-determines-whether-or-not-there-exist-two-elements-in-s-whose-sum-is-exactly-x/
+        public bool HasArrayTwoCandidates(int[] a, int arrSize, int sum)
+        {
+            int l, r;
+
+            /* Sort the elements */
+            Array.Sort(a);
+
+            /* Now look for the two candidates in the sorted 
+               array*/
+            l = 0;
+            r = arrSize - 1;
+            while (l < r)
+            {
+                if (a[l] + a[r] == sum) return true;
+
+                if (a[l] + a[r] < sum)
+                    l++;
+                else
+                    r--;
+            }
+            return false;
+        }
+
+
+        // Convert array into Zig-Zag fashion
+        // http://www.geeksforgeeks.org/convert-array-into-zig-zag-fashion/
+        // Time complexity: O(n), Auxiliary Space: O(1)
+        public void ZigZagArray(int[] arr, int n)
+        {
+            // Flag true indicates relation "<" is expected,
+            // else ">" is expected.  The first expected relation
+            // is "<"
+            bool flag = true;
+
+            for (int i = 0; i <= n - 2; i++)
+            {
+                if (flag)  /* "<" relation expected */
+                {
+                    /* If we have a situation like A > B > C,
+                       we get A > B < C by swapping B and C */
+                    if (arr[i] > arr[i + 1])
+                        Swap(arr, i, i + 1);
+                }
+                else /* ">" relation expected */
+                {
+                    /* If we have a situation like A < B < C,
+                       we get A < C > B by swapping B and C */
+                    if (arr[i] < arr[i + 1])
+                        Swap(arr,i,i + 1);
+                }
+                flag = !flag; /* flip flag */
+            }
+        }
+
+        private void Swap(int[] arr, int i, int j)
+        {
+            int t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+        }
+
+        //http://www.geeksforgeeks.org/leaders-in-an-array/
+        // function to print leaders in an array
+        // Time Complexity: O(n)
+        public void PrintLeaders(int[] arr, int size, IList<int> result)
+        {
+            int maxFromRight = arr[size - 1];
+
+            /* Rightmost element is always leader */
+            Console.Write(maxFromRight);
+            result.Add(maxFromRight);
+
+            for (int i = size - 2; i >= 0; i--)
+            {
+                if (maxFromRight < arr[i])
+                {
+                    maxFromRight = arr[i];
+                    Console.Write(maxFromRight);
+                    result.Add(maxFromRight);
+                }
+            }
+        }
+
+        // Replace every element with the greatest element on right side
+        // http://www.geeksforgeeks.org/replace-every-element-with-the-greatest-on-right-side/
+        // Function to replace every element with the next greatest element
+        public void NextGreatest(int[] arr)
+        {
+            int size = arr.Length;
+
+            // Initialize the next greatest element
+            int maxFromRight = arr[size - 1];
+
+            // The next greatest element for the rightmost
+            // element is always -1
+            arr[size - 1] = -1;
+
+            // Replace all other elements with the next greatest
+            for (int i = size - 2; i >= 0; i--)
+            {
+                // Store the current element (needed later for
+                // updating the next greatest element)
+                int temp = arr[i];
+
+                // Replace current element with the next greatest
+                arr[i] = maxFromRight;
+
+                // Update the greatest element, if needed
+                if (maxFromRight < temp)
+                    maxFromRight = temp;
+            }
+        }
+
+        // Find the two numbers with odd occurrences in an unsorted array
+        // http://www.geeksforgeeks.org/find-the-two-numbers-with-odd-occurences-in-an-unsorted-array/
+        // Input: {12, 23, 34, 12, 12, 23, 12, 45}
+        // Output: 34 and 45
+        // Time On, Space On
+        public void FindTwoOddNumbers(int[] arr, IList<int> result)
+        {
+            int n = arr.Length;
+            Dictionary<int, int> hash = new Dictionary<int, int>();
+
+            for (int i = 0; i < n; i++)
+            {
+                var key = arr[i];
+                int value = 1;
+
+                if (hash.ContainsKey(key))
+                {
+                    value = hash[key] + 1;
+                    hash.Remove(key);
+                }
+                hash.Add(key, value);
+            }
+
+            foreach (var item in hash)
+            {
+                if (item.Value == 1)
+                {
+                    Console.Write(item.Key);
+                    result.Add(item.Key);
+                }
+            }
+        }
+
+        // Find the two numbers with odd occurrences in an unsorted array
+        // http://www.geeksforgeeks.org/find-the-two-numbers-with-odd-occurences-in-an-unsorted-array/
+        // Input: {12, 23, 34, 12, 12, 23, 12, 45}
+        // Output: 34 and 45
+        // Time(nlogn), Space O(1)
+        public void FindTwoOddNumbersWithSort(int[] arr, IList<int> result)
+        {
+            int n = arr.Length;
+            Array.Sort(arr);
+
+            for (int i = 0; i < n; i++)
+            {
+                if (i == 0)
+                {
+                    if (arr[i] != arr[i + 1])
+                    {
+                        Console.Write(arr[i]);
+                        result.Add(arr[i]);
+                    }
+                }
+                else if (arr[i - 1] != arr[i])
+                {
+                    if (i == arr.Length - 1)
+                    {
+                        Console.Write(arr[i]);
+                        result.Add(arr[i]);
+                    }
+                    else if (arr[i] != arr[i + 1])
+                    {
+                        Console.Write(arr[i]);
+                        result.Add(arr[i]);
+                    }
+                }
+            }
+        }
+
     }
+
+
 }
