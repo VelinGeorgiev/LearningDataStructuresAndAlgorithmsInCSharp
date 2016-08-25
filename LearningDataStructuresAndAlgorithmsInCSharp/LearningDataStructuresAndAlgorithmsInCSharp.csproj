@@ -68,6 +68,7 @@
     <Compile Include="InterviewQuestionsTests\Strings\StringQuestionsTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\ArrayToPreorderTraversalTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BasicTreeQuestionsTests.cs" />
+    <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeFromLinkedListTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeLowestCommonAncestorTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeBoundaryTests.cs" />
     <Compile Include="InterviewQuestions\Arrays\BaseArrayQuestions.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="InterviewQuestions\LinkedLists\BaseLinkedLists.cs" />
     <Compile Include="InterviewQuestions\LinkedLists\QueueLinkedListImplementation.cs" />
     <Compile Include="InterviewQuestions\Strings\StringsQuestions.cs" />
+    <Compile Include="InterviewQuestions\Trees\BinaryTreeFromLinkedList.cs" />
     <Compile Include="InterviewQuestions\Trees\BinaryTreeLowestCommonAncestor.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeToBstTests.cs" />
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeLeftRightViewTests.cs" />

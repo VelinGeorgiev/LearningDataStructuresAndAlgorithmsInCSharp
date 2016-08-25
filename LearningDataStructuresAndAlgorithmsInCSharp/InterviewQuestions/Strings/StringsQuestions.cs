@@ -174,5 +174,40 @@ namespace Learning.InterviewQuestions.Strings
             }
             return ' ';
         }
+
+
+        // http://www.geeksforgeeks.org/given-a-string-find-its-first-non-repeating-character/
+        // program to print the first non-repeating character
+        public char KthNonRepeatedCharacter(string str, int k)
+        {
+            IDictionary<char, int> dict = new Dictionary<char, int>();
+            int i, length = str.Length;
+            char c;
+            // Scan string and build hash table
+            for (i = 0; i < length; i++)
+            {
+                c = str[i];
+                if (dict.ContainsKey(c))
+                {
+                    dict[c] += 1; // increment count corresponding to c
+                }
+                else
+                {
+                    dict.Add(c, 1);
+                }
+            }
+            // Search characterhashtable in in order of string str
+            int kth = 0;
+            for (i = 0; i < length; i++)
+            {
+                c = str[i];
+                if (dict[c] == 1)
+                {
+                    kth++;
+                    if (k == kth) return c;
+                }  
+            }
+            return ' ';
+        }
     }
 }

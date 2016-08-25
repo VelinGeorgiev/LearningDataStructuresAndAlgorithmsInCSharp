@@ -246,5 +246,40 @@ namespace Learning.InterviewQuestionsTests.Trees
             Assert.AreEqual(list[6], 7);
         }
 
+        [Test]
+        public void PrintExtremeNodes()
+        {
+            // Binary Tree of Height 4
+            Node node = new Node(1);
+
+            node.left = new Node(2);
+            node.right = new Node(3);
+
+            node.left.left = new Node(4);
+            node.left.right = new Node(5);
+            node.right.right = new Node(7);
+
+            node.left.left.left = new Node(8);
+            node.left.left.right = new Node(9);
+            node.left.right.left = new Node(10);
+            node.left.right.right = new Node(11);
+            node.right.right.left = new Node(14);
+            node.right.right.right = new Node(15);
+
+            node.left.left.left.left = new Node(16);
+            node.left.left.left.right = new Node(17);
+            node.right.right.right.right = new Node(31);
+
+            var list = new List<int>();
+
+            _tree.PrintExtremeNodes(node, list);
+
+            Assert.AreEqual(list[0], 1);
+            Assert.AreEqual(list[1], 2);
+            Assert.AreEqual(list[2], 7);
+            Assert.AreEqual(list[3], 8);
+            Assert.AreEqual(list[4], 31);
+        }
+
     }
 }

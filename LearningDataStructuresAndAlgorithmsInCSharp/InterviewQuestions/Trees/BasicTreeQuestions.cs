@@ -273,7 +273,7 @@ namespace Learning.InterviewQuestions.Trees
         public Node SortedArrayToBalancedBst(int[] arr, int start, int end)
         {
             if(start > end) return null;
-            // Get the middle element and make it root
+            // Get the middle element and make it node
             int mid = (start + end) / 2;
             Node node = new Node(arr[mid]);
 
@@ -301,8 +301,8 @@ namespace Learning.InterviewQuestions.Trees
         // Diameter of a Binary Tree (sometimes called the width)
         public int Diameter(Node node, Height height)
         {
-            /* lh --> Height of left subtree
-               rh --> Height of right subtree */
+            /* lh -. Height of left subtree
+               rh -. Height of right subtree */
             Height lh = new Height(), rh = new Height();
 
             if (node == null)
@@ -311,11 +311,11 @@ namespace Learning.InterviewQuestions.Trees
                 return 0; /* diameter is also 0 */
             }
 
-            /* ldiameter  --> diameter of left subtree
-               rdiameter  --> Diameter of right subtree */
+            /* ldiameter  -. diameter of left subtree
+               rdiameter  -. Diameter of right subtree */
             /* Get the heights of left and right subtrees in lh and rh
              And store the returned values in ldiameter and ldiameter */
-            /* calculate root diameter */
+            /* calculate node diameter */
             lh.h++; rh.h++;
             int ldiameter = Diameter(node.left, lh);
             int rdiameter = Diameter(node.right, rh);
@@ -389,6 +389,66 @@ namespace Learning.InterviewQuestions.Trees
                 }
             }
         }
+
+
+        // Function to print nodes of extreme corners of each level in alternate order
+        // http://www.geeksforgeeks.org/print-extreme-nodes-of-each-level-of-binary-tree-in-alternate-order/
+        // Time complexity of above solution is O(n) where n is total number of nodes in given binary tree.
+        public void PrintExtremeNodes(Node node, IList<int> result)
+        {
+            if (node == null) return;
+
+            // Create a queue and enqueue left and right
+            // children of node
+            Queue<Node> q = new Queue<Node>();
+            q.Enqueue(node);
+
+            // flag to indicate whether leftmost node or
+            // the rightmost node has to be printed
+            bool flag = false;
+            while (q.Count>0)
+            {
+                // nodeCount indicates number of nodes
+                // at current level.
+                int nodeCount = q.Count;
+                int n = nodeCount;
+
+                // Dequeue all nodes of current level
+                // and Enqueue all nodes of next level
+                while (n-- > 0)
+                {
+                    Node curr = q.Dequeue();
+
+                    // Enqueue left child
+                    if (curr.left != null)
+                        q.Enqueue(curr.left);
+
+                    // Enqueue right child
+                    if (curr.right != null)
+                        q.Enqueue(curr.right);
+
+                    // if flag is true, print leftmost node
+                    if (flag && n == nodeCount - 1)
+                    {
+                        Console.Write(curr.data);
+                        result.Add(curr.data);
+                    }
+                        
+
+                    // if flag is false, print rightmost node
+                    if (!flag && n == 0)
+                    {
+                        Console.Write(curr.data);
+                        result.Add(curr.data);
+                    }
+                        
+                }
+                // invert flag for next level
+                flag = !flag;
+            }
+        }
+
+        
 
     }
     public class Height
