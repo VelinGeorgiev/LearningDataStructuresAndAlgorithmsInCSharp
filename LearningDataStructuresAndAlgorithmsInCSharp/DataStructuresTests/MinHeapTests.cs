@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Learning.DataStructures;
+﻿using Learning.DataStructures;
 using NUnit.Framework;
 
 namespace Learning.DataStructuresTests

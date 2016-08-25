@@ -281,5 +281,20 @@ namespace Learning.InterviewQuestionsTests.Trees
             Assert.AreEqual(list[4], 31);
         }
 
+        [Test]
+        public void MaxDiff()
+        {
+            _tree.root = new Node(8);
+            _tree.root.left = new Node(3);
+            _tree.root.left.left = new Node(1);
+            _tree.root.left.right = new Node(6);
+            _tree.root.left.right.left = new Node(4);
+            _tree.root.left.right.right = new Node(7);
+            _tree.root.right = new Node(10);
+            _tree.root.right.right = new Node(14);
+            _tree.root.right.right.left = new Node(13);
+
+            Assert.AreEqual(_tree.MaxDiff(_tree.root), 7);
+        }
     }
 }

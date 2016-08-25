@@ -448,6 +448,43 @@ namespace Learning.InterviewQuestions.Trees
             }
         }
 
+        /* Recursive function to calculate maximum ancestor-node
+           difference in  binary tree. It updates value at 'res'
+           to store the result.  The returned value of this function
+           is minimum value in subtree rooted with 't' */
+        // http://www.geeksforgeeks.org/maximum-difference-between-node-and-its-ancestor-in-binary-tree/
+        // Expected time complexity is O(n).
+        private int MaxDiffUtil(Node t, Res res)
+        {
+            // Returning Maximum int value if node is not there (one child case)
+            if (t == null)
+                return int.MaxValue;
+
+            /* If leaf node then just return node's value  */
+            if (t.left == null && t.right == null)
+                return t.data;
+
+            // Recursively calling left and right subtree for minimum value
+            int val = Math.Min(MaxDiffUtil(t.left, res), MaxDiffUtil(t.right, res));
+
+            /* Updating res if (node value - minimum value
+               from subtree) is bigger than res  */
+            res.r = Math.Max(res.r, t.data - val);
+
+            /* Returning minimum value got so far */
+            return Math.Min(val, t.data);
+        }
+
+        /* This function mainly calls maxDiffUtil() */
+        public int MaxDiff(Node note)
+        {
+            // Initialising result with minimum int value
+            Res res = new Res();
+            MaxDiffUtil(note, res);
+
+            return res.r;
+        }
+
         
 
     }
@@ -456,4 +493,9 @@ namespace Learning.InterviewQuestions.Trees
         public int h;
     }
 
+    /* Class Res created to implement pass by reference of 'res' variable */
+    public class Res
+    {
+        public int r = int.MinValue;
+    }
 }

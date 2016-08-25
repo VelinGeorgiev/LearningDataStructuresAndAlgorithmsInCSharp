@@ -2,6 +2,7 @@
 
 namespace Learning.DataStructures
 {
+    // http://quiz.geeksforgeeks.org/binary-heap/
     public class MinHeap
     {
         readonly int[] _harr; // pointer to array of elements in heap
@@ -14,7 +15,6 @@ namespace Learning.DataStructures
             _capacity = cap;
             _harr = new int[cap];
         }
-
 
         // Inserts a new key 'k'
         public void InsertKey(int k)

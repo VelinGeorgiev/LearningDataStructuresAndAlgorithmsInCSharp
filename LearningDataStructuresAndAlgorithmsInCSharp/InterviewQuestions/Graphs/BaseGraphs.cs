@@ -1,12 +1,15 @@
-﻿namespace Learning.InterviewQuestions.Graphs
+﻿using System.Collections.Generic;
+
+namespace Learning.InterviewQuestions.Graphs
 {
     public class BaseGraphs
     {
+        private readonly int _noVertices;   // No. of vertices
         //No of rows and columns
         private const int Row = 5;
         private const int Col = 5;
 
-        // The main function that returns count of islands in a given boolean 2D matrix
+        // The main function that returns count of islands in a given bool 2D matrix
         public int CountIslands(int[,] mat)
         {
             // Make a bool array to mark visited cells.

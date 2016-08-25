@@ -31,5 +31,45 @@
 
             return node;
         }
+
+        // http://quiz.geeksforgeeks.org/binary-search-tree-set-2-delete/
+        public Node Delete(Node node, int key)
+        {
+            if (node == null) return node;
+
+            /* Otherwise, recur down the tree */
+            if (key < node.data)
+                node.left = Delete(node.left, key);
+            else if (key > node.data)
+                node.right = Delete(node.right, key);
+
+            // If key is same as node's key, then This is the node  to be deleted
+            else
+            {
+                // node with only one child or no child
+                if (node.left == null) return node.right;
+                if (node.right == null) return node.left;
+
+                // node with two children: Get the inorder successor (smallest
+                // in the right subtree)
+                node.data = MinValue(node.right);
+
+                // Delete the inorder successor
+                node.right = Delete(node.right, node.data);
+            }
+
+            return node;
+        }
+
+        private int MinValue(Node node)
+        {
+            int minv = node.data;
+            while (node.left != null)
+            {
+                minv = node.left.data;
+                node = node.left;
+            }
+            return minv;
+        }
     }
 }

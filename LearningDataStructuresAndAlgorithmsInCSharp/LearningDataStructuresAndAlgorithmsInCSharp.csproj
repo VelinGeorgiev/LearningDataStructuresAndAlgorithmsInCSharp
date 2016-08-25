@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStructuresTests\BinarySearchTreeTests.cs" />
     <Compile Include="DataStructuresTests\MinHeapTests.cs" />
     <Compile Include="DataStructuresTests\LinkedListsTests.cs" />
     <Compile Include="DataStructuresTests\StringsTests.cs" />
