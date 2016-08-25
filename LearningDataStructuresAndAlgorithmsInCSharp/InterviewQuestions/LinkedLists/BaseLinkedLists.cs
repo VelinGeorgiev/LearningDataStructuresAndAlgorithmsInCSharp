@@ -534,5 +534,10 @@ namespace Learning.InterviewQuestions.LinkedLists
             return result;
         }
 
+        // http://www.geeksforgeeks.org/flattening-a-linked-list/
+        // Flattening a Linked List. See the url.
+
+        // Clone a linked list with next and random pointer
+        // http://www.geeksforgeeks.org/clone-linked-list-next-arbit-pointer-set-2/
     }
 }
