@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStructuresTests\MinHeapTests.cs" />
     <Compile Include="DataStructuresTests\LinkedListsTests.cs" />
     <Compile Include="DataStructuresTests\StringsTests.cs" />
     <Compile Include="DataStructuresTests\GraphTests.cs" />
@@ -57,12 +58,14 @@
     <Compile Include="DataStructures\BinarySearchTree.cs" />
     <Compile Include="DataStructures\BinaryTree.cs" />
     <Compile Include="DataStructures\Graph.cs" />
+    <Compile Include="DataStructures\MinHeap.cs" />
     <Compile Include="DataStructures\Node.cs" />
     <Compile Include="DataStructures\Queue.cs" />
     <Compile Include="DataStructures\Stack.cs" />
     <Compile Include="DataStructures\Tree.cs" />
     <Compile Include="InterviewQuestionsTests\ArraysTests\BaseArrayQuestionsTests.cs" />
     <Compile Include="InterviewQuestionsTests\DynamicTests\BaseDynamicQuestionsTests.cs" />
+    <Compile Include="InterviewQuestionsTests\Graphs\BaseGraphsTests.cs" />
     <Compile Include="InterviewQuestionsTests\LinkedLists\QueueLinkedListImplementationTests.cs" />
     <Compile Include="InterviewQuestionsTests\LinkedLists\BaseLinkedListsTests.cs" />
     <Compile Include="InterviewQuestionsTests\Strings\StringQuestionsTests.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="InterviewQuestionsTests\Trees\BinaryTreeBoundaryTests.cs" />
     <Compile Include="InterviewQuestions\Arrays\BaseArrayQuestions.cs" />
     <Compile Include="InterviewQuestions\DynamicProgramming\BaseDynamicQuestions.cs" />
+    <Compile Include="InterviewQuestions\Graphs\BaseGraphs.cs" />
     <Compile Include="InterviewQuestions\LinkedLists\BaseLinkedLists.cs" />
     <Compile Include="InterviewQuestions\LinkedLists\QueueLinkedListImplementation.cs" />
     <Compile Include="InterviewQuestions\Strings\StringsQuestions.cs" />

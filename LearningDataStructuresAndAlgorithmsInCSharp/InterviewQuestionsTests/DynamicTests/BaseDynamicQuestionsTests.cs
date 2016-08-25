@@ -63,5 +63,17 @@ namespace Learning.InterviewQuestionsTests.DynamicTests
             };
             Assert.AreEqual(_dynamic.CelebrityProblem(4, a), 2);
         }
+
+        [Test]
+        public void PrintTour()
+        {
+            // Person with 2 is celebrity
+            PetrolPump[] arr = new PetrolPump[3];
+            arr[0] = new PetrolPump() { petrol = 6, distance = 4};
+            arr[1] = new PetrolPump() { petrol = 3, distance = 6 };
+            arr[2] = new PetrolPump() { petrol = 7, distance = 3 };
+            Assert.AreEqual(_dynamic.PrintTour(arr, arr.Length), 2);
+        }
+ 
     }
 }

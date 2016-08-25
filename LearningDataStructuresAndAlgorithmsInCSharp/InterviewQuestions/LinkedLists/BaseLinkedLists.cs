@@ -480,5 +480,59 @@ namespace Learning.InterviewQuestions.LinkedLists
             }
         }
 
+        // Merge K sorted linked lists
+        // http://www.geeksforgeeks.org/merge-k-sorted-linked-lists/
+        // On2
+        public Node MergeKLists(Node[] arr, int last)
+        {
+            while (last != 0)
+            {
+                int i = 0, j = last;
+
+                // (i, j) forms a pair
+                while (i < j)
+                {
+                    // merge List i with List j and store
+                    // merged list in List i
+                    arr[i] = SortedMerge(arr[i], arr[j]);
+
+                    // consider next pair
+                    i++; j--;
+
+                    // If all pairs are merged, update last
+                    if (i >= j)
+                        last = j;
+                }
+            }
+
+            return arr[0];
+        }
+
+        /* Takes two lists sorted in increasing order, and merge
+   their nodes together to make one big sorted list. Below
+   function takes O(Log n) extra space for recursive calls,
+   but it can be easily modified to work with same time and
+   O(1) extra space  */
+        Node SortedMerge(Node a, Node b)
+        {
+            Node result = null;
+            if (a == null) return b;
+            if (b == null) return a;
+
+            /* Pick either a or b, and recur */
+            if (a.data <= b.data)
+            {
+                result = a;
+                result.next = SortedMerge(a.next, b);
+            }
+            else
+            {
+                result = b;
+                result.next = SortedMerge(a, b.next);
+            }
+
+            return result;
+        }
+
     }
 }

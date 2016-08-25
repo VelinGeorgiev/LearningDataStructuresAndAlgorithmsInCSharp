@@ -186,29 +186,74 @@ namespace Learning.InterviewQuestions.DynamicProgramming
         // The main function that returns index of row with maximum number of 1s. 
         //public int RowWithMax1S(int[,] mat)
         //{
-            // Initialize first row as row with max 1s
-            //int maxRowIndex = 0;
-            //int r = mat.GetLength(0);
-            //int c = mat.GetLength(1);
+        // Initialize first row as row with max 1s
+        //int maxRowIndex = 0;
+        //int r = mat.GetLength(0);
+        //int c = mat.GetLength(1);
 
-            //// The function first() returns index of first 1 in row 0.
-            //// Use this index to initialize the index of leftmost 1 seen so far
-            //int j = first(mat[0], 0, c - 1);
-            //if (j == -1) // if 1 is not present in first row
-            //    j = c - 1;
+        //// The function first() returns index of first 1 in row 0.
+        //// Use this index to initialize the index of leftmost 1 seen so far
+        //int j = first(mat[0], 0, c - 1);
+        //if (j == -1) // if 1 is not present in first row
+        //    j = c - 1;
 
-            //for (int i = 1; i < r; i++)
-            //{
-            //    // Move left until a 0 is found
-            //    while (j >= 0 && mat[i,j] == 1)
-            //    {
-            //        j = j - 1;  // Update the index of leftmost 1 seen so far
-            //        maxRowIndex = i;  // Update max_row_index
-            //    }
-            //}
-            //return maxRowIndex;
+        //for (int i = 1; i < r; i++)
+        //{
+        //    // Move left until a 0 is found
+        //    while (j >= 0 && mat[i,j] == 1)
+        //    {
+        //        j = j - 1;  // Update the index of leftmost 1 seen so far
+        //        maxRowIndex = i;  // Update max_row_index
+        //    }
         //}
+        //return maxRowIndex;
+        //}
+
+        //http://www.geeksforgeeks.org/find-a-tour-that-visits-all-stations/
+        // The function returns starting point if there is a possible solution,
+        // otherwise returns -1
+        public int PrintTour(PetrolPump[] arr, int n)
+        {
+            // Consider first petrol pump as a starting point
+            int start = 0;
+            int end = 1;
+
+            int currPetrol = arr[start].petrol - arr[start].distance;
+
+            /* Run a loop while all petrol pumps are not visited.
+              And we have reached first petrol pump again with 0 or more petrol */
+            while (end != start || currPetrol < 0)
+            {
+                // If curremt amount of petrol in truck becomes less than 0, then
+                // remove the starting petrol pump from tour
+                while (currPetrol < 0 && start != end)
+                {
+                    // Remove starting petrol pump. Change start
+                    currPetrol -= arr[start].petrol - arr[start].distance;
+                    start = (start + 1)%n;
+
+                    // If 0 is being considered as start again, then there is no
+                    // possible solution
+                    if (start == 0)
+                        return -1;
+                }
+                // Add a petrol pump to current tour
+                currPetrol += arr[end].petrol - arr[end].distance;
+
+                end = (end + 1)%n;
+            }
+
+            // Return starting point
+            return start;
+        }
 
 
     }
+
+    // A petrol pump has petrol and distance to next petrol pump
+    public struct PetrolPump
+    {
+        public int petrol;
+        public int distance;
+    };
 }

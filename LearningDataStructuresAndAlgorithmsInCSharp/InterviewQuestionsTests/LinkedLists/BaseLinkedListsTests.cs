@@ -192,9 +192,9 @@ namespace Learning.InterviewQuestionsTests.LinkedLists
             var result = _bll.RearrangeEvenOdd(_bll.head);
 
             // Given Linked List
-            // 1->2->3->4->NULL
+            // 1.2.3.4.NULL
             // Modified Linked List
-            // 1->3->2->4->NULL
+            // 1.3.2.4.NULL
             Assert.AreEqual(result.next.data, 3);
             Assert.AreEqual(result.next.next.data, 2);
         }
@@ -301,7 +301,45 @@ namespace Learning.InterviewQuestionsTests.LinkedLists
             Assert.AreEqual(_bll.head.next.next.next.data, 7);
         }
 
+        [Test]
+        public void MergeKLists()
+        {
+            int k = 3; // Number of linked lists
+            int n = 4; // Number of elements in each list
 
+            // an array of pointers storing the head nodes
+            // of the linked lists
+            Node[] arr = new Node[k];
+
+            arr[0] = new Node(1);
+            arr[0].next = new Node(3);
+            arr[0].next.next = new Node(5);
+            arr[0].next.next.next = new Node(7);
+
+            arr[1] = new Node(2);
+            arr[1].next = new Node(4);
+            arr[1].next.next = new Node(6);
+            arr[1].next.next.next = new Node(8);
+
+            arr[2] = new Node(0);
+            arr[2].next = new Node(9);
+            arr[2].next.next = new Node(10);
+            arr[2].next.next.next = new Node(11);
+
+            // Merge all lists
+            Node result = _bll.MergeKLists(arr, k - 1);
+            Assert.AreEqual(result.data, 0);
+            Assert.AreEqual(result.next.data, 1);
+            Assert.AreEqual(result.next.next.data, 2);
+            Assert.AreEqual(result.next.next.next.data, 3);
+            Assert.AreEqual(result.next.next.next.next.data, 4);
+            Assert.AreEqual(result.next.next.next.next.next.data, 5);
+            Assert.AreEqual(result.next.next.next.next.next.next.data, 6);
+            Assert.AreEqual(result.next.next.next.next.next.next.next.data, 7);
+            Assert.AreEqual(result.next.next.next.next.next.next.next.next.data, 8);
+            Assert.AreEqual(result.next.next.next.next.next.next.next.next.next.data, 9);
+            Assert.AreEqual(result.next.next.next.next.next.next.next.next.next.next.data, 10);
+        }
     }
 }
 
