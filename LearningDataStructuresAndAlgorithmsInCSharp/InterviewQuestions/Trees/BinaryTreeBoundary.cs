@@ -90,5 +90,14 @@ namespace Learning.InterviewQuestions.Trees
 
             PrintBoundaryRight(node.right); // Print the right boundary in bottom-up manner
         }
+
+
+        // TODO: http://www.geeksforgeeks.org/diagonal-traversal-of-binary-tree/
+        // Diagonal Traversal of Binary Tree
+        void DiagonalPrintUtil(Node node, int d, Dictionary<int, int> dict )
+        {
+            if (node == null) return;
+            dict.Add(d, node.data);
+        }
     }
 }

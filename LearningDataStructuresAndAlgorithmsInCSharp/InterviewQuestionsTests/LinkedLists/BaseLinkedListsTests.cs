@@ -340,6 +340,41 @@ namespace Learning.InterviewQuestionsTests.LinkedLists
             Assert.AreEqual(result.next.next.next.next.next.next.next.next.next.data, 9);
             Assert.AreEqual(result.next.next.next.next.next.next.next.next.next.next.data, 10);
         }
+
+        [Test]
+        public void LinkedListsIntersection()
+        {
+            Node l1 = new Node(3);
+            l1.next = new Node(6);
+            l1.next.next = new Node(9);
+            l1.next.next.next = new Node(15);
+            l1.next.next.next.next = new Node(30);
+
+            Node l2 = new Node(10);
+            l2.next = new Node(15);
+            l2.next.next = new Node(30);
+
+            // add the two lists and see the result
+            var node = _bll.LinkedListsIntersection(l1,l2);
+
+            Assert.AreEqual(node.data, 15);
+        }
+
+        [Test]
+        public void DelLesserNodes()
+        {
+            _bll.head = new Node(12);
+            _bll.head.next = new Node(15);
+            _bll.head.next.next = new Node(10);
+            _bll.head.next.next.next = new Node(11);
+            _bll.head.next.next.next.next = new Node(5);
+            _bll.head.next.next.next.next.next = new Node(6);
+            _bll.DelLesserNodes();
+
+            Assert.AreEqual(_bll.head.data, 15);
+            Assert.AreEqual(_bll.head.next.data, 11);
+            Assert.AreEqual(_bll.head.next.next.data, 6);
+        }
     }
 }
 

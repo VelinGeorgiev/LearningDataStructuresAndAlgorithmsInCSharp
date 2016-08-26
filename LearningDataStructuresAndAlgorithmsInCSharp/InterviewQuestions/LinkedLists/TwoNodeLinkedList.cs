@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace Learning.InterviewQuestions.LinkedLists
 {
     // Linked List Node class
+    
     public class TwoNode
     {
         public int data;
@@ -41,6 +42,8 @@ namespace Learning.InterviewQuestions.LinkedLists
             }
         }
 
+        // http://www.geeksforgeeks.org/flattening-a-linked-list/
+        // Flattening a Linked List. See the url.
         public TwoNode Flatten(TwoNode node)
         {
             if (node == null || node.next == null) return node;
@@ -70,6 +73,8 @@ namespace Learning.InterviewQuestions.LinkedLists
 
         // Actual clone method which returns node
         // reference of cloned linked list.
+        // Clone a linked list with next and random pointer
+        // http://www.geeksforgeeks.org/clone-linked-list-next-arbit-pointer-set-2/
         public TwoNodeLinkedList Clone()
         {
             // Initialize two references, one with original

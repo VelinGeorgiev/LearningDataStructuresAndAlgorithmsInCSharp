@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
-using Microsoft.SqlServer.Server;
 
 namespace Learning.InterviewQuestions.Strings
 {
@@ -33,6 +33,7 @@ namespace Learning.InterviewQuestions.Strings
                 }
             }
         }
+
         public void Swap(char[] str, int i, int j)
         {
             char tmp = str[i];
@@ -111,11 +112,11 @@ namespace Learning.InterviewQuestions.Strings
             if (num == 0) return 0;
 
             // Extraxt the last digit and change it if needed
-            int digit = num % 10;
+            int digit = num%10;
             if (digit == 0) digit = 5;
 
             // Convert remaining digits and append the last digit
-            return Convert0To5Rec(num / 10) * 10 + digit;
+            return Convert0To5Rec(num/10)*10 + digit;
         }
 
         // It handles 0 and calls convert0To5Rec() for other numbers
@@ -142,7 +143,7 @@ namespace Learning.InterviewQuestions.Strings
             }
 
             // Return count of possible pairs among m 1's
-            return m * (m - 1) / 2;
+            return m*(m - 1)/2;
         }
 
         // http://www.geeksforgeeks.org/given-a-string-find-its-first-non-repeating-character/
@@ -205,9 +206,38 @@ namespace Learning.InterviewQuestions.Strings
                 {
                     kth++;
                     if (k == kth) return c;
-                }  
+                }
             }
             return ' ';
+        }
+
+        // http://ideone.com/7Hyp9r
+        // 
+        public int PatternSearch(string pattern, string text)
+        {
+            var textLength = text.Length;
+            var patternLength = pattern.Length;
+
+            for (int i = 0; i <= textLength - patternLength; i++)
+            {
+                var counter = pattern.Length;
+                for (int j = 0; j < patternLength; j++)
+                {
+                    if (text[i + j] == pattern[j])
+                    {
+                        --counter;
+                    }
+                    else
+                        break;
+
+                    if (counter == 0)
+                    {
+                        Console.WriteLine("Pattern - {0}, in Text: {1} found at index: {2}", pattern, text, i);
+                        return i;
+                    }
+                }
+            }
+            return -1;
         }
     }
 }

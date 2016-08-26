@@ -74,6 +74,22 @@ namespace Learning.InterviewQuestionsTests.DynamicTests
             arr[2] = new PetrolPump() { petrol = 7, distance = 3 };
             Assert.AreEqual(_dynamic.PrintTour(arr, arr.Length), 2);
         }
- 
+
+        [Test]
+        public void OptimalStrategyOfGame()
+        {
+            int[] arr1 = { 8, 15, 3, 7 };
+            int n =arr1.Length;
+            Assert.AreEqual(_dynamic.OptimalStrategyOfGame(arr1, n), 22);
+
+            int[] arr2 = { 2, 2, 2, 2 };
+            n = arr2.Length;
+            Assert.AreEqual(_dynamic.OptimalStrategyOfGame(arr2, n), 4);
+
+            int[] arr3 = { 20, 30, 2, 2, 2, 10 };
+            n = arr3.Length;
+            Assert.AreEqual(_dynamic.OptimalStrategyOfGame(arr3, n), 42);
+        }
+
     }
 }

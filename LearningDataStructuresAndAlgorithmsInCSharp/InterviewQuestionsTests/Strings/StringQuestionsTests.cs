@@ -62,5 +62,11 @@ namespace Learning.InterviewQuestionsTests.Strings
         {
             Assert.AreEqual(_sq.KthNonRepeatedCharacter("geeksforgeeks", 3), 'r');
         }
+
+        [Test]
+        public void PatternSearch()
+        {
+            Assert.AreEqual(_sq.PatternSearch("AAAB", "AAAAAAAAB"), 5);
+        }
     }
 }

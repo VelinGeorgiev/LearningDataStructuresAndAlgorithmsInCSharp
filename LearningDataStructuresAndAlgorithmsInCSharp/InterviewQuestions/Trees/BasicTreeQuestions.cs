@@ -485,7 +485,64 @@ namespace Learning.InterviewQuestions.Trees
             return res.r;
         }
 
-        
+        // Add all greater values to every node in a given BST
+        // http://www.geeksforgeeks.org/add-greater-values-every-node-given-bst/
+        // A wrapper over modifyBSTUtil()
+        // Recursive function to add all greater values in every node
+        private int _modifyBstUtilSum;
+        public void ModifyBst(Node node)
+        {
+            if (node == null) return;
+
+            // Recur for right subtree
+            ModifyBst(node.right);
+
+            // Now sum has sum of nodes in right subtree, add
+            // node.data to sum and update node.data
+            _modifyBstUtilSum += node.data;
+            node.data = _modifyBstUtilSum;
+
+            // Recur for left subtree
+            ModifyBst(node.left);
+        }
+
+        // Returns true if given search tree is binary
+        // search tree (efficient version)
+        private Node _previousNode;
+        public bool IsBst(Node node)
+        {
+            // traverse the tree in inorder fashion and
+            // keep a track of previous node
+            if (node != null)
+            {
+                if (!IsBst(node.left))
+                    return false;
+
+                // allows only distinct values node
+                if (_previousNode != null && node.data <= _previousNode.data)
+                    return false;
+                _previousNode = node;
+                return IsBst(node.right);
+            }
+            return true;
+        }
+
+        /* Returns true if the given tree is a BST and its
+        values are >= min and <= max. */
+        public bool IsBstRecursion(Node node, int min, int max)
+        {
+            /* an empty tree is BST */
+            if (node == null) return true;
+
+            /* false if this node violates the min/max constraints */
+            if (node.data < min || node.data > max) return false;
+
+            /* otherwise check the subtrees recursively
+            tightening the min/max constraints */
+            // Allow only distinct values
+            return (IsBstRecursion(node.left, min, node.data - 1) &&
+                    IsBstRecursion(node.right, node.data + 1, max));
+        }
 
     }
     public class Height

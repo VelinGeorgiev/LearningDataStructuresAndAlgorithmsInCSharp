@@ -534,10 +534,74 @@ namespace Learning.InterviewQuestions.LinkedLists
             return result;
         }
 
-        // http://www.geeksforgeeks.org/flattening-a-linked-list/
-        // Flattening a Linked List. See the url.
 
-        // Clone a linked list with next and random pointer
-        // http://www.geeksforgeeks.org/clone-linked-list-next-arbit-pointer-set-2/
+
+        // Intersection point of two Linked Lists.
+        public Node LinkedListsIntersection(Node l1, Node l2)
+        {
+            Node result = null;
+            Dictionary<int, bool> dict = new Dictionary<int, bool>();
+
+            Node t = l1;
+            while (t != null)
+            {
+                dict.Add(t.data, true);
+                t = t.next;
+            }
+
+            t = l2;
+            while (t != null)
+            {
+                if (dict.ContainsKey(t.data))
+                {
+                    result = t;
+                    break;
+                }
+                t = t.next;
+            }
+
+            return result;
+        }
+
+        // Deletes nodes which have a node with greater value node on left side
+        public void DelLesserNodes()
+        {
+            /* 1.Reverse the linked list */
+            Reverse();
+
+            /* 2) In the reversed list, delete nodes which
+               have a node with greater value node on left
+               side. Note that head node is never deleted
+               because it is the leftmost node.*/
+            Node current = head;
+
+            /* Initialise max */
+            Node maxnode = head;
+            Node temp;
+
+            while (current != null && current.next != null)
+            {
+                /* If current is smaller than max, then delete
+                   current */
+                if (current.next.data < maxnode.data)
+                {
+                    temp = current.next;
+                    current.next = temp.next;
+                    temp = null;
+                }
+
+                /* If current is greater than max, then update
+                   max and move current */
+                else
+                {
+                    current = current.next;
+                    maxnode = current;
+                }
+            }
+
+            /* 3) Reverse the linked list again to retain
+               the original order */
+            Reverse();
+        }
     }
 }

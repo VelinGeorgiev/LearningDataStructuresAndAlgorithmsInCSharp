@@ -230,7 +230,7 @@ namespace Learning.InterviewQuestions.DynamicProgramming
                 {
                     // Remove starting petrol pump. Change start
                     currPetrol -= arr[start].petrol - arr[start].distance;
-                    start = (start + 1)%n;
+                    start = (start + 1) % n;
 
                     // If 0 is being considered as start again, then there is no
                     // possible solution
@@ -240,11 +240,40 @@ namespace Learning.InterviewQuestions.DynamicProgramming
                 // Add a petrol pump to current tour
                 currPetrol += arr[end].petrol - arr[end].distance;
 
-                end = (end + 1)%n;
+                end = (end + 1) % n;
             }
 
             // Return starting point
             return start;
+        }
+
+        // Returns optimal value possible that a player can collect from
+        // an array of coins of size n. Note than n must be even
+        // http://www.geeksforgeeks.org/dynamic-programming-set-31-optimal-strategy-for-a-game/
+        // Dynamic Programming | Set 31 (Optimal Strategy for a Game)
+        public int OptimalStrategyOfGame(int[] arr, int n)
+        {
+            // Create a table to store solutions of subproblems
+            int[,] table = new int[n, n];
+            int gap, i, j, x, y, z;
+
+            // Fill table using above recursive formula. Note that the table
+            // is filled in diagonal fashion (similar to http://goo.gl/PQqoS),
+            // from diagonal elements to table[0][n-1] which is the result.
+            for (gap = 0; gap < n; ++gap)
+            {
+                for (i = 0, j = gap; j < n; ++i, ++j)
+                {
+                    // Here x is value of F(i+2, j), y is F(i+1, j-1) and
+                    // z is F(i, j-2) in above recursive formula
+                    x = ((i + 2) <= j) ? table[i + 2, j] : 0;
+                    y = ((i + 1) <= (j - 1)) ? table[i + 1, j - 1] : 0;
+                    z = (i <= (j - 2)) ? table[i, j - 2] : 0;
+
+                    table[i, j] = Math.Max(arr[i] + Math.Min(x, y), arr[j] + Math.Min(y, z));
+                }
+            }
+            return table[0, n - 1];
         }
 
 

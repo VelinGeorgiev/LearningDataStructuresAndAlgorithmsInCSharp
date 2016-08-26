@@ -48,5 +48,27 @@ namespace Learning.InterviewQuestionsTests.Trees
             Assert.AreEqual(list[3], 8);
         }
 
+        [Test]
+        public void BottomView()
+        {
+            BinaryTreeLeftRightView tree = new BinaryTreeLeftRightView();
+            HorizontalNode  root = new HorizontalNode(20);
+            root.left = new HorizontalNode(8);
+            root.right = new HorizontalNode(22);
+            root.left.left = new HorizontalNode(5);
+            root.left.right = new HorizontalNode(3);
+            root.right.left = new HorizontalNode(4);
+            root.right.right = new HorizontalNode(25);
+            root.left.right.left = new HorizontalNode(10);
+            root.left.right.right = new HorizontalNode(14);
+
+            IDictionary<int, int> dict = new Dictionary<int, int>();
+
+            tree.BottomView(root, dict);
+
+            Assert.AreEqual(dict[0], 4);
+            Assert.AreEqual(dict[2], 25);
+        }
+
     }
 }

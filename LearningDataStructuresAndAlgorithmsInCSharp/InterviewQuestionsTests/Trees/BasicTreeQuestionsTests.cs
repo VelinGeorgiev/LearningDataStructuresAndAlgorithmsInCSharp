@@ -296,5 +296,64 @@ namespace Learning.InterviewQuestionsTests.Trees
 
             Assert.AreEqual(_tree.MaxDiff(_tree.root), 7);
         }
+
+        [Test]
+        public void ModifyBst()
+        {
+            var root = new Node(50);
+            root.left = new Node(30);
+            root.left.left = new Node(20);
+            root.left.right = new Node(40);
+            root.right = new Node(70);
+            root.right.left = new Node(60);
+            root.right.right = new Node(80);
+
+            _tree.ModifyBst(root);
+
+            Assert.AreEqual(root.data, 260);
+            Assert.AreEqual(root.left.data, 330);
+            Assert.AreEqual(root.left.left.data, 350);
+            Assert.AreEqual(root.left.right.data, 300);
+            Assert.AreEqual(root.right.data, 150);
+        }
+
+        [Test]
+        public void IsBst()
+        {
+            BinaryTree tree = new BinaryTree();
+            tree.root = new Node(4);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(5);
+            tree.root.left.left = new Node(1);
+            tree.root.left.right = new Node(3);
+
+            Assert.IsTrue(_tree.IsBst(tree.root));
+        }
+
+        [Test]
+        public void NotBst()
+        {
+            BinaryTree tree = new BinaryTree();
+            tree.root = new Node(4);
+            tree.root.left = new Node(5);
+            tree.root.right = new Node(2);
+            tree.root.left.left = new Node(1);
+            tree.root.left.right = new Node(3);
+
+            Assert.IsFalse(_tree.IsBst(tree.root));
+        }
+
+        public void IsBstRecursion()
+        {
+            BinaryTree tree = new BinaryTree();
+            tree.root = new Node(4);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(5);
+            tree.root.left.left = new Node(1);
+            tree.root.left.right = new Node(3);
+
+            Assert.IsTrue(_tree.IsBstRecursion(tree.root, int.MinValue, int.MaxValue));
+        }
+
     }
 }
