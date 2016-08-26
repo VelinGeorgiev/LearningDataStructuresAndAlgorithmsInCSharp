@@ -380,5 +380,15 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             int n = arr.Length;
             Assert.IsTrue(_ba.IsTriplet(arr, n));
         }
+
+
+        [Test]
+        public void FindLongestConseqSubseq()
+        {
+            int[] arr = { 1, 9, 3, 10, 4, 20, 2 };
+            int n = arr.Length;
+            Assert.AreEqual(_ba.FindLongestConseqSubseq(arr, n), 4);
+        }
+        
     }
 }

@@ -276,7 +276,93 @@ namespace Learning.InterviewQuestions.DynamicProgramming
             return table[0, n - 1];
         }
 
+        // Minimum insertions to form a palindrome
+        // http://www.geeksforgeeks.org/dynamic-programming-set-28-minimum-insertions-to-form-a-palindrome/
+        // A DP function to find minimum number of insersions
+        public int FindMinInsertionsDp(string str, int n)
+        {
+            // Create a table of size n*n. table[i][j] will store
+            // minumum number of insertions needed to convert str[i..j]
+            // to a palindrome.
+            int[,] table = new int[n, n];
+            int l, h, gap;
 
+            // Fill the table
+            for (gap = 1; gap < n; ++gap)
+                for (l = 0, h = gap; h < n; ++l, ++h)
+                    table[l, h] = (str[l] == str[h]) ? table[l + 1, h - 1] :
+                                  (Math.Min(table[l, h - 1], table[l + 1, h]) + 1);
+
+            // Return minimum number of insertions for str[0..n-1]
+            return table[0, n - 1];
+        }
+
+        public void PrintMaxSubSquare(int[,] m, IList<int> result)
+        {
+            int r = m.GetLength(0);
+            int c = m.GetLength(1);
+
+            int i, j;
+            int[,] temp = new int[r, c];
+
+            // Set first column of temp[,]
+            for (i = 0; i < r; i++)
+                temp[i, 0] = m[i, 0];
+
+            // Set first row of temp[,]
+            for (j = 0; j < c; j++)
+                temp[0, j] = m[0, j];
+
+            // Construct other entries of temp[,]
+            for (i = 1; i < r; i++)
+            {
+                for (j = 1; j < c; j++)
+                {
+                    if (m[i, j] == 1)
+                        temp[i, j] = Math.Min(Math.Min(temp[i, j - 1], temp[i - 1, j]), temp[i - 1, j - 1]) + 1;
+                    else
+                        temp[i, j] = 0;
+                }
+            }
+
+            // Find the maximum entry, and indexes of maximum entry in temp[,]
+            var tempMax = temp[0, 0]; var maxI = 0; var maxJ = 0;
+            for (i = 0; i < r; i++)
+            {
+                for (j = 0; j < c; j++)
+                {
+                    if (tempMax < temp[i, j])
+                    {
+                        tempMax = temp[i, j];
+                        maxI = i;
+                        maxJ = j;
+                    }
+                }
+            }
+            for (i = maxI; i > maxI - tempMax; i--)
+            {
+                for (j = maxJ; j > maxJ - tempMax; j--)
+                {
+                    result.Add(m[i, j]);
+                }
+            }
+        }
+
+        // http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
+        // Kadane’s Algorithm: Largest Sum Contiguous Subarray
+        public int MaxSubArraySum(int[] a)
+        {
+            int size = a.Length;
+            int maxSoFar = a[0];
+            int currMax = a[0];
+
+            for (int i = 1; i < size; i++)
+            {
+                currMax = Math.Max(a[i], currMax + a[i]);
+                maxSoFar = Math.Max(maxSoFar, currMax);
+            }
+            return maxSoFar;
+        }
     }
 
     // A petrol pump has petrol and distance to next petrol pump

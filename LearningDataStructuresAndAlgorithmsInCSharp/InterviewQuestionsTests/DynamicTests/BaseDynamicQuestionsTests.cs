@@ -31,7 +31,6 @@ namespace Learning.InterviewQuestionsTests.DynamicTests
                 { 1, 1, 1, 0, 0 }
             };
             _dynamic.PrintUniqueMatrixRows(mat, set);
-
             Assert.AreEqual(set.Count, 3);
         }
 
@@ -91,5 +90,34 @@ namespace Learning.InterviewQuestionsTests.DynamicTests
             Assert.AreEqual(_dynamic.OptimalStrategyOfGame(arr3, n), 42);
         }
 
+        [Test]
+        public void FindMinInsertionsDp()
+        {
+            Assert.AreEqual(_dynamic.FindMinInsertionsDp("geeks", "geeks".Length), 3);
+        }
+
+        [Test]
+        public void PrintMaxSubSquare()
+        {
+            int[,] mat =  {
+                {0, 1, 1, 0, 1}, 
+                {1, 1, 0, 1, 0}, 
+                {0, 1, 1, 1, 0},
+                {1, 1, 1, 1, 0},
+                {1, 1, 1, 1, 1},
+                {0, 0, 0, 0, 0}
+            };
+
+            var result = new List<int>();
+            _dynamic.PrintMaxSubSquare(mat, result);
+            Assert.AreEqual(result.Count, 9);
+        }
+
+        [Test]
+        public void MaxSubArraySum()
+        {
+            int[] a = { -2, -3, 4, -1, -2, 1, 5, -3 };
+            Assert.AreEqual(_dynamic.MaxSubArraySum(a), 7);
+        }
     }
 }

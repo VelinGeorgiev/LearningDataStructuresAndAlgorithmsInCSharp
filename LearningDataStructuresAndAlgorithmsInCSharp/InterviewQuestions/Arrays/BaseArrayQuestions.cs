@@ -665,6 +665,19 @@ namespace Learning.InterviewQuestions.Arrays
             }
         }
 
+        // This function sorts arr[0..n-1] in wave form, i.e., 
+        // arr[0] >= arr[1] <= arr[2] >= arr[3] <= arr[4] >= arr[5]..
+        public void SortInWave(int[] arr, int n)
+        {
+            // Sort the input array
+            Array.Sort(arr);
+
+            // Swap adjacent elements
+            for (int i = 0; i < n - 1; i += 2)
+                Swap(arr, i, i + 1);
+        }
+
+
         private void Swap(int[] arr, int i, int j)
         {
             int t = arr[i];
@@ -944,6 +957,40 @@ namespace Learning.InterviewQuestions.Arrays
 
             // If we reach here, then no triplet found
             return false;
+        }
+
+
+        // Returns length of the longest consecutive subsequence
+        public int FindLongestConseqSubseq(int[] arr, int n)
+        {
+            IList<int> hashSet = new List<int>();
+            int ans = 0;
+
+            // Hash all the array elements
+            for (int i = 0; i < n; ++i)
+                hashSet.Add(arr[i]);
+
+            // check each possible sequence from the start
+            // then update optimal length
+            for (int i = 0; i < n; ++i)
+            {
+                // if current element is the starting
+                // element of a sequence
+                if (!hashSet.Contains(arr[i] - 1))
+                {
+                    // Then check for next elements in the
+                    // sequence
+                    int j = arr[i];
+                    while (hashSet.Contains(j))
+                        j++;
+
+                    // update  optimal length if this length
+                    // is more
+                    if (ans < j - arr[i])
+                        ans = j - arr[i];
+                }
+            }
+            return ans;
         }
 
     }
