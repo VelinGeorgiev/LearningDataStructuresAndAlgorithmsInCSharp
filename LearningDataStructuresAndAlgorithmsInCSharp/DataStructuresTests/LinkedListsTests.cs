@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Learning.DataStructures.LinkedList;
 using NUnit.Framework;
 
 namespace Learning.DataStructuresTests
@@ -75,6 +76,20 @@ namespace Learning.DataStructuresTests
             Assert.AreEqual(list[7], 6);
             Assert.AreEqual(list[8], 10);
             Assert.AreEqual(list[9], 9);
+        }
+
+        [Test]
+        public void ReverseLinkedListRecur()
+        {
+            var ll = new SinglyLinkedList();
+            ll.head = new Node(1);
+            ll.head.next = new Node(2);
+            ll.head.next.next = new Node(3);
+            ll.head.next.next.next = new Node(4);
+
+            var reversed = ll.ReverseRecurive(ll.head, null);
+            Assert.AreEqual(reversed.data, 4);
+            Assert.AreEqual(reversed.next.next.next.data, 1);
         }
     }
 }

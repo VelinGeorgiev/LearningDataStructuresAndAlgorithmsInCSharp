@@ -389,6 +389,16 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             int n = arr.Length;
             Assert.AreEqual(_ba.FindLongestConseqSubseq(arr, n), 4);
         }
-        
+
+        [Test]
+        public void Intersection()
+        {
+            int[] arr1 = { 1, 9, 3, 10, 4, 20, 2 };
+            int[] arr2 = { 9, 3 };
+            var result = _ba.Intersection(arr1, arr2);
+            Assert.AreEqual(result[0], 9);
+            Assert.AreEqual(result[1], 3);
+        }
+
     }
 }

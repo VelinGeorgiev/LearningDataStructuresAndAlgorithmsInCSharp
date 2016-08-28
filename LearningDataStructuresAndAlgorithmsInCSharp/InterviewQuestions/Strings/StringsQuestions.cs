@@ -239,5 +239,62 @@ namespace Learning.InterviewQuestions.Strings
             }
             return -1;
         }
-}
+
+        public bool IsAnagram(string s, string t)
+        {
+            if (s.Length != t.Length) return false;
+
+            var s1 = s.ToCharArray();
+            var t1 = t.ToCharArray();
+
+            Array.Sort(s1);
+            Array.Sort(t1);
+
+            for (int i = 0; i < s1.Length; i++)
+            {
+                if (s1[i] != t1[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool IsAnagramHash(string s, string t)
+        {
+            var dict = new Dictionary<char, int>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (dict.ContainsKey(s[i]))
+                {
+                    dict[s[i]] += 1;
+                }
+                else
+                {
+                    dict.Add(s[i], 1);
+                }
+            }
+            for (int i = 0; i < t.Length; i++)
+            {
+                if (dict.ContainsKey(t[i]))
+                {
+                    dict[t[i]] -= 1;
+                }
+                else
+                {
+                    dict.Add(t[i], 1);
+                }
+            }
+
+            foreach (var item in dict)
+            {
+                if (item.Value != 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 }

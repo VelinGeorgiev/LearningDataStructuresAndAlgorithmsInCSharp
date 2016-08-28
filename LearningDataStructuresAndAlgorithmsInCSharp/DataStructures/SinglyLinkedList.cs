@@ -112,40 +112,37 @@ namespace Learning.DataStructures.LinkedList
 
         public void Reverse()
         {
+            if (head == null) return;
+
             Node prev = null;
-            var current = head;
+            Node curr = null;
+            Node nxt = head;
 
-            if (current == null)
-                return;
-
-            while (current != null)
+            while (nxt != null)
             {
-                var next = current.next;
-                current.next = prev;
-                prev = current;
-                current = next;
+                curr = nxt;
+                nxt = curr.next;
+                curr.next = prev;
+                prev = curr;
             }
 
-            head = prev;
+            head = curr;
         }
 
-        public void ReverseRecurisve()
+        public Node ReverseRecurive(Node curr, Node prev)
         {
-            ReverseRecurive(head, null);
-        }
-
-        private void ReverseRecurive(Node current, Node prev)
-        {
-            if (current.next == null)
+            if (curr.next == null)
             {
-                head = current;
-                head.next = prev;
-                return;
+                head = curr;
+                curr.next = prev;
+                return null;
             }
+            Node nxt = curr.next;
+            curr.next = prev;
 
-            var next = current.next;
-            current.next = prev;
-            ReverseRecurive(next, current);
+            ReverseRecurive(nxt, curr);
+
+            return head;
         }
     }
 }

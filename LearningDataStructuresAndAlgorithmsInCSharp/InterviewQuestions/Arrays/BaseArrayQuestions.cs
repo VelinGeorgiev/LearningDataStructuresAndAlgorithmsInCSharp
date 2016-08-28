@@ -993,5 +993,89 @@ namespace Learning.InterviewQuestions.Arrays
             return ans;
         }
 
+        public int[] Intersection(int[] nums1, int[] nums2)
+        {
+            IDictionary<int, int> list = new Dictionary<int, int>();
+            IDictionary<int, int> intersect = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                if (list.ContainsKey(nums1[i]))
+                {
+                    list[nums1[i]] += 1;
+                }
+                else
+                {
+                    list.Add(nums1[i], 1);
+                }
+            }
+            for (int i = 0; i < nums2.Length; i++)
+            {
+                if (list.ContainsKey(nums2[i]))
+                {
+                    if (intersect.ContainsKey(nums2[i]))
+                    {
+                        intersect[nums2[i]] += 1;
+                    }
+                    else
+                    {
+                        intersect.Add(nums2[i], 0);
+                    }
+                }
+            }
+
+            int[] result = new int[intersect.Count];
+            int j = 0;
+            foreach (KeyValuePair<int, int> num in intersect)
+            {
+                result[j] = num.Key;
+                j++;
+            }
+            return result;
+        }
+
+
+        public int[] SortedIntersection(int[] a, int[] b)
+        {
+            Dictionary<int, int> h = new Dictionary<int, int>();
+            Array.Sort(a);
+            Array.Sort(b);
+            int i = 0;
+            int j = 0;
+            while (i < a.Length && j < b.Length)
+            {
+                if (a[i] < b[j])
+                {
+                    i++;
+                }
+                else if (a[i] > b[j])
+                {
+                    j++;
+                }
+                else
+                {
+                    if (h.ContainsKey(a[i]))
+                    {
+                        h[a[i]] += 1;
+                    }
+                    else
+                    {
+                        h.Add(a[i], 1);
+                    }
+                    i++;
+                    j++;
+                }
+            }
+
+            int k = 0;
+            int[] result = new int[h.Count];
+            foreach (KeyValuePair<int, int> item in h)
+            {
+                result[k] = item.Key;
+                k++;
+            }
+            return result;
+        }
+
     }
 }
