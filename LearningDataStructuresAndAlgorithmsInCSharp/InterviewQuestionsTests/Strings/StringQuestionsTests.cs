@@ -68,5 +68,12 @@ namespace Learning.InterviewQuestionsTests.Strings
         {
             Assert.AreEqual(_sq.PatternSearch("AAAB", "AAAAAAAAB"), 5);
         }
+        [Test]
+        public void IsIsomorphic()
+        {
+            Assert.IsTrue(_sq.IsIsomorphic("egg", "add"));
+            Assert.IsFalse(_sq.IsIsomorphic("foo", "bar"));
+        }
+        
     }
 }

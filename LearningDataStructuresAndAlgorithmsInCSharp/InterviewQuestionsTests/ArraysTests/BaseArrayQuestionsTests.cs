@@ -400,5 +400,24 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             Assert.AreEqual(result[1], 3);
         }
 
+        [Test]
+        public void MergeIntoArrayOne()
+        {
+            int[] arr1 = new int[200];
+            arr1[0]= 1;
+            arr1[1] = 2;
+            arr1[2] = 3;
+            arr1[3] = 10;
+            int[] arr2 = { 2, 3, 4 };
+             _ba.MergeIntoArrayOne(arr1, 4, arr2, arr2.Length);
+            Assert.AreEqual(arr1[0], 1);
+            Assert.AreEqual(arr1[1], 2);
+            Assert.AreEqual(arr1[2], 2);
+            Assert.AreEqual(arr1[3], 3);
+            Assert.AreEqual(arr1[4], 3);
+            Assert.AreEqual(arr1[5], 4);
+            Assert.AreEqual(arr1[6], 10);
+        }
+
     }
 }

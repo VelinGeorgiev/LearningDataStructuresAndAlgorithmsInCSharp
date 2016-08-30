@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Learning.InterviewQuestions.Strings
@@ -294,6 +296,87 @@ namespace Learning.InterviewQuestions.Strings
                     return false;
                 }
             }
+            return true;
+        }
+
+        public bool IsIsomorphic(string s, string t)
+        {
+
+            if (s.Length != t.Length)
+            {
+                return false;
+            }
+
+            var sHash = new Dictionary<char, char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (sHash.ContainsKey(s[i]))
+                {
+                    if (sHash[s[i]] != t[i])
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    sHash.Add(s[i], t[i]);
+                }
+            }
+
+            var sHash2 = new Dictionary<char, char>();
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (sHash2.ContainsKey(t[i]))
+                {
+                    if (sHash2[t[i]] != s[i])
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+
+                    sHash2.Add(t[i], s[i]);
+                }
+            }
+
+            return true;
+        }
+
+        public bool WordPattern(string pattern, string str)
+        {
+
+            var patternDict = new Hashtable();
+            string[] words = str.Split(' ');
+
+            if (words.Count() != pattern.Length)
+            {
+                return false;
+            }
+
+            for (int j = 0; j < pattern.Length; j++)
+            {
+                if ((!patternDict.ContainsKey(pattern[j]) && patternDict.ContainsKey(words[j])) ||
+                (patternDict.ContainsKey(pattern[j]) && !patternDict.ContainsKey(words[j])))
+                {
+                    return false;
+                }
+                if (!patternDict.ContainsKey(pattern[j]) && !patternDict.ContainsKey(words[j]))
+                {
+                    patternDict[pattern[j]] = j;
+                    patternDict[words[j]] = j;
+                }
+                else
+                {
+                    if ((int)patternDict[pattern[j]] != (int)patternDict[words[j]])
+                    {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
     }

@@ -603,5 +603,26 @@ namespace Learning.InterviewQuestions.LinkedLists
                the original order */
             Reverse();
         }
+
+        // https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+        public Node DeleteDuplicates(Node head)
+        {
+            Node node = head;
+
+            while (node != null)
+            {
+                if (node.next == null) break;
+                if (node.data == node.next.data)
+                {
+                    node.next = node.next.next;
+                }
+                else
+                {
+                    node = node.next;
+                }
+            }
+
+            return head;
+        }
     }
 }
