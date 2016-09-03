@@ -419,5 +419,15 @@ namespace Learning.InterviewQuestionsTests.ArraysTests
             Assert.AreEqual(arr1[6], 10);
         }
 
+        [Test]
+        public void Permutations()
+        {
+            int[] arr1 = new int[] {1,2,3};
+            var result = _ba.Permutations(arr1);
+            Assert.AreEqual(result[0][0], 3);
+            
+        }
+
+        
     }
 }

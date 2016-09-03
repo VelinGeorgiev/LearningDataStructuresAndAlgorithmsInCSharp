@@ -377,7 +377,91 @@ namespace Learning.InterviewQuestions.Strings
                 }
             }
 
+
+
+
             return true;
+        }
+
+        /// <summary>
+        /// NOT WORKING. PLEASE NOTE TIHS IS NOT A WORKING EXAMPLE.
+        /// </summary>
+        public void Permutations()
+        {
+            string[] words = { "a", "b", "ba", "bca", "bda", "bdca" };
+            // bdca -> bda -> ba -> a, b
+
+            var dict = new Dictionary<string, int>();
+            foreach (var ss in words)
+            {
+                dict.Add(ss, ss.Length);
+            }
+            var max = dict.Keys.Max();
+            var temp1 = max;
+            var temp2 = max;
+            var temp3 = max;
+            //var l = dict[max];
+
+            int l = max.Length;
+            int count = 0;
+            while (l-- > 0)
+            {
+                var newWord = temp1.Remove(l, 1);
+                foreach (var let in words)
+                {
+
+                    if (let == newWord) count++;
+                }
+            }
+            l = max.Length;
+            while (l-- > 2)
+            {
+                var newWord = temp2.Remove(l);
+                foreach (var let in words)
+                {
+
+                    if (let == newWord) count++;
+                }
+            }
+            foreach (var let2 in words.Where(x => x.Length == 1))
+            {
+                if (temp3.Contains(let2)) count++;
+            }
+            var s1 = count;
+        }
+
+        public void Elections()
+        {
+            string[] a = { "Alex","Michael",
+            "Harry",
+            "Dave",
+            "Michael",
+            "Victor",
+            "Harry",
+            "Alex",
+            "Mary",
+            "Mary"};
+            Array.Sort(a, new Comparison<string>((i1, i2) => i2.CompareTo(i1)));
+            var dict = new Dictionary<string, int>();
+            foreach (var name in a)
+            {
+                if (dict.ContainsKey(name))
+                {
+                    dict[name] += 1;
+                }
+                else
+                {
+                    dict.Add(name, 1);
+                }
+            }
+            var max = dict.Values.Max();
+            foreach (var name in dict)
+            {
+                if (name.Value == max)
+                {
+                    var i = name.Key;
+                }
+            }
         }
     }
 }

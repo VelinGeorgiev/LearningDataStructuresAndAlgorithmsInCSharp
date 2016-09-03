@@ -1091,5 +1091,54 @@ namespace Learning.InterviewQuestions.Arrays
                 a[k--] = b[j--];
         }
 
+
+        public IList<IList<int>> Permutations(int[] num)
+        {
+            var ans = new List<IList<int>>();
+            if (num.Length == 0) return ans;
+
+            var l0 = new List<int>();
+            l0.Add(num[0]);
+            ans.Add(l0);
+
+            for (int i = 1; i < num.Length; ++i)
+            {
+                var l1 = new List<IList<int>>();
+
+                for (int j = 0; j <= i; ++j)
+                {
+
+                    foreach (var l in ans)
+                    {
+
+                        var l2 = new List<int>(l);
+
+                        l2.Insert(j, num[i]);
+
+                        l1.Add(l2);
+                    }
+                }
+                ans = l1;
+            }
+            return ans;
+        }
+
+        public void MergeTwoIntoThird()
+        {
+            int[] a = { 3, 4, 5 };
+            int[] b = { 1, 2, 3 };
+            int[] c = new int[a.Length + b.Length];
+
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            while (i < a.Length && j < b.Length)
+            {
+                if (a[i] <= b[j]) c[count++] = a[i++];
+                else c[count++] = b[j++];
+            }
+            while (i < a.Length) c[count++] = a[i++];
+            while (j < b.Length) c[count++] = b[j++];
+        }
     }
 }
